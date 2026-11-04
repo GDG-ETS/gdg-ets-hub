@@ -1,9 +1,13 @@
 # GDG ÉTS — Hub & Arène
 
-Première maquette fonctionnelle du hub de la communauté GDG ÉTS et de son arène de
-programmation compétitive. L'application est en français, utilise des données
-fictives et couvre le parcours public complet — de la lecture d'un article à la
-soumission d'un problème.
+Maquette fonctionnelle du hub de la communauté GDG ÉTS et de son arène de
+programmation compétitive. L'application est en français et présente les
+premières activités réelles du chapitre : l'atelier LeetCode du 9 novembre 2026,
+la participation au DevFest Montréal 2026, le meetup GDG Cloud chez Vooban et le
+lancement officiel du club.
+
+L'arène est une **démonstration** : le concours, les soumissions, les verdicts et
+le classement sont simulés. Un bandeau l'indique sur toutes ses pages.
 
 ## Stack
 
@@ -34,17 +38,34 @@ npm start       # servir le build
 
 | Route | Écran |
 | --- | --- |
-| `/` | Accueil éditorial : prochain panel, concours en cours, articles, événements |
-| `/panels` | Présentation des panels, récapitulatifs et archives |
+| `/` | Accueil : atelier LeetCode à la une, DevFest, articles et prochains événements |
+| `/panels` | Conférences & panels : DevFest, récapitulatifs et jalons de la première session |
 | `/blog` | Index des articles avec article à la une |
 | `/blog/[slug]` | Article complet, sommaire, partage, intervenants, ressources |
-| `/events` | Agenda, informations pratiques et rendez-vous récurrents |
-| `/about` | Mission, valeurs, équipe et moyens de rejoindre le club |
-| `/privacy` | Politique de confidentialité |
-| `/arena` | Tableau de bord participant : concours, statistiques, soumissions |
-| `/arena/contest` | Aperçu du concours : règles, problèmes, annonces, jury |
+| `/events` | Agenda, retours sur les activités et formats de participation |
+| `/about` | Mission, équipe fondatrice, mentors et moyens de participer |
+| `/privacy` | Politique de confidentialité et note sur la maquette |
+| `/arena` | Tableau de bord de démonstration : concours, statistiques, soumissions |
+| `/arena/contest` | Aperçu du concours fictif : règles, problèmes, annonces, jury |
 | `/arena/problems/[label]` | Espace de travail : énoncé + éditeur CodeMirror |
 | `/arena/leaderboard` | Classement ICPC, gel, export CSV |
+
+## Contenu réel
+
+Les articles et les événements proviennent des publications du club :
+
+- **Atelier LeetCode** — lundi 9 novembre 2026, 12 h à 13 h 30, ÉTS Pavillon A,
+  salle A-1302. Premier événement officiel du GDG ÉTS, gratuit, avec tuteurs.
+- **DevFest Montréal 2026** — vendredi 6 novembre 2026, Espace Ax.c, 800 rue du
+  Square-Victoria. Oumaima El khayiri présente la table ronde sur GDG on Campus
+  avec Rebecca Abi Chahine, Michael Persico et Daniel Wei.
+- **Meetup GDG Cloud Montréal chez Vooban** — retour sur la soirée du 2 octobre
+  2026 avec Ayoub Marouf, Emilien Busson et Patrick Nguyen.
+- **Lancement du chapitre** — annonce du 30 septembre 2026, après l'atelier du
+  21 septembre. Équipe fondatrice de six personnes et trois mentors.
+
+Les couvertures d'articles sont des images d'illustration, pas des photos des
+événements.
 
 ## Fonctionnalités de la maquette
 
@@ -55,7 +76,7 @@ npm start       # servir le build
 - Export CSV réel du classement.
 - Partage d'article (copie du lien, LinkedIn, X).
 - Navigation mobile, menu déroulant et onglets énoncé/code.
-- Toutes les pages sont prérendues statiquement à partir des données de démonstration.
+- Bandeau « Démo » sur l'ensemble de l'arène.
 
 ## Design
 
@@ -75,13 +96,13 @@ data-first, avec un bandeau presque noir.
 
 ```text
 app/
-  (hub)/              # hub public : accueil, blog, panels, événements, à propos
+  (hub)/              # accueil, conférences, blog, événements, à propos, confidentialité
   (arena)/arena/      # tableau de bord, concours, problèmes, classement
   layout.tsx          # polices et métadonnées globales
   globals.css         # tokens Tailwind, styles de base, CodeMirror
 components/           # header/footer, cartes, scoreboard, éditeur, countdown…
 lib/
-  data.ts             # articles, événements, concours, problèmes, classements
+  data.ts             # articles, événements, équipe, concours, problèmes, classements
   post-content.ts     # corps éditorial des articles
 design/screens/       # captures de référence générées par Stitch
 ```
@@ -90,12 +111,15 @@ design/screens/       # captures de référence générées par Stitch
 
 Cette version est volontairement **mock-only** :
 
-- Les comptes, inscriptions et soumissions ne sont pas persistés.
+- Les comptes, inscriptions, profils et soumissions ne sont pas persistés.
 - Le juge de code n'existe pas : les verdicts sont simulés côté client.
+- Le concours « Hackathon d'automne 2026 », le participant de démonstration et le
+  classement sont fictifs.
 - L'administration (`/admin`), l'authentification, PostgreSQL, le CMS et le
   déploiement GCP ne sont pas encore branchés.
-- Les liens Discord, GitHub, courriel et ressources sont des liens de
-  démonstration.
+- Aucun lien Discord, GitHub ou courriel officiel n'est publié tant qu'il n'a pas
+  été confirmé. Le seul lien externe d'événement est la billetterie du DevFest
+  fournie par le club.
 
 ## Prochaines étapes
 

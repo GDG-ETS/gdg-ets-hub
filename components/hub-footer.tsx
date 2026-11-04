@@ -4,6 +4,7 @@ import { Logo } from "@/components/logo";
 const links = [
   { href: "/about", label: "À propos" },
   { href: "/events", label: "Événements" },
+  { href: "/panels", label: "Conférences" },
   { href: "/blog", label: "Articles" },
   { href: "/arena", label: "Arène de programmation" },
   { href: "/privacy", label: "Confidentialité" },
@@ -17,9 +18,9 @@ export function HubFooter() {
           <div className="max-w-sm">
             <Logo />
             <p className="mt-4 text-sm leading-6 text-muted">
-              Le club de développement étudiant de l&apos;École de technologie
-              supérieure. Panels, ateliers, articles et compétitions de
-              programmation.
+              Le chapitre Google Developer Groups on Campus de l&apos;École de
+              technologie supérieure. Ateliers, conférences, articles et
+              programmation compétitive.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-x-12 gap-y-2 text-sm sm:grid-cols-3">
@@ -32,22 +33,6 @@ export function HubFooter() {
                 {link.label}
               </Link>
             ))}
-            <a
-              href="https://discord.com"
-              className="py-1 text-muted transition-colors hover:text-brand"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Discord
-            </a>
-            <a
-              href="https://github.com"
-              className="py-1 text-muted transition-colors hover:text-brand"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
           </div>
         </div>
         <div className="mt-10 flex flex-col gap-2 border-t border-line pt-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">

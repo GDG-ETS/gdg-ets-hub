@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonStyles } from "@/components/ui/button";
 import { Countdown } from "@/components/countdown";
 import { VerdictBadge } from "@/components/verdict-badge";
-import { contest, submissions } from "@/lib/data";
+import { contest, featuredEvent, submissions } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Tableau de bord",
@@ -33,10 +33,11 @@ export default function ArenaDashboardPage() {
       <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="font-display text-3xl font-semibold tracking-tight">
-            Bonjour, Sami
+            Bonjour, Wilson
           </h1>
           <p className="mt-1 text-sm text-muted">
-            Le Hackathon d&apos;automne est en cours. Bonne chance !
+            Bienvenue dans la démo de l&apos;arène. Le concours et les verdicts
+            sont simulés.
           </p>
         </div>
         <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted">
@@ -195,24 +196,19 @@ export default function ArenaDashboardPage() {
             <div className="flex items-center gap-2">
               <CircleUserRound className="size-4 text-brand" aria-hidden="true" />
               <h2 className="font-display text-base font-semibold tracking-tight">
-                Profil complété à 80 %
+                Profil de démonstration
               </h2>
             </div>
-            <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-canvas">
-              <div
-                className="h-full rounded-full bg-brand"
-                style={{ width: "80%" }}
-              />
-            </div>
             <p className="mt-3 text-xs leading-5 text-muted">
-              Ajoute ton lien GitHub pour apparaître dans la liste des membres
-              actifs.
+              Les comptes et les profils ne sont pas encore branchés. Cette
+              maquette utilise un participant fictif pour montrer l&apos;espace
+              personnel.
             </p>
             <Link
               href="/about"
               className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline"
             >
-              Compléter mon profil
+              Découvrir le club
               <ArrowRight className="size-3.5" aria-hidden="true" />
             </Link>
           </section>
@@ -221,7 +217,7 @@ export default function ArenaDashboardPage() {
             <div className="flex items-center gap-2">
               <Bell className="size-4 text-warning" aria-hidden="true" />
               <h2 className="font-display text-base font-semibold tracking-tight">
-                Annonces
+                Annonces · démo
               </h2>
             </div>
             <div className="mt-3 space-y-3">
@@ -242,19 +238,20 @@ export default function ArenaDashboardPage() {
           </section>
 
           <section className="rounded-xl border border-line bg-surface p-5">
-            <p className="eyebrow text-muted">Prochain entraînement</p>
+            <p className="eyebrow text-muted">Prochain événement</p>
             <p className="mt-2 font-display text-base font-semibold tracking-tight">
-              Arène ouverte
+              {featuredEvent.title}
             </p>
             <p className="mt-1 flex items-center gap-1.5 text-xs text-muted">
               <CalendarDays className="size-3.5" aria-hidden="true" />
-              25 novembre · 18h00
+              Lundi 9 novembre · 12h00 – 13h30
             </p>
+            <p className="mt-1 text-xs text-muted">{featuredEvent.location}</p>
             <Link
-              href="/events"
+              href={featuredEvent.eventHref}
               className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline"
             >
-              Voir le calendrier
+              Voir les détails
               <ArrowRight className="size-3.5" aria-hidden="true" />
             </Link>
           </section>

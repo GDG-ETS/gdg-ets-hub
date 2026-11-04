@@ -9,7 +9,7 @@ export function EventList({ events }: { events: Event[] }) {
         <Link
           key={event.slug}
           id={event.slug}
-          href={`/events#${event.slug}`}
+          href={event.href ?? `/events#${event.slug}`}
           className="group flex scroll-mt-24 items-center gap-4 px-4 py-4 transition-colors hover:bg-canvas/70 sm:px-6 sm:py-5"
         >
           <div className="flex w-14 shrink-0 flex-col items-center rounded-lg border border-line bg-canvas py-1.5">

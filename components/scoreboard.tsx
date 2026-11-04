@@ -55,7 +55,7 @@ export function Scoreboard({
   return (
     <div
       className={cn(
-        "overflow-x-auto rounded-xl border border-line bg-surface",
+        "overflow-x-auto rounded-xl border border-line bg-surface [contain:paint]",
         className
       )}
     >

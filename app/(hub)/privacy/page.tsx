@@ -1,63 +1,66 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Mail, ShieldCheck } from "lucide-react";
+import { ArrowRight, CalendarDays, Info, ShieldCheck, Users } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Confidentialité",
   description:
-    "Politique de confidentialité du hub et de l'arène du GDG ÉTS.",
+    "Politique de confidentialité du hub et de l'arène du GDG ÉTS. La maquette actuelle ne collecte aucune donnée.",
 };
 
 const sections = [
   {
-    id: "donnees",
-    title: "Données que nous collectons",
+    id: "maquette",
+    title: "Maquette et collecte de données",
     paragraphs: [
-      "Lorsque tu crées un compte sur le hub ou dans l'arène, nous collectons ton nom, ton adresse courriel, ton programme d'études et, si tu l'indiques, ton nom d'utilisateur public. Ces informations servent à identifier ton compte, à t'inscrire aux activités et à afficher ton classement.",
-      "Les soumissions de code sont conservées afin de calculer les résultats, de permettre le rejudge et de produire les explications de solution. Elles ne sont jamais utilisées à des fins publicitaires.",
+      "Cette version du hub et de l'arène est une maquette publique. Elle ne demande aucun compte, ne contient aucun formulaire et n'enregistre aucune donnée personnelle.",
+      "Les soumissions saisies dans l'arène restent dans ton navigateur et disparaissent au rechargement de la page. Aucun code n'est transmis à un serveur ni exécuté par un juge.",
     ],
   },
   {
-    id: "utilisation",
-    title: "Comment nous utilisons les données",
+    id: "donnees",
+    title: "Données prévues dans la version finale",
     paragraphs: [
-      "Nous utilisons tes données pour faire fonctionner le service : authentification, inscriptions aux événements, classements, notifications liées aux concours et communications du club. Nous n'envoyons pas de communications commerciales sans ton consentement.",
-      "Les données agrégées et anonymisées peuvent servir à produire des statistiques sur la participation aux activités du club.",
+      "Lorsque les comptes seront disponibles, nous prévoyons de collecter ton nom, ton adresse courriel, ton programme d'études et, si tu l'indiques, ton nom d'utilisateur public. Ces informations serviront à identifier ton compte, à t'inscrire aux activités et à afficher ton classement.",
+      "Les soumissions de code seront conservées afin de calculer les résultats, de permettre le rejudge et de produire les explications de solution. Elles ne seront jamais utilisées à des fins publicitaires.",
     ],
   },
   {
     id: "cookies",
     title: "Cookies et mesures d'audience",
     paragraphs: [
-      "Le hub utilise des cookies strictement nécessaires à la session et à la sécurité. Aucun cookie publicitaire ni traceur tiers n'est déposé par défaut. Si une mesure d'audience est activée, elle est configurée pour anonymiser les adresses IP.",
+      "La maquette ne dépose aucun cookie publicitaire ni traceur tiers. Aucune mesure d'audience n'est activée.",
+      "Lorsque l'authentification sera branchée, seuls des cookies strictement nécessaires à la session et à la sécurité seront utilisés.",
     ],
   },
   {
     id: "conservation",
     title: "Conservation et sécurité",
     paragraphs: [
-      "Les données de compte sont conservées tant que le compte est actif. Les soumissions et résultats de concours sont conservés pour l'archivage des compétitions. Les données sont hébergées au Canada et protégées par des contrôles d'accès, le chiffrement en transit et des sauvegardes régulières.",
+      "Aucune donnée n'est présentement stockée par le hub ou par l'arène. Les données de démonstration sont définies dans le code de l'application.",
+      "La version finale sera hébergée au Canada et protégée par des contrôles d'accès, le chiffrement en transit et des sauvegardes régulières. Les données de compte seront conservées tant que le compte sera actif.",
     ],
   },
   {
     id: "partage",
     title: "Partage avec des tiers",
     paragraphs: [
-      "Nous ne vendons aucune donnée personnelle. Certains fournisseurs d'infrastructure (hébergement, envoi de courriels transactionnels) peuvent traiter des données pour notre compte, dans le cadre de contrats qui encadrent leur usage.",
+      "Nous ne vendons aucune donnée personnelle. Dans la version finale, certains fournisseurs d'infrastructure (hébergement, envoi de courriels transactionnels) pourraient traiter des données pour notre compte, dans le cadre de contrats qui encadrent leur usage.",
     ],
   },
   {
     id: "droits",
     title: "Tes droits",
     paragraphs: [
-      "Tu peux demander l'accès, la correction ou la suppression de tes données à tout moment. Tu peux également retirer ton consentement aux communications. Les demandes sont traitées dans un délai raisonnable après vérification de l'identité.",
+      "Comme la maquette ne collecte aucune donnée, il n'y a actuellement rien à consulter, corriger ou supprimer.",
+      "Lorsque les comptes seront disponibles, tu pourras demander l'accès, la correction ou la suppression de tes données à tout moment, ainsi que retirer ton consentement aux communications.",
     ],
   },
   {
     id: "contact",
     title: "Nous contacter",
     paragraphs: [
-      "Pour toute question relative à la confidentialité, écris à l'équipe du club à l'adresse ci-dessous. Cette politique peut être mise à jour ; la date de dernière révision est indiquée en haut de la page.",
+      "Les coordonnées officielles du club seront publiées lorsqu'elles auront été confirmées. En attendant, tu peux rencontrer l'équipe lors d'une activité ou consulter la page À propos.",
     ],
   },
 ];
@@ -72,13 +75,22 @@ export default function PrivacyPage() {
             Politique de confidentialité
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
-            Cette politique explique quelles données le hub et l&apos;arène du
-            GDG ÉTS collectent, pourquoi elles le sont et comment exercer tes
-            droits.
+            Cette page explique quelles données le hub et l&apos;arène du GDG
+            ÉTS pourraient collecter, pourquoi elles le seraient et comment
+            exercer tes droits.
           </p>
           <p className="mt-3 font-mono text-[11px] uppercase tracking-wider text-muted">
             Dernière mise à jour : 3 novembre 2026
           </p>
+
+          <div className="mt-6 flex max-w-[72ch] items-start gap-3 rounded-xl border border-warning/30 bg-warning-soft/60 p-4">
+            <Info className="mt-0.5 size-4 shrink-0 text-warning" aria-hidden="true" />
+            <p className="text-sm leading-6 text-ink/80">
+              <strong className="font-semibold text-ink">Maquette :</strong>{" "}
+              aucune donnée personnelle n&apos;est collectée ni enregistrée. Les
+              soumissions dans l&apos;arène restent dans ton navigateur.
+            </p>
+          </div>
 
           <div className="mt-10 max-w-[72ch] space-y-10">
             {sections.map((section) => (
@@ -101,25 +113,34 @@ export default function PrivacyPage() {
                   ))}
                 </div>
                 {section.id === "contact" && (
-                  <div className="mt-5 flex flex-col gap-3 rounded-xl border border-line bg-surface p-4 pl-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="mt-5 flex flex-col gap-4 rounded-xl border border-line bg-surface p-4 pl-3 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex items-center gap-3">
-                      <span className="flex size-9 items-center justify-center rounded-lg bg-brand-soft text-brand">
-                        <Mail className="size-4" aria-hidden="true" />
+                      <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-brand-soft text-brand">
+                        <CalendarDays className="size-4" aria-hidden="true" />
                       </span>
                       <div>
-                        <p className="text-sm font-medium">Équipe GDG ÉTS</p>
-                        <a
-                          href="mailto:gdg-ets@etsmtl.ca"
-                          className="text-xs text-brand hover:underline"
-                        >
-                          gdg-ets@etsmtl.ca
-                        </a>
+                        <p className="text-sm font-medium">Rencontrer l&apos;équipe</p>
+                        <p className="text-xs text-muted">
+                          Lors d&apos;un atelier ou d&apos;une conférence
+                        </p>
                       </div>
                     </div>
-                    <span className="inline-flex items-center gap-1.5 text-xs text-muted">
-                      <ShieldCheck className="size-4 text-success" aria-hidden="true" />
-                      Réponse sous 7 jours
-                    </span>
+                    <div className="flex flex-wrap gap-2">
+                      <Link
+                        href="/events"
+                        className="inline-flex items-center gap-1.5 rounded-md border border-line px-3 py-2 text-xs font-medium text-ink transition-colors hover:border-brand hover:text-brand"
+                      >
+                        Voir les événements
+                        <ArrowRight className="size-3.5" aria-hidden="true" />
+                      </Link>
+                      <Link
+                        href="/about"
+                        className="inline-flex items-center gap-1.5 rounded-md border border-line px-3 py-2 text-xs font-medium text-ink transition-colors hover:border-brand hover:text-brand"
+                      >
+                        À propos
+                        <Users className="size-3.5" aria-hidden="true" />
+                      </Link>
+                    </div>
                   </div>
                 )}
               </section>
@@ -148,15 +169,21 @@ export default function PrivacyPage() {
               </ol>
             </nav>
             <div className="mt-5 border-t border-line pt-4 text-xs leading-5 text-muted">
-              Consulte aussi notre{" "}
-              <Link href="/about" className="font-medium text-brand hover:underline">
-                code de conduite
-              </Link>{" "}
-              et notre{" "}
-              <Link href="/about" className="font-medium text-brand hover:underline">
-                mission
-              </Link>
-              .
+              <p className="flex items-center gap-1.5 text-success">
+                <ShieldCheck className="size-4" aria-hidden="true" />
+                Aucune donnée collectée
+              </p>
+              <p className="mt-2">
+                Consulte aussi notre{" "}
+                <Link href="/about" className="font-medium text-brand hover:underline">
+                  mission
+                </Link>{" "}
+                et notre{" "}
+                <Link href="/events" className="font-medium text-brand hover:underline">
+                  calendrier
+                </Link>
+                .
+              </p>
             </div>
           </div>
         </aside>

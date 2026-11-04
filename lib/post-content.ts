@@ -1,7 +1,7 @@
 export type PanelSpeaker = {
   name: string;
   role: string;
-  company: string;
+  company?: string;
   initials: string;
   color: string;
   tag: string;
@@ -18,7 +18,7 @@ export type ArticleBlock =
     }
   | { type: "speakers"; items: PanelSpeaker[] }
   | { type: "video" }
-  | { type: "resources"; items: { label: string; kind: string }[] }
+  | { type: "resources"; items: { label: string; kind: string; href?: string }[] }
   | { type: "code"; language: string; code: string };
 
 export type ArticleBody = {
@@ -27,231 +27,277 @@ export type ArticleBody = {
 };
 
 export const articleBodies: Record<string, ArticleBody> = {
-  "retour-panel-cybersecurite": {
+  "atelier-leetcode-9-novembre": {
     lead: [
-      "À l'heure où les architectures distribuées s'étendent sur des clusters multirégionaux, la sécurité ne se résume plus à un pare-feu. Le panel du GDG ÉTS a réuni trois spécialistes de terrain pour démonter les idées reçues sur la défense moderne.",
-      "Entre l'explosion des attaques ciblant la supply chain logicielle et la généralisation de l'IA générative dans les outils internes, les équipes doivent repenser leurs hypothèses de base. Voici ce qu'il faut retenir de cette soirée.",
+      "Le GDG ÉTS lance sa première activité officielle avec un atelier consacré à LeetCode. Objectif : pratiquer la programmation compétitive dans un cadre accessible et préparer les entrevues techniques.",
+      "Rendez-vous le lundi 9 novembre 2026, de 12 h à 13 h 30, au Pavillon A de l'ÉTS (salle A-1302). L'activité est gratuite et des tuteurs seront sur place pour accompagner les participant·es.",
     ],
     blocks: [
-      { type: "heading", id: "ce-quon-retient", text: "Ce qu'on retient" },
-      {
-        type: "takeaways",
-        items: [
-          {
-            icon: "shield",
-            title: "Le périmètre classique n'existe plus",
-            text: "Les réseaux d'entreprise s'étendent désormais au-delà du bureau. Zero Trust impose de vérifier chaque identité et chaque appareil, quel que soit l'endroit d'où la requête provient.",
-          },
-          {
-            icon: "key",
-            title: "Les secrets codés en dur restent la faille la plus exploitée",
-            text: "Un secret versionné dans Git est compromis dès le premier commit. Rotation automatique, coffres de secrets et détection pré-commit sont devenus des contrôles de base.",
-          },
-          {
-            icon: "zap",
-            title: "Automatiser la détection prime sur la réaction",
-            text: "La réduction du temps de détection et de réponse change la donne. Les playbooks automatisés contiennent l'incident avant même qu'un humain n'ouvre son ordinateur.",
-          },
-          {
-            icon: "users",
-            title: "Le facteur humain reste le premier vecteur",
-            text: "L'ingénierie sociale et l'usurpation de session restent efficaces. Une culture de signalement sans blâme vaut mieux qu'une formation annuelle de conformité.",
-          },
-        ],
-      },
       {
         type: "quote",
-        text: "« En production, la question n'est plus de savoir si votre infrastructure sera compromise, mais combien de minutes il vous faudra pour isoler le cluster sans interrompre les utilisateurs. »",
-        cite: "Sophie Tremblay, architecte sécurité cloud",
+        text: "« Notre tout premier événement GDG ÉTS arrive ! »",
+        cite: "Annonce GDG ÉTS",
       },
-      { type: "heading", id: "intervenants", text: "Les intervenants" },
-      {
-        type: "speakers",
-        items: [
-          {
-            name: "Sophie Tremblay",
-            role: "Spécialiste sécurité et identités cloud",
-            company: "CloudNord",
-            initials: "ST",
-            color: "#1A73E8",
-            tag: "Experte principale",
-          },
-          {
-            name: "Marc-Antoine Côté",
-            role: "Ingénieur détection et réponse",
-            company: "DéfenseLab",
-            initials: "MC",
-            color: "#34A853",
-            tag: "Invité technique",
-          },
-          {
-            name: "Yasmine Belkacem",
-            role: "Architecte DevSecOps",
-            company: "ShipFactory",
-            initials: "YB",
-            color: "#EA4335",
-            tag: "Invitée",
-          },
-        ],
-      },
-      { type: "heading", id: "enregistrement", text: "Enregistrement de la session" },
-      { type: "video" },
-      { type: "heading", id: "ressources", text: "Supports et ressources" },
-      {
-        type: "resources",
-        items: [
-          { label: "Slides de la présentation (PDF, 14 Mo)", kind: "PDF" },
-          { label: "Photos de l'événement (Flickr ÉTS)", kind: "Galerie" },
-        ],
-      },
-    ],
-  },
-  "deployer-nextjs-cloud-run": {
-    lead: [
-      "Déployer une application Next.js sur Cloud Run demande moins de configuration qu'on ne le pense, mais quelques décisions structurantes font toute la différence entre un déploiement fragile et une plateforme que l'équipe peut exploiter sereinement.",
-      "Ce guide reprend la configuration utilisée pour le hub que vous lisez en ce moment : image conteneur minimale, variables d'environnement gérées par Secret Manager et pipeline GitHub Actions.",
-    ],
-    blocks: [
-      { type: "heading", id: "pourquoi-cloud-run", text: "Pourquoi Cloud Run" },
+      { type: "heading", id: "au-programme", text: "Au programme" },
       {
         type: "p",
-        text: "Cloud Run exécute un conteneur standard, sans serveur à administrer, et ne facture que le temps d'exécution. Pour un club étudiant avec quelques centaines de visiteurs par semaine, c'est un compromis idéal entre simplicité et coût.",
+        text: "L'atelier combine pratique sur LeetCode et accompagnement en petits groupes. Les tuteurs peuvent aider à comprendre un énoncé, choisir une structure de données ou débloquer une solution.",
       },
-      {
-        type: "p",
-        text: "Le service s'adapte automatiquement à la charge, mais il faut penser aux limites d'instances et à la concurrence. Une petite application Node.js tient largement dans 512 Mo de mémoire avec une concurrence de 80 requêtes par instance.",
-      },
-      { type: "heading", id: "conteneuriser", text: "Conteneuriser l'application" },
-      {
-        type: "p",
-        text: "Le build multi-étapes sépare l'installation des dépendances, la compilation et l'exécution. L'image finale ne contient que le serveur Next.js et ses dépendances de production.",
-      },
-      {
-        type: "code",
-        language: "dockerfile",
-        code: `FROM node:22-alpine AS deps
-WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci
-
-FROM node:22-alpine AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-RUN npm run build
-
-FROM node:22-alpine AS runner
-WORKDIR /app
-ENV NODE_ENV=production
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-COPY --from=builder /app/public ./public
-EXPOSE 8080
-CMD ["node", "server.js"]`,
-      },
-      { type: "heading", id: "deployer", text: "Déployer avec GitHub Actions" },
       {
         type: "list",
         items: [
-          "Authentifier le workflow avec Workload Identity Federation, sans clé de service téléchargée.",
-          "Construire et pousser l'image dans Artifact Registry avec un tag basé sur le SHA du commit.",
-          "Déployer la révision sur Cloud Run et router le trafic une fois le health check passé.",
-          "Conserver les variables sensibles dans Secret Manager et les monter comme variables d'environnement.",
+          "Résoudre des problèmes classiques de programmation compétitive.",
+          "Comprendre les patterns qui reviennent souvent en entrevue.",
+          "Poser des questions aux tuteurs et comparer les approches.",
+          "Rencontrer les membres du club et découvrir les prochaines activités.",
         ],
       },
+      { type: "heading", id: "pour-qui", text: "Pour qui ?" },
       {
-        type: "quote",
-        text: "« Une image immuable et un tag de commit, c'est ce qui permet de répondre à la question : quelle version tourne réellement en production ? »",
-        cite: "Notes d'atelier, GDG ÉTS",
+        type: "p",
+        text: "L'atelier s'adresse aux personnes qui veulent découvrir la programmation compétitive ou préparer leurs entrevues. Viens avec tes questions : les tuteurs adapteront leurs conseils au niveau des personnes présentes. Si tu n'as jamais fait de concours, c'est une bonne occasion de commencer.",
+      },
+      { type: "heading", id: "informations-pratiques", text: "Informations pratiques" },
+      {
+        type: "list",
+        items: [
+          "Date : lundi 9 novembre 2026",
+          "Heure : 12 h à 13 h 30",
+          "Lieu : ÉTS, Pavillon A, salle A-1302",
+          "Coût : gratuit",
+          "Apporte ton ordinateur portable si tu en as un.",
+          "Des tuteurs seront sur place pour répondre à tes questions.",
+        ],
+      },
+      { type: "heading", id: "pourquoi-leetcode", text: "Pourquoi pratiquer sur LeetCode ?" },
+      {
+        type: "p",
+        text: "LeetCode est un bon terrain d'entraînement pour les algorithmes, les structures de données et la résolution de problèmes sous contrainte. C'est aussi un format que l'on retrouve dans plusieurs processus d'entrevue en entreprise.",
       },
       {
         type: "p",
-        text: "Le pipeline complet s'exécute en moins de quatre minutes. Pour les environnements de préproduction, un déclencheur séparé sur la branche principale permet de valider les migrations avant la mise en production.",
+        text: "L'atelier est ouvert à toute la communauté de l'ÉTS. Que tu sois en génie logiciel, en informatique ou dans un autre programme, tu peux venir pratiquer et rencontrer d'autres personnes intéressées par la programmation.",
       },
       { type: "heading", id: "ressources", text: "Pour aller plus loin" },
       {
         type: "resources",
         items: [
-          { label: "Dépôt de démonstration (GitHub)", kind: "Code" },
-          { label: "Documentation Cloud Run (Google Cloud)", kind: "Docs" },
+          { label: "Calendrier des événements du GDG ÉTS", kind: "Calendrier", href: "/events" },
+          { label: "Découvrir l'Arène de programmation", kind: "Lien", href: "/arena" },
         ],
       },
     ],
   },
-  "coulisses-premier-concours": {
+  "devfest-montreal-2026": {
     lead: [
-      "Un concours de programmation réussi se joue bien avant le départ. Derrière les cinq problèmes et le classement en direct, il y a un juge, des jeux de tests impitoyables et une bonne dose de café.",
-      "Retour sur les décisions techniques qui ont rendu le premier concours du GDG ÉTS possible, et sur ce que nous ferons différemment la prochaine fois.",
+      "Pour sa première année, le GDG ÉTS sera sur la scène du DevFest Montréal 2026. Notre lead, Oumaima El khayiri, participe à la session « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » aux côtés de Rebecca Abi Chahine, Michael Persico et Daniel Wei.",
+      "Le rendez-vous est fixé au vendredi 6 novembre 2026, à l'Espace Ax.c, au 800 rue du Square-Victoria, à Montréal.",
     ],
     blocks: [
-      { type: "heading", id: "juge-isole", text: "Un juge isolé, mais réactif" },
+      { type: "heading", id: "le-devfest", text: "Le DevFest, c'est quoi ?" },
       {
         type: "p",
-        text: "Chaque soumission part dans un conteneur éphémère avec des limites strictes de temps, de mémoire et de processus. Le code compile, s'exécute contre les tests, puis le conteneur est détruit. Aucune soumission ne partage d'état avec la suivante.",
+        text: "Le DevFest est la plus grande conférence tech communautaire au Québec, organisée par les Google Developer Groups. C'est une journée de conférences et de rencontres autour de l'IA, du cloud, du mobile et des technologies Google.",
       },
+      { type: "heading", id: "notre-intervention", text: "Notre intervention" },
       {
         type: "p",
-        text: "Le point délicat n'est pas l'isolation, mais la latence. Avec une file de messages et un pool de workers, le verdict revient en quelques secondes même quand quarante équipes soumettent en même temps.",
+        text: "La session réunit des voix étudiantes et des organisateur·ices de GDG on Campus pour parler de la mission du programme, de son impact et de la perspective étudiante. L'ÉTS y rejoint les GDG de Polytechnique, Concordia et McGill sur scène.",
       },
-      { type: "heading", id: "jeux-de-tests", text: "Des jeux de tests qui racontent une histoire" },
       {
         type: "list",
         items: [
-          "Un test d'exemple lisible, pour valider la compréhension de l'énoncé.",
-          "Des tests de bord : tableau vide, k = 1, valeurs négatives, doublons.",
-          "Un test de performance calibré pour éliminer les solutions quadratiques.",
-          "Un test anti-triche avec une sortie déterministe et des entrées générées.",
+          "Oumaima El khayiri — Lead, GDG ÉTS",
+          "Rebecca Abi Chahine",
+          "Michael Persico",
+          "Daniel Wei",
         ],
-      },
-      { type: "heading", id: "notation-icpc", text: "La notation ICPC expliquée" },
-      {
-        type: "p",
-        text: "Le classement privilégie le nombre de problèmes résolus, puis la pénalité cumulée. Chaque problème accepté ajoute le temps écoulé depuis le début du concours, plus vingt minutes par tentative rejetée. Les problèmes non résolus n'ajoutent aucune pénalité.",
       },
       {
         type: "quote",
-        text: "« Le gel du classement n'est pas là pour cacher l'information, mais pour préserver le suspense des dernières minutes. »",
-        cite: "L'équipe organisatrice",
+        text: "« Pour notre toute première année, l'ÉTS rejoint les GDG de Polytechnique, Concordia et McGill sur scène le 6 novembre. »",
+        cite: "Annonce GDG ÉTS",
       },
+      { type: "heading", id: "pourquoi-venir", text: "Pourquoi venir ?" },
       {
-        type: "p",
-        text: "Pour la prochaine édition, nous voulons ajouter un mode entraînement ouvert toute l'année et des explications de solution rédigées par les auteurs. L'objectif reste le même : rendre la compétition accessible à tous les niveaux.",
+        type: "list",
+        items: [
+          "Découvrir des projets et des retours d'expérience de la communauté tech québécoise.",
+          "Rencontrer des développeur·ses, des étudiant·es et des organisateur·ices de GDG.",
+          "Élargir ton réseau et trouver de l'inspiration pour tes propres projets.",
+          "Soutenir la première participation du GDG ÉTS au DevFest.",
+        ],
+      },
+      { type: "heading", id: "informations-pratiques", text: "Informations pratiques" },
+      {
+        type: "list",
+        items: [
+          "Date : vendredi 6 novembre 2026",
+          "Lieu : Espace Ax.c, 800 rue du Square-Victoria, Montréal",
+          "Billets : sur la billetterie officielle du DevFest",
+          "L'ÉTS sera représentée par Oumaima El khayiri.",
+        ],
+      },
+      { type: "heading", id: "ressources", text: "Billets et ressources" },
+      {
+        type: "resources",
+        items: [
+          {
+            label: "Billets et programme du DevFest MTL 2026",
+            kind: "Billets",
+            href: "https://lnkd.in/gSnGEvnC",
+          },
+          { label: "Calendrier des événements du GDG ÉTS", kind: "Calendrier", href: "/events" },
+        ],
       },
     ],
   },
-  "pourquoi-nous-lancons-larene": {
+  "retour-meetup-vooban": {
     lead: [
-      "L'Arène est née d'un constat simple : beaucoup d'étudiants veulent pratiquer la programmation compétitive, mais peu savent par où commencer. Les plateformes existantes sont excellentes, parfois intimidantes, et rarement connectées à la vie du club.",
-      "Nous avons donc construit un espace de pratique et de compétition à l'échelle de l'ÉTS, avec des problèmes en français, des explications et un classement qui met la communauté en valeur.",
+      "Le GDG ÉTS était présent au meetup du GDG Cloud Montréal, accueilli dans les locaux de Vooban, au centre-ville. Ayoub Marouf, Emilien Busson et Patrick Nguyen ont représenté le club.",
+      "Au programme : une démonstration complète du codelab, trois alternatives techniques pour atteindre le même résultat et une présentation d'un Google Developer Expert.",
     ],
     blocks: [
-      { type: "heading", id: "pratiquer", text: "Pratiquer sans friction" },
-      {
-        type: "p",
-        text: "L'Arène propose des problèmes classés par difficulté, des entraînements libres et des concours périodiques. Un étudiant peut s'inscrire avec son courriel de l'ÉTS, choisir un problème et soumettre du C++17, du Python 3 ou du Java 17 en quelques clics.",
-      },
+      { type: "heading", id: "ce-quon-a-retenu", text: "Ce qu'on a retenu" },
       {
         type: "list",
         items: [
-          "Un éditeur intégré, sans installation locale.",
-          "Des verdicts clairs et un historique de soumissions.",
-          "Des concours ICPC avec classement en direct et gel du classement.",
-          "Des solutions et des explications rédigées par la communauté.",
+          "Une démo de codelab décortiquée en direct.",
+          "Trois approches concrètes pour arriver au même résultat technique.",
+          "Une présentation d'un GDE avec des conseils pratiques pour la communauté.",
+          "Un moment d'échanges avec les autres membres du GDG Cloud Montréal.",
         ],
       },
-      { type: "heading", id: "communaute", text: "Une compétition à taille humaine" },
       {
         type: "p",
-        text: "Nous ne cherchons pas à concurrencer les grandes plateformes mondiales. L'Arène est un terrain d'entraînement local, où l'on peut poser une question sans se sentir jugé et où les meilleurs partagent leurs approches.",
+        text: "La soirée s'est déroulée dans les locaux de Vooban, en plein centre-ville de Montréal. C'était aussi l'occasion de découvrir un espace de travail et de rencontrer des personnes de la communauté tech montréalaise.",
       },
       {
         type: "quote",
-        text: "« Le meilleur problème, c'est celui qui te donne envie de comprendre la solution, même après trois erreurs de compilation. »",
-        cite: "L'équipe GDG ÉTS",
+        text: "« Un grand bravo à Ayoub Marouf, Emilien Busson et Patrick Nguyen d'avoir fièrement représenté le GDG ÉTS. »",
+        cite: "Publication GDG ÉTS",
+      },
+      { type: "heading", id: "merci", text: "Merci" },
+      {
+        type: "p",
+        text: "Merci à Vooban pour l'accueil, à Stacy Véronneau et Francois Legare pour l'animation de la séance, ainsi qu'à Arunesh Choudhary pour sa présence.",
+      },
+      { type: "heading", id: "la-suite", text: "La suite" },
+      {
+        type: "p",
+        text: "Le club continue sa première session avec le DevFest Montréal 2026, puis son premier atelier officiel le 9 novembre. Les détails sont dans le calendrier.",
+      },
+      { type: "heading", id: "ressources", text: "Pour aller plus loin" },
+      {
+        type: "resources",
+        items: [
+          {
+            label: "Atelier LeetCode du 9 novembre",
+            kind: "Calendrier",
+            href: "/events#atelier-leetcode",
+          },
+          {
+            label: "GDG ÉTS au DevFest Montréal 2026",
+            kind: "Article",
+            href: "/blog/devfest-montreal-2026",
+          },
+          { label: "Calendrier des événements", kind: "Calendrier", href: "/events" },
+        ],
+      },
+    ],
+  },
+  "lancement-gdg-ets": {
+    lead: [
+      "Le GDG ÉTS est officiellement lancé. Après le succès de l'atelier du 21 septembre, le chapitre rejoint le réseau Google Developer Groups on Campus et démarre sa première année.",
+      "Une équipe de six personnes, épaulée par trois mentors, prépare une programmation d'ateliers, de conférences et de rencontres pour la communauté étudiante de l'ÉTS.",
+    ],
+    blocks: [
+      { type: "heading", id: "une-premiere-etape", text: "Une première étape" },
+      {
+        type: "p",
+        text: "L'atelier du 21 septembre a rassemblé la communauté naissante autour d'une première activité technique. Après ce succès, l'équipe annonce officiellement le lancement du chapitre GDG on Campus à l'ÉTS.",
       },
       {
         type: "p",
-        text: "Le premier concours d'automne est déjà complet. Les entraînements ouverts reprennent en novembre, et une finale inter-programmes est prévue pour la fin de la session.",
+        text: "Le club fait partie du réseau Google Developer Groups on Campus et pourra collaborer avec la communauté GDG nord-américaine, notamment lors d'événements comme le DevFest.",
+      },
+      { type: "heading", id: "lequipe", text: "L'équipe" },
+      { type: "p", text: "Le club démarre avec six personnes :" },
+      {
+        type: "speakers",
+        items: [
+          {
+            name: "Oumaima El khayiri",
+            role: "Présidente",
+            company: "GDG ÉTS",
+            initials: "OK",
+            color: "#1A73E8",
+            tag: "Équipe fondatrice",
+          },
+          {
+            name: "Wilson Ly",
+            role: "Vice-président",
+            company: "GDG ÉTS",
+            initials: "WL",
+            color: "#34A853",
+            tag: "Équipe fondatrice",
+          },
+          {
+            name: "Souad Goubaa",
+            role: "Responsable des événements",
+            company: "GDG ÉTS",
+            initials: "SG",
+            color: "#FBBC04",
+            tag: "Équipe fondatrice",
+          },
+          {
+            name: "Ly Andy Phok",
+            role: "VP Communauté",
+            company: "GDG ÉTS",
+            initials: "LP",
+            color: "#EA4335",
+            tag: "Équipe fondatrice",
+          },
+          {
+            name: "Emilien Busson",
+            role: "VP Projets Cédille",
+            company: "GDG ÉTS",
+            initials: "EB",
+            color: "#9334E6",
+            tag: "Équipe fondatrice",
+          },
+          {
+            name: "Patrick Nguyen",
+            role: "Membre événements",
+            company: "GDG ÉTS",
+            initials: "PN",
+            color: "#00ACC1",
+            tag: "Équipe fondatrice",
+          },
+        ],
+      },
+      { type: "heading", id: "nos-mentors", text: "Nos mentors" },
+      {
+        type: "p",
+        text: "L'équipe est accompagnée par trois mentors : Stacy Véronneau, Erica Silva et Ali El-Sharif. Leur expérience de la communauté GDG et de l'industrie aide le club à structurer ses activités et à prendre de l'ampleur.",
+      },
+      { type: "heading", id: "merci", text: "Merci" },
+      {
+        type: "p",
+        text: "Un immense merci à Becky L. Phan, qui a guidé l'équipe de A à Z dans le processus de lancement, ainsi qu'aux mentors et à la communauté GDG pour leur soutien.",
+      },
+      {
+        type: "quote",
+        text: "« On vous prépare de très beaux événements pour la session. »",
+        cite: "Annonce de lancement, GDG ÉTS",
+      },
+      { type: "heading", id: "ressources", text: "Pour aller plus loin" },
+      {
+        type: "resources",
+        items: [
+          { label: "Calendrier des événements du GDG ÉTS", kind: "Calendrier", href: "/events" },
+          { label: "Découvrir l'Arène de programmation", kind: "Lien", href: "/arena" },
+        ],
       },
     ],
   },

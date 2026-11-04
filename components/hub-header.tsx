@@ -10,7 +10,7 @@ import { cn } from "@/lib/cn";
 
 const links = [
   { href: "/", label: "Accueil" },
-  { href: "/panels", label: "Panels" },
+  { href: "/panels", label: "Conférences" },
   { href: "/blog", label: "Blog" },
   { href: "/events", label: "Événements" },
   { href: "/about", label: "À propos" },
@@ -59,12 +59,9 @@ export function HubHeader() {
           >
             Arène
           </Link>
-          <Link
-            href="/arena"
-            className={buttonStyles({ variant: "ghost", size: "sm", className: "max-md:hidden" })}
-          >
-            Connexion
-          </Link>
+          <span className="hidden cursor-default items-center rounded-md px-3 py-2 text-sm text-muted/70 md:inline-flex">
+            Connexion · bientôt
+          </span>
           <button
             type="button"
             onClick={() => setOpen((value) => !value)}
@@ -104,13 +101,9 @@ export function HubHeader() {
               >
                 Entrer dans l&apos;Arène
               </Link>
-              <Link
-                href="/arena"
-                onClick={() => setOpen(false)}
-                className={buttonStyles({ variant: "outline", size: "sm", className: "flex-1" })}
-              >
-                Connexion
-              </Link>
+              <span className="flex flex-1 cursor-default items-center justify-center rounded-md border border-line bg-surface px-3 py-2 text-sm text-muted/70">
+                Connexion · bientôt
+              </span>
             </div>
           </nav>
         </div>

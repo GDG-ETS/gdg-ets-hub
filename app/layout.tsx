@@ -26,11 +26,11 @@ export const metadata: Metadata = {
     template: "%s · GDG ÉTS",
   },
   description:
-    "Le hub de la communauté GDG ÉTS : panels, articles, événements et arène de programmation compétitive.",
+    "Le hub de la communauté GDG ÉTS : ateliers, conférences, articles, événements et arène de programmation compétitive.",
   openGraph: {
     title: "GDG ÉTS — Hub & Arène",
     description:
-      "Panels, articles, événements et arène de programmation compétitive de GDG ÉTS.",
+      "Ateliers, conférences, articles, événements et arène de programmation compétitive de GDG ÉTS.",
     locale: "fr_CA",
     type: "website",
   },

@@ -64,9 +64,9 @@ export function ArenaHeader() {
           </Link>
           <div className="hidden items-center gap-2.5 rounded-full border border-white/10 py-1 pl-1 pr-3 sm:flex">
             <span className="flex size-7 items-center justify-center rounded-full bg-brand text-[10px] font-semibold text-white">
-              SB
+              WL
             </span>
-            <span className="text-sm text-white/90">Sami B.</span>
+            <span className="text-sm text-white/90">Wilson L.</span>
           </div>
           <button
             type="button"

@@ -4,15 +4,18 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   ArrowRight,
+  ArrowUpRight,
   Building2,
   CalendarDays,
   Clock3,
   FileText,
   Images,
   KeyRound,
+  Link2,
   MapPin,
   Play,
   ShieldCheck,
+  Ticket,
   Users,
   Zap,
 } from "lucide-react";
@@ -48,22 +51,71 @@ const takeawayIcons = {
 } as const;
 
 const categoryTone: Record<string, string> = {
-  PANEL: "text-brand",
-  TUTORIEL: "text-success",
-  CONCOURS: "text-warning",
+  ATELIER: "text-success",
+  CONFÉRENCE: "text-brand",
+  RETOUR: "text-warning",
+  ANNONCE: "text-danger",
 };
 
 const categoryBadge: Record<string, string> = {
-  PANEL: "Récapitulatif de panel",
-  TUTORIEL: "Tutoriel",
-  CONCOURS: "Coulisses du concours",
+  ATELIER: "Atelier pratique",
+  CONFÉRENCE: "Conférence",
+  RETOUR: "Retour d'expérience",
+  ANNONCE: "Annonce officielle",
 };
 
 const categoryDot: Record<string, string> = {
-  PANEL: "bg-danger",
-  TUTORIEL: "bg-success",
-  CONCOURS: "bg-warning",
+  ATELIER: "bg-success",
+  CONFÉRENCE: "bg-brand",
+  RETOUR: "bg-warning",
+  ANNONCE: "bg-danger",
 };
+
+const resourceIcons = {
+  PDF: FileText,
+  Galerie: Images,
+  Billets: Ticket,
+  Calendrier: CalendarDays,
+  Article: FileText,
+  Lien: Link2,
+} as const;
+
+type ResourceItem = Extract<ArticleBlock, { type: "resources" }>["items"][number];
+
+function ResourceRow({ item }: { item: ResourceItem }) {
+  const Icon = resourceIcons[item.kind as keyof typeof resourceIcons] ?? FileText;
+  const external = item.href?.startsWith("http");
+  const content = (
+    <>
+      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-canvas text-muted">
+        <Icon className="size-4" aria-hidden="true" />
+      </span>
+      <span className="flex-1 font-medium text-ink">{item.label}</span>
+      {item.href ? (
+        <ArrowUpRight className="size-4 text-muted" aria-hidden="true" />
+      ) : (
+        <span className="rounded border border-line bg-canvas px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-muted">
+          Bientôt
+        </span>
+      )}
+    </>
+  );
+
+  if (item.href) {
+    return (
+      <a
+        href={item.href}
+        target={external ? "_blank" : undefined}
+        rel={external ? "noreferrer" : undefined}
+        className="flex items-center gap-3 px-4 py-3.5 text-sm transition-colors hover:bg-canvas/70"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return <div className="flex items-center gap-3 px-4 py-3.5 text-sm">{content}</div>;
+}
 
 function ArticleBlockView({ block }: { block: ArticleBlock }) {
   switch (block.type) {
@@ -154,10 +206,12 @@ function ArticleBlockView({ block }: { block: ArticleBlock }) {
                 {speaker.name}
               </h3>
               <p className="mt-1 text-xs leading-5 text-muted">{speaker.role}</p>
-              <p className="mt-2 inline-flex items-center gap-1 text-[11px] text-muted">
-                <Building2 className="size-3" aria-hidden="true" />
-                {speaker.company}
-              </p>
+              {speaker.company && (
+                <p className="mt-2 inline-flex items-center gap-1 text-[11px] text-muted">
+                  <Building2 className="size-3" aria-hidden="true" />
+                  {speaker.company}
+                </p>
+              )}
               <p
                 className="mt-3 inline-flex rounded-full px-2 py-0.5 text-[10px] font-medium"
                 style={{
@@ -217,24 +271,7 @@ function ArticleBlockView({ block }: { block: ArticleBlock }) {
       return (
         <div className="divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface">
           {block.items.map((item) => (
-            <div
-              key={item.label}
-              className="flex items-center gap-3 px-4 py-3.5 text-sm"
-            >
-              <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-canvas text-muted">
-                {item.kind === "PDF" ? (
-                  <FileText className="size-4" aria-hidden="true" />
-                ) : item.kind === "Galerie" ? (
-                  <Images className="size-4" aria-hidden="true" />
-                ) : (
-                  <FileText className="size-4" aria-hidden="true" />
-                )}
-              </span>
-              <span className="flex-1 font-medium text-ink">{item.label}</span>
-              <span className="rounded border border-line bg-canvas px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-muted">
-                Bientôt
-              </span>
-            </div>
+            <ResourceRow key={item.label} item={item} />
           ))}
         </div>
       );
@@ -306,7 +343,7 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
           </time>
           <span className="inline-flex items-center gap-1.5">
             <MapPin className="size-4" aria-hidden="true" />
-            {post.category === "PANEL" ? "ÉTS, Amphithéâtre A-1600" : "ÉTS, Montréal"}
+            {post.location}
           </span>
           <span className="inline-flex items-center gap-1.5">
             <Clock3 className="size-4" aria-hidden="true" />
@@ -327,7 +364,7 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
           />
         </div>
         <figcaption className="mt-2 text-xs text-muted">
-          Photo : GDG ÉTS — {post.title}, édition 2026.
+          Image d&apos;illustration — {post.title}.
         </figcaption>
       </figure>
 
@@ -355,16 +392,13 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
           </div>
 
           <aside className="mt-12 max-w-[72ch] overflow-hidden rounded-2xl bg-arena p-6 text-white sm:p-8">
-            <p className="eyebrow text-brand">Compétition &amp; défis</p>
+            <p className="eyebrow text-brand">Arène de programmation</p>
             <h2 className="mt-3 font-display text-2xl font-semibold leading-tight tracking-tight sm:text-3xl">
-              Mets tes compétences à l&apos;épreuve dans notre arène de
-              programmation
+              Découvre l&apos;arène du GDG ÉTS
             </h2>
             <p className="mt-3 max-w-lg text-sm leading-6 text-white/60">
-              Pratique les concepts de sécurité offensive et défensive avec nos
-              défis CTF, ou mesure-toi aux autres étudiants lors de nos concours
-              ICPC. Classement en temps réel, tests unitaires automatisés et
-              solutions analysées.
+              Problèmes en français, éditeur intégré, classement ICPC et
+              soumissions simulées. La démo est ouverte à tous, sans compte.
             </p>
             <Link
               href="/arena"
@@ -374,7 +408,7 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
                 className: "mt-5",
               })}
             >
-              Accéder à l&apos;arène de code
+              Explorer la démo
               <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </aside>
@@ -411,7 +445,7 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
             </div>
 
             <div className="rounded-xl border border-line bg-surface p-5">
-              <p className="eyebrow text-muted">Partager ce compte-rendu</p>
+              <p className="eyebrow text-muted">Partager cet article</p>
               <div className="mt-3">
                 <ShareLinks />
               </div>
@@ -420,18 +454,16 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
             <div className="rounded-xl border border-brand/20 bg-brand-soft/60 p-5">
               <p className="eyebrow text-brand">Organisé par GDG ÉTS</p>
               <p className="mt-2 text-xs leading-5 text-ink/70">
-                Le GDG ÉTS rassemble les étudiants passionnés d&apos;informatique,
-                d&apos;ingénierie et d&apos;entrepreneuriat autour de conférences,
-                d&apos;ateliers et de compétitions.
+                Le GDG ÉTS est le chapitre Google Developer Groups on Campus de
+                l&apos;École de technologie supérieure, à Montréal. Ateliers,
+                conférences et programmation compétitive.
               </p>
-              <a
-                href="https://discord.com"
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                href="/events"
                 className="mt-3 inline-flex text-xs font-medium text-brand hover:underline"
               >
-                Rejoindre notre Discord
-              </a>
+                Voir nos prochains événements
+              </Link>
             </div>
           </div>
         </aside>

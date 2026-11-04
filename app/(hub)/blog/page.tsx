@@ -9,7 +9,7 @@ import { posts } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Chroniques techniques, tutoriels et retours d'expérience de la communauté GDG ÉTS.",
+    "Annonces, retours d'événements et nouvelles du chapitre GDG ÉTS.",
 };
 
 export default function BlogPage() {
@@ -24,8 +24,8 @@ export default function BlogPage() {
             Articles &amp; retours
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
-            Des textes écrits par les membres du club : décryptages techniques,
-            comptes rendus de panels et coulisses de nos concours.
+            Des textes écrits par les membres du club : annonces, retours
+            d&apos;événements et nouvelles de la première session.
           </p>
         </div>
       </section>
@@ -63,7 +63,7 @@ export default function BlogPage() {
                 <span>{featured.author}</span>
               </div>
               <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-brand">
-                Lire le récapitulatif
+                Lire l&apos;article
                 <ArrowRight className="size-4" aria-hidden="true" />
               </span>
             </div>
@@ -93,8 +93,8 @@ export default function BlogPage() {
               Une idée d&apos;article ?
             </h2>
             <p className="mt-1 text-sm text-muted">
-              Propose un sujet ou écris ton premier texte avec l&apos;équipe
-              éditoriale du club.
+              Propose un sujet ou écris ton premier texte avec l&apos;équipe du
+              club.
             </p>
           </div>
           <Link href="/about" className={buttonStyles({ variant: "dark", size: "md" })}>

@@ -5,7 +5,7 @@ import {
   Code2,
   HeartHandshake,
   Lightbulb,
-  Rocket,
+  Network,
   Users,
 } from "lucide-react";
 import { buttonStyles } from "@/components/ui/button";
@@ -13,59 +13,77 @@ import { buttonStyles } from "@/components/ui/button";
 export const metadata: Metadata = {
   title: "À propos",
   description:
-    "GDG ÉTS est le club de développement étudiant de l'École de technologie supérieure, à Montréal.",
+    "GDG ÉTS est le chapitre Google Developer Groups on Campus de l'École de technologie supérieure, à Montréal.",
 };
 
 const stats = [
-  { value: "120+", label: "membres actifs" },
-  { value: "18", label: "activités par année" },
-  { value: "3", label: "concours ICPC" },
-  { value: "100 %", label: "gratuit pour la communauté" },
+  { value: "2026", label: "lancement du chapitre" },
+  { value: "06", label: "membres fondateurs" },
+  { value: "03", label: "mentors" },
+  { value: "01", label: "chapitre GDG on Campus à l'ÉTS" },
 ];
 
 const values = [
   {
     icon: Code2,
-    title: "Apprendre en faisant",
-    text: "On préfère un projet imparfait livré cette session à une présentation parfaite qui ne verra jamais le jour. Ateliers, concours et contributions ouvertes sont au cœur du club.",
+    title: "Apprendre en pratiquant",
+    text: "Nos activités partent d'un problème concret : un exercice LeetCode, une démo de codelab, un sujet à débattre. On apprend en faisant, ensemble.",
   },
   {
     icon: HeartHandshake,
-    title: "Ouvrir la tech à tout le monde",
-    text: "Peu importe ton programme ou ton niveau, il y a une place pour toi. Nos activités sont pensées pour les débutant·es autant que pour les personnes qui préparent l'ICPC.",
+    title: "Une communauté ouverte",
+    text: "Que tu sois débutant·e ou déjà à l'aise avec le code, tu as une place. Les tuteurs sont là pour accompagner, pas pour impressionner.",
   },
   {
-    icon: Rocket,
-    title: "Relier l'école à l'industrie",
-    text: "Les panels et les conférences amènent des professionnel·les sur le campus pour parler de ce qui se passe réellement en entreprise, sans filtre marketing.",
+    icon: Network,
+    title: "Se connecter à l'écosystème",
+    text: "Le club fait partie du réseau GDG et participe à des événements comme le DevFest Montréal ou les meetups du GDG Cloud Montréal.",
   },
 ];
 
 const team = [
   {
-    name: "Sami Bouaziz",
-    role: "Co-lead & arène",
-    initials: "SB",
+    name: "Oumaima El khayiri",
+    role: "Présidente",
+    initials: "OK",
     color: "#1A73E8",
   },
   {
-    name: "Emma Gauthier",
-    role: "Contenu & éditorial",
-    initials: "EG",
+    name: "Wilson Ly",
+    role: "Vice-président",
+    initials: "WL",
     color: "#34A853",
   },
   {
-    name: "Thomas Rivest",
-    role: "Juge & infrastructure",
-    initials: "TR",
+    name: "Souad Goubaa",
+    role: "Responsable des événements",
+    initials: "SG",
     color: "#FBBC04",
   },
   {
-    name: "Léa Nguyen",
-    role: "Partenariats & événements",
-    initials: "LN",
+    name: "Ly Andy Phok",
+    role: "VP Communauté",
+    initials: "LP",
     color: "#EA4335",
   },
+  {
+    name: "Emilien Busson",
+    role: "VP Projets Cédille",
+    initials: "EB",
+    color: "#9334E6",
+  },
+  {
+    name: "Patrick Nguyen",
+    role: "Membre aux événements",
+    initials: "PN",
+    color: "#00ACC1",
+  },
+];
+
+const mentors = [
+  { name: "Stacy Véronneau", initials: "SV", color: "#1A73E8" },
+  { name: "Erica Silva", initials: "ES", color: "#34A853" },
+  { name: "Ali El-Sharif", initials: "AE", color: "#FBBC04" },
 ];
 
 export default function AboutPage() {
@@ -79,30 +97,34 @@ export default function AboutPage() {
               Une communauté qui construit, ensemble
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-muted">
-              GDG ÉTS est le club de développement étudiant de l&apos;École de
-              technologie supérieure, à Montréal. On organise des panels, des
-              ateliers et des compétitions de programmation — et on publie ce
-              qu&apos;on apprend.
+              GDG ÉTS est le chapitre Google Developer Groups on Campus de
+              l&apos;École de technologie supérieure, à Montréal. Lancé à
+              l&apos;automne 2026, le club rassemble les étudiant·es autour
+              d&apos;ateliers, de conférences et de programmation compétitive.
             </p>
           </div>
           <div className="rounded-2xl border border-line bg-surface p-5">
             <p className="eyebrow text-muted">En bref</p>
             <p className="mt-2 text-sm leading-6 text-muted">
-              Un club étudiant indépendant, soutenu par l&apos;ÉTS et animé par
-              une équipe bénévole. Toutes nos activités sont gratuites.
+              Un chapitre étudiant du réseau Google Developer Groups, animé par
+              une équipe bénévole et épaulé par trois mentors.
             </p>
             <Link
-              href="https://discord.com"
-              target="_blank"
-              rel="noreferrer"
+              href="/events"
               className={buttonStyles({
                 variant: "dark",
                 size: "sm",
                 className: "mt-4 w-full",
               })}
             >
-              Rejoindre le Discord
+              Voir le calendrier
               <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
+            <Link
+              href="/blog/lancement-gdg-ets"
+              className="mt-3 block text-center text-xs font-medium text-brand hover:underline"
+            >
+              Lire l&apos;annonce de lancement
             </Link>
           </div>
         </div>
@@ -163,12 +185,12 @@ export default function AboutPage() {
               </h2>
             </div>
             <p className="max-w-sm text-sm text-muted">
-              Une équipe bénévole, épaulée par des membres actifs et des
-              intervenant·es invité·es.
+              Six membres fondateurs, épaulés par des mentors du réseau GDG et
+              par la communauté de l&apos;ÉTS.
             </p>
           </div>
 
-          <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {team.map((person) => (
               <div
                 key={person.name}
@@ -191,6 +213,50 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
+
+          <div className="mt-8 border-t border-line pt-6">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="eyebrow text-success">Nos mentors</p>
+                <h3 className="mt-2 font-display text-xl font-semibold tracking-tight">
+                  Un accompagnement du réseau GDG
+                </h3>
+              </div>
+              <p className="max-w-md text-sm leading-6 text-muted">
+                Leur expérience de la communauté et de l&apos;industrie aide le
+                club à structurer ses activités et à prendre de l&apos;ampleur.
+              </p>
+            </div>
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              {mentors.map((mentor) => (
+                <div
+                  key={mentor.name}
+                  className="flex items-center gap-3 rounded-xl border border-line bg-canvas/60 p-4"
+                >
+                  <span
+                    className="flex size-10 shrink-0 items-center justify-center rounded-full font-display text-xs font-semibold"
+                    style={{
+                      backgroundColor: `${mentor.color}1F`,
+                      color: mentor.color,
+                    }}
+                    aria-hidden="true"
+                  >
+                    {mentor.initials}
+                  </span>
+                  <div>
+                    <p className="font-display text-sm font-semibold tracking-tight">
+                      {mentor.name}
+                    </p>
+                    <p className="text-xs text-muted">Mentor·e</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="mt-4 text-xs leading-5 text-muted">
+              Merci à Becky L. Phan pour son accompagnement tout au long du
+              processus de lancement du chapitre.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -204,37 +270,36 @@ export default function AboutPage() {
               </h2>
             </div>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">
-              Un sujet de panel, un atelier, un problème de concours ou une idée
-              pour améliorer l&apos;Arène : l&apos;équipe est joignable sur le
-              Discord du club. Les propositions des membres sont lues chaque
-              semaine.
+              Un sujet de conférence, un atelier, un problème pour l&apos;Arène
+              ou une idée pour améliorer le club : viens en parler à
+              l&apos;équipe lors d&apos;une activité. Les propositions des
+              membres nourrissent directement la programmation.
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
-              <a
-                href="https://discord.com"
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                href="/events"
                 className={buttonStyles({ variant: "primary", size: "md" })}
               >
-                Écrire sur le Discord
-              </a>
-              <a
-                href="mailto:gdg-ets@etsmtl.ca"
+                Voir les prochains événements
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/blog"
                 className={buttonStyles({ variant: "outline", size: "md" })}
               >
-                Envoyer un courriel
-              </a>
+                Lire les annonces
+              </Link>
             </div>
           </div>
 
           <div className="rounded-2xl border border-brand/20 bg-brand-soft/60 p-6">
             <Users className="size-5 text-brand" aria-hidden="true" />
             <h2 className="mt-3 font-display text-lg font-semibold tracking-tight">
-              Devenir membre
+              Participer
             </h2>
             <p className="mt-2 text-sm leading-6 text-ink/70">
-              L&apos;adhésion est gratuite et ouverte à toute la communauté de
-              l&apos;ÉTS. Viens à une activité pour commencer.
+              Les ateliers du club sont gratuits et ouverts à la communauté de
+              l&apos;ÉTS. Viens à une activité pour rencontrer l&apos;équipe.
             </p>
             <Link
               href="/events"

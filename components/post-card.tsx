@@ -5,9 +5,10 @@ import type { Post } from "@/lib/data";
 import { cn } from "@/lib/cn";
 
 const categoryTone: Record<Post["category"], string> = {
-  PANEL: "text-brand",
-  TUTORIEL: "text-success",
-  CONCOURS: "text-warning",
+  ATELIER: "text-success",
+  CONFÉRENCE: "text-brand",
+  RETOUR: "text-warning",
+  ANNONCE: "text-danger",
 };
 
 export function PostCard({
