@@ -1,26 +1,122 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-canvas: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-ink: #0b0f14;
+  --color-muted: #4b5563;
+  --color-line: #e5e7eb;
+  --color-brand: #1a73e8;
+  --color-brand-dark: #174ea6;
+  --color-brand-soft: #e8f0fe;
+  --color-success: #188038;
+  --color-success-soft: #e6f4ea;
+  --color-danger: #d93025;
+  --color-danger-soft: #fce8e6;
+  --color-warning: #b06000;
+  --color-warning-soft: #fef7e0;
+  --color-arena: #0b0f14;
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+
+  body {
+    overflow-x: clip;
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: #d2e3fc;
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .container-page {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1200px;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-page {
+      padding-inline: 4rem;
+    }
+  }
+
+  .card {
+    border: 1px solid var(--color-line);
+    border-radius: 1rem;
+    background: var(--color-surface);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* CodeMirror: keep the editor light and quiet */
+.cm-editor {
+  height: 100%;
+  font-size: 13px;
+  background: #ffffff;
+}
+
+.cm-editor .cm-scroller {
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  line-height: 1.6;
+}
+
+.cm-editor.cm-focused {
+  outline: none;
+}
+
+.cm-gutters {
+  background: #fbfcfd !important;
+  border-right: 1px solid var(--color-line) !important;
+  color: #9ca3af !important;
+}
+
+.cm-activeLineGutter,
+.cm-activeLine {
+  background: #f3f7fe !important;
 }
