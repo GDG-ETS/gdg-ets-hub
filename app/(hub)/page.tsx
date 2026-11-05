@@ -1,235 +1,214 @@
-import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  CalendarDays,
-  CheckCircle2,
-  Clock3,
-  Code2,
-  MapPin,
-  Users,
-} from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { buttonStyles } from "@/components/ui/button";
-import { EventList } from "@/components/event-list";
 import { PostCard } from "@/components/post-card";
-import { devfest, events, featuredEvent, posts } from "@/lib/data";
+import { events, featuredEvent, posts } from "@/lib/data";
+
+function formatLongDate(dateISO: string) {
+  const label = new Intl.DateTimeFormat("fr-CA", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    timeZone: "UTC",
+  }).format(new Date(`${dateISO}T12:00:00Z`));
+
+  return label.charAt(0).toUpperCase() + label.slice(1);
+}
 
 export default function HomePage() {
+  const nextWorkshop = events.find((event) => event.type === "Atelier");
+
   return (
-    <>
-      <section className="container-page pb-16 pt-8 sm:pt-12">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
-          <article className="overflow-hidden rounded-2xl border border-line bg-surface">
-            <div className="relative aspect-[16/9] overflow-hidden">
-              <Image
-                src={featuredEvent.cover}
-                alt={featuredEvent.coverAlt}
-                fill
-                preload
-                sizes="(max-width: 1024px) 100vw, 780px"
-                className="object-cover"
-              />
-              <div
-                className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent"
-                aria-hidden="true"
-              />
-              <div className="absolute left-4 top-4 flex flex-wrap gap-2">
-                <Badge className="border-white/20 bg-white/95 text-ink backdrop-blur">
-                  <span className="size-1.5 rounded-full bg-danger" aria-hidden="true" />
-                  Prochain événement
-                </Badge>
-                <Badge className="border-white/20 bg-white/90 text-ink backdrop-blur">
-                  Gratuit
-                </Badge>
-              </div>
+    <div className="container-hub py-8 sm:py-10">
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_300px] xl:gap-14">
+        <div>
+          <header className="border-b border-line pb-8">
+            <h1 className="text-3xl font-bold tracking-[-0.02em] text-ink sm:text-4xl">
+              Le hub du GDG ÉTS
+            </h1>
+            <p className="mt-3 max-w-2xl text-[15px] leading-7 text-muted sm:text-base">
+              Ateliers, conférences et retours d&apos;expérience de la
+              communauté Google Developer Groups on Campus de l&apos;École de
+              technologie supérieure.
+            </p>
+          </header>
+
+          <section
+            aria-labelledby="next-event"
+            className="border-b border-line py-6"
+          >
+            <div className="flex items-baseline justify-between gap-4">
+              <h2 id="next-event" className="text-sm font-semibold text-ink">
+                Prochain rendez-vous
+              </h2>
+              <Link
+                href="/events"
+                className="text-sm text-brand hover:text-brand-dark"
+              >
+                Calendrier
+              </Link>
             </div>
 
-            <div className="p-5 sm:p-7 lg:p-8">
-              <p className="eyebrow text-brand">Atelier · Programmation compétitive</p>
-              <h1 className="mt-2 max-w-2xl font-display text-3xl font-bold leading-[1.08] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[44px]">
-                {featuredEvent.title}
-              </h1>
-              <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-sm text-muted">
-                <span className="inline-flex items-center gap-1.5">
-                  <CalendarDays className="size-4 text-brand" aria-hidden="true" />
-                  {featuredEvent.date}
+            <div className="mt-4 flex gap-4 sm:gap-6">
+              <div className="w-12 shrink-0 sm:w-16">
+                <span className="block text-3xl font-bold leading-none tracking-tight text-ink sm:text-4xl">
+                  06
                 </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Clock3 className="size-4 text-brand" aria-hidden="true" />
-                  {featuredEvent.time}
+                <span className="mt-1 block font-mono text-[10px] uppercase tracking-widest text-muted">
+                  NOV
                 </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <MapPin className="size-4 text-brand" aria-hidden="true" />
-                  {featuredEvent.location}
-                </span>
-              </div>
-              <p className="mt-4 max-w-2xl text-[15px] leading-7 text-muted">
-                {featuredEvent.summary}
-              </p>
-              <div className="mt-6 flex flex-wrap items-center gap-3">
-                <Link
-                  href={featuredEvent.eventHref}
-                  className={buttonStyles({ variant: "primary", size: "md" })}
-                >
-                  Voir les détails
-                  <ArrowRight className="size-4" aria-hidden="true" />
-                </Link>
-                <Link
-                  href={featuredEvent.articleHref}
-                  className={buttonStyles({ variant: "outline", size: "md" })}
-                >
-                  Lire l&apos;annonce
-                </Link>
-                <span className="ml-auto hidden items-center gap-1.5 text-xs text-success sm:inline-flex">
-                  <CheckCircle2 className="size-4" aria-hidden="true" />
-                  Des tuteurs sur place
-                </span>
-              </div>
-            </div>
-          </article>
-
-          <aside className="flex flex-col gap-4">
-            <section className="flex flex-col overflow-hidden rounded-2xl border border-line bg-surface">
-              <div className="flex items-center justify-between gap-3 border-b border-line px-5 py-4">
-                <p className="eyebrow text-muted">GDG ÉTS sur scène</p>
-                <Badge tone="neutral" className="bg-canvas">
-                  Vendredi 6 nov.
-                </Badge>
               </div>
 
-              <div className="flex flex-1 flex-col p-5 sm:p-6">
-                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-brand">
-                  DevFest Montréal 2026
+              <div className="min-w-0 flex-1">
+                <h3 className="text-lg font-semibold leading-snug tracking-tight text-ink sm:text-xl">
+                  {featuredEvent.title}
+                </h3>
+                <p className="mt-1 text-sm leading-6 text-muted">
+                  {featuredEvent.date} · {featuredEvent.time}
+                  <span className="hidden sm:inline">
+                    {" "}
+                    · {featuredEvent.location}
+                  </span>
                 </p>
-                <h2 className="mt-1 font-display text-2xl font-semibold leading-tight tracking-tight">
-                  Une première scène pour l&apos;ÉTS
-                </h2>
-                <p className="mt-2 text-sm leading-6 text-muted">
-                  Oumaima El khayiri présente « Google Developer Groups on
-                  Campus » avec Rebecca Abi Chahine, Michael Persico et Daniel
-                  Wei.
+                <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted">
+                  {featuredEvent.summary}
                 </p>
-
-                <div className="mt-4 flex flex-col gap-1.5 text-xs text-muted">
-                  <span className="inline-flex items-center gap-1.5">
-                    <CalendarDays className="size-3.5 text-brand" aria-hidden="true" />
-                    {devfest.date}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5">
-                    <MapPin className="size-3.5 text-brand" aria-hidden="true" />
-                    {devfest.location}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5">
-                    <Users className="size-3.5 text-brand" aria-hidden="true" />
-                    Quatre intervenant·es sur scène
-                  </span>
-                </div>
-
-                <div className="mt-5 flex flex-col gap-2">
+                <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
                   <a
-                    href={devfest.ticketsHref}
+                    href={featuredEvent.ticketsHref}
                     target="_blank"
                     rel="noreferrer"
-                    className={buttonStyles({
-                      variant: "dark",
-                      size: "md",
-                      className: "justify-between",
-                    })}
+                    className="font-medium text-brand hover:text-brand-dark"
                   >
-                    {devfest.ticketsLabel}
-                    <ArrowUpRight className="size-4" aria-hidden="true" />
+                    {featuredEvent.ticketsLabel}
+                    <span aria-hidden="true"> ↗</span>
                   </a>
                   <Link
-                    href={devfest.articleHref}
-                    className="text-center text-xs font-medium text-brand hover:underline"
+                    href={featuredEvent.articleHref}
+                    className="text-muted hover:text-ink"
                   >
                     Lire l&apos;annonce
                   </Link>
                 </div>
               </div>
-            </section>
+            </div>
+          </section>
 
-            <section className="rounded-2xl bg-arena p-5 text-white sm:p-6">
-              <p className="eyebrow text-brand">Arène CP · Démo</p>
-              <h2 className="mt-2 flex items-center gap-2 font-display text-xl font-semibold leading-snug tracking-tight">
-                <Code2 className="size-5 text-brand" aria-hidden="true" />
-                Teste l&apos;éditeur et le classement
+          <section aria-labelledby="latest-posts" className="pt-6">
+            <div className="flex items-baseline justify-between gap-4 border-b border-line pb-3">
+              <h2 id="latest-posts" className="text-base font-bold text-ink">
+                Articles
               </h2>
-              <p className="mt-2 text-xs leading-5 text-white/60">
-                Concours, soumissions et verdicts simulés. Aucun compte requis.
-              </p>
               <Link
-                href="/arena"
-                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-white transition-colors hover:text-brand"
+                href="/blog"
+                className="text-sm text-brand hover:text-brand-dark"
               >
-                Explorer la démo
-                <ArrowRight className="size-4" aria-hidden="true" />
+                Tous les articles
               </Link>
+            </div>
+
+            <div className="divide-y divide-line">
+              {posts.slice(0, 3).map((post) => (
+                <PostCard key={post.slug} post={post} />
+              ))}
+            </div>
+
+            <div className="pt-6">
+              <Link
+                href="/blog"
+                className="text-sm font-medium text-brand hover:text-brand-dark"
+              >
+                Voir les {posts.length} articles
+              </Link>
+            </div>
+          </section>
+        </div>
+
+        <aside className="border-t border-line pt-6 lg:border-t-0 lg:pt-1">
+          <section className="border-b border-line pb-6">
+            <h2 className="text-sm font-semibold text-ink">La communauté</h2>
+            <p className="mt-2 text-sm leading-6 text-muted">
+              Un chapitre étudiant du réseau Google Developer Groups, animé par
+              une équipe bénévole et épaulé par trois mentors.
+            </p>
+            <dl className="mt-4 grid grid-cols-3 gap-3">
+              <div>
+                <dt className="text-[11px] uppercase tracking-wide text-muted">
+                  Membres
+                </dt>
+                <dd className="mt-1 text-xl font-semibold text-ink">06</dd>
+              </div>
+              <div>
+                <dt className="text-[11px] uppercase tracking-wide text-muted">
+                  Mentors
+                </dt>
+                <dd className="mt-1 text-xl font-semibold text-ink">03</dd>
+              </div>
+              <div>
+                <dt className="text-[11px] uppercase tracking-wide text-muted">
+                  Articles
+                </dt>
+                <dd className="mt-1 text-xl font-semibold text-ink">04</dd>
+              </div>
+            </dl>
+            <Link
+              href="/about"
+              className="mt-4 inline-flex text-sm text-brand hover:text-brand-dark"
+            >
+              En savoir plus
+            </Link>
+          </section>
+
+          {nextWorkshop && (
+            <section className="border-b border-line py-6">
+              <div className="flex items-baseline justify-between gap-4">
+                <h2 className="text-sm font-semibold text-ink">
+                  Prochain atelier
+                </h2>
+                <Link
+                  href="/events"
+                  className="text-xs text-brand hover:text-brand-dark"
+                >
+                  Tout voir
+                </Link>
+              </div>
+              <Link
+                href={`/events#${nextWorkshop.slug}`}
+                className="mt-3 block text-sm font-medium leading-6 text-ink hover:text-brand"
+              >
+                {nextWorkshop.title}
+              </Link>
+              <p className="mt-1 text-xs leading-5 text-muted">
+                {formatLongDate(nextWorkshop.dateISO)} · {nextWorkshop.time}
+              </p>
+              <p className="mt-1 text-xs leading-5 text-muted">
+                {nextWorkshop.location}
+              </p>
             </section>
-          </aside>
-        </div>
-      </section>
+          )}
 
-      <section className="container-page pb-16">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="eyebrow text-brand">Publications &amp; retours</p>
-            <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-              Derniers articles
-            </h2>
-          </div>
-          <p className="max-w-md text-sm leading-6 text-muted">
-            Annonces, retours d&apos;événements et coulisses du club, écrits par
-            les membres de la communauté.
-          </p>
-        </div>
+          <section className="border-b border-line py-6">
+            <h2 className="text-sm font-semibold text-ink">Arène · démo</h2>
+            <p className="mt-2 text-sm leading-6 text-muted">
+              Problèmes en français, éditeur intégré et classement ICPC.
+              Concours et verdicts simulés, sans compte.
+            </p>
+            <Link
+              href="/arena"
+              className="mt-3 inline-flex text-sm text-brand hover:text-brand-dark"
+            >
+              Explorer la démo
+            </Link>
+          </section>
 
-        <div className="mt-7 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {posts.slice(1, 4).map((post) => (
-            <PostCard key={post.slug} post={post} />
-          ))}
-        </div>
-
-        <div className="mt-6 flex justify-end">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:underline"
-          >
-            Tous les articles
-            <ArrowRight className="size-4" aria-hidden="true" />
-          </Link>
-        </div>
-      </section>
-
-      <section className="container-page pb-20">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="eyebrow text-success">Calendrier</p>
-            <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-              Prochains événements
-            </h2>
-          </div>
-          <Link
-            href="/events"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:underline"
-          >
-            Consulter l&apos;agenda complet
-            <ArrowRight className="size-4" aria-hidden="true" />
-          </Link>
-        </div>
-
-        <div className="mt-7">
-          <EventList events={events} />
-        </div>
-
-        <div className="mt-4 flex items-center gap-1.5 text-xs text-muted">
-          <Clock3 className="size-3.5" aria-hidden="true" />
-          Les ateliers du club sont gratuits. Le DevFest est organisé par la
-          communauté GDG ; un billet est requis.
-        </div>
-      </section>
-    </>
+          <section className="pt-6">
+            <h2 className="text-sm font-semibold text-ink">Sujets</h2>
+            <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted">
+              {["Atelier", "Conférence", "Retour", "Annonce"].map((topic) => (
+                <span key={topic}>{topic}</span>
+              ))}
+            </div>
+          </section>
+        </aside>
+      </div>
+    </div>
   );
 }

@@ -38,9 +38,9 @@ npm start       # servir le build
 
 | Route | Écran |
 | --- | --- |
-| `/` | Accueil : atelier LeetCode à la une, DevFest, articles et prochains événements |
-| `/panels` | Conférences & panels : DevFest, récapitulatifs et jalons de la première session |
-| `/blog` | Index des articles avec article à la une |
+| `/` | Accueil : prochain rendez-vous (DevFest), feed de trois articles et colonne communautaire |
+| `/panels` | Conférences & panels : prochain talk, récapitulatifs et jalons de la première session |
+| `/blog` | Archive des quatre articles, en liste |
 | `/blog/[slug]` | Article complet, sommaire, partage, intervenants, ressources |
 | `/events` | Agenda, retours sur les activités et formats de participation |
 | `/about` | Mission, équipe fondatrice, mentors et moyens de participer |
@@ -80,17 +80,29 @@ Les couvertures d'articles sont des images d'illustration, pas des photos des
 
 ## Design
 
-Le design a été généré avec Google Stitch, puis implémenté en React/Tailwind.
+Le design initial a été exploré avec Google Stitch. Le hub public a ensuite été
+réimplémenté dans une direction minimaliste, proche d'un blog de développeurs :
+fond blanc, filets fins, typographie Inter, feed d'articles compact et lecture
+sur une colonne de 700 px. L'arène conserve son apparence dense et data-first.
 
 - Projet Stitch : **GDG ETS Hub & Arena** (`projects/6172038841432772576`)
 - Design system : `assets/cedc574b4aeb4fe68cbd4c23b0abf358`
-- Références visuelles : [`design/screens/`](design/screens/) — accueil, article,
-  tableau de bord, concours, espace de travail, classement et accueil mobile.
+- Références visuelles initiales : [`design/screens/`](design/screens/)
 
-Direction visuelle : fond `#F7F8FA`, encre `#0B0F14`, bleu Google `#1A73E8`,
-Space Grotesk pour les titres, Inter pour le texte, JetBrains Mono pour les
-chiffres et le code. Le hub est éditorial et aéré ; l'arène est dense et
-data-first, avec un bandeau presque noir.
+Direction visuelle :
+
+- **Hub** — fond blanc `#FFFFFF`, encre `#0B0F14`, texte secondaire `#4B5563`,
+  filets `#E5E7EB`, bleu d'action `#1A73E8` et bleu foncé `#174EA6` sur les
+  surfaces teintées. Inter pour les titres et le texte, Space Grotesk réservé au
+  logo. Aucune carte décorative ni ombre dans le flux normal.
+- **Arène** — canvas `#F7F8FA`, bandeau presque noir `#0B0F14`, Space Grotesk
+  pour les titres et JetBrains Mono pour les chiffres et le code. Tables denses,
+  statuts avec icône, texte et couleur.
+- **Mise en page** — accueil et événements en deux colonnes à partir de 1024 px ;
+  article sur 760 px (titre, image) et 700 px (corps), avec un rail de 220 px
+  seulement à partir de 1280 px. En dessous, le sommaire est escamotable.
+- **Contenu** — les catégories sont des libellés, pas des filtres. Aucun contrôle
+  factice : pas de bascule FR/EN, pas de connexion, pas de recherche.
 
 ## Structure
 
@@ -100,7 +112,7 @@ app/
   (arena)/arena/      # tableau de bord, concours, problèmes, classement
   layout.tsx          # polices et métadonnées globales
   globals.css         # tokens Tailwind, styles de base, CodeMirror
-components/           # header/footer, cartes, scoreboard, éditeur, countdown…
+components/           # header/footer, feed, événements, scoreboard, éditeur, countdown…
 lib/
   data.ts             # articles, événements, équipe, concours, problèmes, classements
   post-content.ts     # corps éditorial des articles

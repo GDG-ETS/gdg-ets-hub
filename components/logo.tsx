@@ -18,7 +18,7 @@ export function Logo({
     <Link
       href={href}
       className={cn("group flex shrink-0 items-center gap-2.5", className)}
-      aria-label="GDG ÉTS — accueil"
+      aria-label={href === "/arena" ? "GDG ÉTS — arène" : "GDG ÉTS — accueil"}
     >
       <span className="flex gap-[3px]" aria-hidden="true">
         {dots.map((color) => (
@@ -38,18 +38,6 @@ export function Logo({
       >
         GDG ÉTS
       </span>
-      {!compact && (
-        <span
-          className={cn(
-            "hidden rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest sm:inline",
-            dark
-              ? "border-white/20 text-white/60"
-              : "border-line text-muted"
-          )}
-        >
-          Club étudiant
-        </span>
-      )}
     </Link>
   );
 }

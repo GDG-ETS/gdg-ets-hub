@@ -20,6 +20,7 @@ export type Event = {
   slug: string;
   day: string;
   month: string;
+  dateISO: string;
   type: string;
   title: string;
   time: string;
@@ -145,11 +146,13 @@ export const posts: Post[] = [
   },
 ];
 
+// Upcoming events, manually ordered by date. Move an event to pastEvents after it happens.
 export const events: Event[] = [
   {
     slug: "devfest-montreal-2026",
     day: "06",
     month: "NOV",
+    dateISO: "2026-11-06",
     type: "Conférence",
     title: "GDG ÉTS au DevFest Montréal 2026",
     time: "Horaire sur la billetterie",
@@ -160,6 +163,7 @@ export const events: Event[] = [
     slug: "atelier-leetcode",
     day: "09",
     month: "NOV",
+    dateISO: "2026-11-09",
     type: "Atelier",
     title: "Atelier LeetCode : pratique pour tes entrevues",
     time: "12h00 – 13h30",
@@ -173,6 +177,7 @@ export const pastEvents: Event[] = [
     slug: "meetup-vooban",
     day: "02",
     month: "OCT",
+    dateISO: "2026-10-02",
     type: "Meetup",
     title: "GDG Cloud Montréal chez Vooban",
     time: "Soirée",
@@ -183,6 +188,7 @@ export const pastEvents: Event[] = [
     slug: "lancement-gdg-ets",
     day: "30",
     month: "SEP",
+    dateISO: "2026-09-30",
     type: "Annonce",
     title: "Lancement officiel du chapitre GDG ÉTS",
     time: "En ligne",
@@ -194,6 +200,7 @@ export const pastEvents: Event[] = [
     slug: "atelier-21-septembre",
     day: "21",
     month: "SEP",
+    dateISO: "2026-09-21",
     type: "Atelier",
     title: "Atelier du 21 septembre",
     time: "Avant le lancement",
@@ -203,17 +210,16 @@ export const pastEvents: Event[] = [
 ];
 
 export const featuredEvent = {
-  title: "Atelier LeetCode : pratique pour tes entrevues",
-  date: "Lundi 9 novembre 2026",
-  time: "12h00 – 13h30",
-  location: "ÉTS, Pavillon A · salle A-1302",
+  title: "GDG ÉTS au DevFest Montréal 2026",
+  date: "Vendredi 6 novembre 2026",
+  time: "Horaire sur la billetterie",
+  location: "Espace Ax.c, 800 rue du Square-Victoria",
   summary:
-    "Le tout premier événement officiel du GDG ÉTS. Viens pratiquer la programmation compétitive et préparer tes entrevues techniques : des tuteurs seront sur place pour t'accompagner.",
-  cover: "/covers/atelier.jpg",
-  coverAlt:
-    "Étudiants réunis autour d'ordinateurs portables pendant un atelier",
-  eventHref: "/events#atelier-leetcode",
-  articleHref: "/blog/atelier-leetcode-9-novembre",
+    "Oumaima El khayiri présente la mission de GDG on Campus avec Rebecca Abi Chahine, Michael Persico et Daniel Wei. Le chapitre rejoint les GDG de Polytechnique, Concordia et McGill sur scène.",
+  eventHref: "/events#devfest-montreal-2026",
+  articleHref: "/blog/devfest-montreal-2026",
+  ticketsHref: "https://lnkd.in/gSnGEvnC",
+  ticketsLabel: "Billets & programme",
 };
 
 export const devfest = {

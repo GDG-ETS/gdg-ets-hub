@@ -12,14 +12,8 @@ export type ArticleBlock =
   | { type: "heading"; id: string; text: string }
   | { type: "list"; items: string[] }
   | { type: "quote"; text: string; cite: string }
-  | {
-      type: "takeaways";
-      items: { icon: "shield" | "key" | "zap" | "users"; title: string; text: string }[];
-    }
   | { type: "speakers"; items: PanelSpeaker[] }
-  | { type: "video" }
-  | { type: "resources"; items: { label: string; kind: string; href?: string }[] }
-  | { type: "code"; language: string; code: string };
+  | { type: "resources"; items: { label: string; kind: string; href?: string }[] };
 
 export type ArticleBody = {
   lead: string[];

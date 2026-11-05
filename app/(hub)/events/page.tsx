@@ -1,13 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  CalendarDays,
-  MapPin,
-  Users,
-} from "lucide-react";
-import { buttonStyles } from "@/components/ui/button";
 import { EventList } from "@/components/event-list";
 import { devfest, events, pastEvents } from "@/lib/data";
 
@@ -32,163 +24,154 @@ const formats = [
   },
 ];
 
+const steps = [
+  {
+    title: "Choisis une activité",
+    text: "Deux rendez-vous cette session : le DevFest le 6 novembre et l'atelier LeetCode le 9 novembre.",
+  },
+  {
+    title: "Atelier : viens directement",
+    text: "Gratuit, sans inscription. Rendez-vous au Pavillon A, salle A-1302, de 12 h à 13 h 30. Des tuteurs seront sur place.",
+  },
+  {
+    title: "DevFest : prends ton billet",
+    text: "L'événement est organisé par la communauté GDG. La billetterie officielle donne accès au programme complet.",
+  },
+];
+
 export default function EventsPage() {
   return (
-    <>
-      <section className="container-page pb-10 pt-10 sm:pt-14">
-        <p className="eyebrow text-success">Calendrier</p>
-        <div className="mt-2 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-2xl">
-            <h1 className="font-display text-4xl font-bold tracking-[-0.03em] sm:text-5xl">
-              Prochains événements
-            </h1>
-            <p className="mt-4 text-lg leading-8 text-muted">
-              Ateliers, conférences et rencontres : voici les prochains
-              rendez-vous du GDG ÉTS. Les ateliers du club sont gratuits et
-              ouverts à la communauté de l&apos;ÉTS.
-            </p>
-          </div>
+    <div className="container-hub py-8 sm:py-10">
+      <header className="max-w-3xl border-b border-line pb-8">
+        <h1 className="text-3xl font-bold tracking-[-0.02em] text-ink sm:text-4xl">
+          Événements
+        </h1>
+        <p className="mt-3 text-[15px] leading-7 text-muted sm:text-base">
+          Ateliers, conférences et rencontres : voici les prochains rendez-vous
+          du GDG ÉTS. Les ateliers du club sont gratuits et ouverts à la
+          communauté de l&apos;ÉTS.
+        </p>
+        <p className="mt-3 text-sm text-muted">
+          Voir aussi les{" "}
           <Link
             href="/panels"
-            className={buttonStyles({ variant: "outline", size: "md" })}
+            className="font-medium text-brand hover:text-brand-dark"
           >
-            Conférences &amp; panels
-            <ArrowRight className="size-4" aria-hidden="true" />
+            conférences et panels
           </Link>
-        </div>
-      </section>
+          .
+        </p>
+      </header>
 
-      <section className="container-page pb-16">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
-          <div>
-            <div className="mb-4 flex items-center justify-between gap-4">
-              <h2 className="font-display text-xl font-semibold tracking-tight">
+      <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_280px] xl:gap-12">
+        <div>
+          <section aria-labelledby="upcoming-events">
+            <div className="flex items-baseline justify-between gap-4 border-b border-line pb-3">
+              <h2
+                id="upcoming-events"
+                className="text-base font-bold text-ink"
+              >
                 À venir
               </h2>
-              <span className="font-mono text-[10px] uppercase tracking-wider text-muted">
+              <span className="text-xs text-muted">
                 {events.length} événements
               </span>
             </div>
             <EventList events={events} />
+            <p className="mt-3 text-xs leading-5 text-muted">
+              Les détails et les changements de dernière minute sont publiés
+              dans nos articles. Consulte l&apos;annonce de chaque activité
+              avant de te déplacer.
+            </p>
+          </section>
 
-            <div className="mt-6 flex items-start gap-3 rounded-xl border border-line bg-surface p-4 text-sm text-muted">
-              <CalendarDays className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden="true" />
-              <p>
-                Les détails et les changements de dernière minute sont publiés
-                dans nos articles. Consulte l&apos;annonce de chaque activité
-                avant de te déplacer.
-              </p>
-            </div>
-          </div>
-
-          <aside className="rounded-2xl border border-line bg-surface p-5 sm:p-6">
-            <div className="flex items-center gap-2">
-              <Users className="size-4 text-brand" aria-hidden="true" />
-              <h2 className="font-display text-lg font-semibold tracking-tight">
-                Comment participer
+          <section aria-labelledby="past-events" className="mt-12">
+            <div className="flex items-baseline justify-between gap-4 border-b border-line pb-3">
+              <h2 id="past-events" className="text-base font-bold text-ink">
+                Retour sur nos activités
               </h2>
+              <Link
+                href="/blog"
+                className="text-sm text-brand hover:text-brand-dark"
+              >
+                Les articles
+              </Link>
             </div>
-            <ol className="mt-4 space-y-4">
-              <li className="flex gap-3">
-                <span className="font-mono text-[11px] font-semibold text-brand">
-                  01
-                </span>
-                <div>
-                  <p className="text-sm font-medium text-ink">
-                    Choisis une activité
-                  </p>
-                  <p className="mt-1 text-xs leading-5 text-muted">
-                    Deux rendez-vous cette session : le DevFest le 6 novembre et
-                    l&apos;atelier LeetCode le 9 novembre.
-                  </p>
-                </div>
-              </li>
-              <li className="flex gap-3">
-                <span className="font-mono text-[11px] font-semibold text-brand">
-                  02
-                </span>
-                <div>
-                  <p className="text-sm font-medium text-ink">
-                    Atelier : viens directement
-                  </p>
-                  <p className="mt-1 text-xs leading-5 text-muted">
-                    Gratuit, sans inscription. Rendez-vous au Pavillon A, salle
-                    A-1302, de 12 h à 13 h 30. Des tuteurs seront sur place.
-                  </p>
-                </div>
-              </li>
-              <li className="flex gap-3">
-                <span className="font-mono text-[11px] font-semibold text-brand">
-                  03
-                </span>
-                <div>
-                  <p className="text-sm font-medium text-ink">
-                    DevFest : prends ton billet
-                  </p>
-                  <p className="mt-1 text-xs leading-5 text-muted">
-                    L&apos;événement est organisé par la communauté GDG. La
-                    billetterie officielle donne accès au programme complet.
-                  </p>
-                  <a
-                    href={devfest.ticketsHref}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline"
-                  >
-                    Billets &amp; programme
-                    <ArrowUpRight className="size-3.5" aria-hidden="true" />
-                  </a>
-                </div>
-              </li>
-            </ol>
-            <div className="mt-5 rounded-lg bg-canvas p-3 text-xs leading-5 text-muted">
-              <p className="flex items-center gap-1.5 font-medium text-ink">
-                <MapPin className="size-3.5 text-brand" aria-hidden="true" />
-                École de technologie supérieure
-              </p>
-              <p className="mt-1">1100, rue Notre-Dame Ouest, Montréal, QC H3C 1K3</p>
-            </div>
-          </aside>
-        </div>
-      </section>
+            <EventList events={pastEvents} />
+          </section>
 
-      <section className="container-page pb-16">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="eyebrow text-brand">Depuis le lancement</p>
-            <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-              Retour sur nos activités
-            </h2>
-          </div>
-          <p className="max-w-sm text-sm leading-6 text-muted">
-            Les premières rencontres du chapitre, entre atelier fondateur,
-            lancement officiel et meetup communautaire.
-          </p>
-        </div>
-        <div className="mt-6">
-          <EventList events={pastEvents} />
-        </div>
-      </section>
-
-      <section className="container-page pb-20">
-        <p className="eyebrow text-success">Nos formats</p>
-        <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-          Trois façons de participer
-        </h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-3">
-          {formats.map((item) => (
-            <article
-              key={item.title}
-              className="rounded-xl border border-line bg-surface p-5"
+          <section aria-labelledby="event-formats" className="mt-12">
+            <h2
+              id="event-formats"
+              className="border-b border-line pb-3 text-base font-bold text-ink"
             >
-              <h3 className="font-display text-lg font-semibold tracking-tight">
-                {item.title}
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-muted">{item.text}</p>
-            </article>
-          ))}
+              Trois façons de participer
+            </h2>
+            <div className="mt-5 grid gap-6 sm:grid-cols-3">
+              {formats.map((item, index) => (
+                <article key={item.title} className="border-t border-line pt-4">
+                  <p className="text-xs tabular-nums text-muted">
+                    0{index + 1}
+                  </p>
+                  <h3 className="mt-2 text-base font-semibold tracking-tight text-ink">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-muted">
+                    {item.text}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
         </div>
-      </section>
-    </>
+
+        <aside className="border-t border-line pt-6 lg:border-t-0 lg:pt-1">
+          <section className="border-b border-line pb-6">
+            <h2 className="text-sm font-semibold text-ink">
+              Comment participer
+            </h2>
+            <ol className="mt-4 space-y-5">
+              {steps.map((step, index) => (
+                <li key={step.title} className="flex gap-3">
+                  <span className="pt-0.5 font-mono text-[11px] text-muted">
+                    0{index + 1}
+                  </span>
+                  <div>
+                    <p className="text-sm font-medium text-ink">
+                      {step.title}
+                    </p>
+                    <p className="mt-1 text-xs leading-5 text-muted">
+                      {step.text}
+                    </p>
+                    {index === 2 && (
+                      <a
+                        href={devfest.ticketsHref}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-2 inline-flex text-xs font-medium text-brand hover:text-brand-dark"
+                      >
+                        Billets &amp; programme
+                        <span aria-hidden="true"> ↗</span>
+                      </a>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section className="pt-6">
+            <h2 className="text-sm font-semibold text-ink">Lieu</h2>
+            <p className="mt-2 text-sm leading-6 text-muted">
+              École de technologie supérieure
+              <br />
+              1100, rue Notre-Dame Ouest
+              <br />
+              Montréal, QC H3C 1K3
+            </p>
+          </section>
+        </aside>
+      </div>
+    </div>
   );
 }

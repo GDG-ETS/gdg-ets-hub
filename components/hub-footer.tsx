@@ -6,40 +6,44 @@ const links = [
   { href: "/events", label: "Événements" },
   { href: "/panels", label: "Conférences" },
   { href: "/blog", label: "Articles" },
-  { href: "/arena", label: "Arène de programmation" },
+  { href: "/arena", label: "Arène · démo" },
   { href: "/privacy", label: "Confidentialité" },
 ];
 
 export function HubFooter() {
   return (
-    <footer className="mt-20 border-t border-line bg-canvas">
-      <div className="container-page py-10">
+    <footer className="mt-16 border-t border-line bg-white">
+      <div className="container-hub py-10">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
             <Logo />
-            <p className="mt-4 text-sm leading-6 text-muted">
+            <p className="mt-3 text-sm leading-6 text-muted">
               Le chapitre Google Developer Groups on Campus de l&apos;École de
               technologie supérieure. Ateliers, conférences, articles et
               programmation compétitive.
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-x-12 gap-y-2 text-sm sm:grid-cols-3">
+          <nav
+            className="grid grid-cols-2 gap-x-12 gap-y-1 text-sm sm:grid-cols-3"
+            aria-label="Liens de pied de page"
+          >
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="py-1 text-muted transition-colors hover:text-brand"
+                className="py-2 text-muted transition-colors hover:text-ink"
               >
                 {link.label}
               </Link>
             ))}
-          </div>
+          </nav>
         </div>
-        <div className="mt-10 flex flex-col gap-2 border-t border-line pt-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 GDG ÉTS — Club étudiant de l&apos;École de technologie supérieure.</p>
+        <div className="mt-8 flex flex-col gap-2 border-t border-line pt-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
           <p>
-            Fait avec <span className="text-danger">❤</span> à Montréal.
+            © 2026 GDG ÉTS — Club étudiant de l&apos;École de technologie
+            supérieure.
           </p>
+          <p>Montréal, Québec</p>
         </div>
       </div>
     </footer>

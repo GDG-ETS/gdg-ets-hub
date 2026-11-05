@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { AtSign, BriefcaseBusiness, Check, Link2 } from "lucide-react";
 
+const itemClass =
+  "inline-flex min-h-10 items-center gap-1.5 text-sm text-muted transition-colors hover:text-ink";
+
 export function ShareLinks() {
   const [copied, setCopied] = useState(false);
 
@@ -30,34 +33,30 @@ export function ShareLinks() {
   }
 
   return (
-    <div className="space-y-2">
-      <button
-        type="button"
-        onClick={copyLink}
-        className="flex w-full items-center justify-center gap-2 rounded-lg border border-line bg-surface px-3 py-2 text-xs font-medium text-ink transition-colors hover:border-ink/30"
-      >
+    <div className="flex flex-col items-start">
+      <button type="button" onClick={copyLink} className={itemClass}>
         {copied ? (
           <Check className="size-3.5 text-success" aria-hidden="true" />
         ) : (
-          <Link2 className="size-3.5 text-muted" aria-hidden="true" />
+          <Link2 className="size-3.5" aria-hidden="true" />
         )}
         {copied ? "Lien copié" : "Copier le lien"}
       </button>
       <button
         type="button"
         onClick={() => openShare("linkedin")}
-        className="flex w-full items-center justify-center gap-2 rounded-lg border border-line bg-surface px-3 py-2 text-xs font-medium text-ink transition-colors hover:border-ink/30"
+        className={itemClass}
       >
-        <BriefcaseBusiness className="size-3.5 text-muted" aria-hidden="true" />
-        Partager sur LinkedIn
+        <BriefcaseBusiness className="size-3.5" aria-hidden="true" />
+        LinkedIn
       </button>
       <button
         type="button"
         onClick={() => openShare("x")}
-        className="flex w-full items-center justify-center gap-2 rounded-lg border border-line bg-surface px-3 py-2 text-xs font-medium text-ink transition-colors hover:border-ink/30"
+        className={itemClass}
       >
-        <AtSign className="size-3.5 text-muted" aria-hidden="true" />
-        Partager sur X
+        <AtSign className="size-3.5" aria-hidden="true" />
+        X
       </button>
     </div>
   );
