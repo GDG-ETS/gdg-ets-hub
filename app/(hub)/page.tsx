@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PostCard } from "@/components/post-card";
-import { events, featuredEvent, posts } from "@/lib/data";
+import { devfest, events, posts } from "@/lib/data";
 
 function formatLongDate(dateISO: string) {
   const label = new Intl.DateTimeFormat("fr-CA", {
@@ -22,7 +22,7 @@ export default function HomePage() {
         <div>
           <header className="border-b border-line pb-8">
             <h1 className="text-3xl font-bold tracking-[-0.02em] text-ink sm:text-4xl">
-              Le hub du GDG ÉTS
+              GDG ÉTS Hub
             </h1>
             <p className="mt-3 max-w-2xl text-[15px] leading-7 text-muted sm:text-base">
               Ateliers, conférences et retours d&apos;expérience de la
@@ -37,7 +37,7 @@ export default function HomePage() {
           >
             <div className="flex items-baseline justify-between gap-4">
               <h2 id="next-event" className="text-sm font-semibold text-ink">
-                Prochain rendez-vous
+                À l&apos;affiche
               </h2>
               <Link
                 href="/events"
@@ -59,30 +59,30 @@ export default function HomePage() {
 
               <div className="min-w-0 flex-1">
                 <h3 className="text-lg font-semibold leading-snug tracking-tight text-ink sm:text-xl">
-                  {featuredEvent.title}
+                  {devfest.title}
                 </h3>
                 <p className="mt-1 text-sm leading-6 text-muted">
-                  {featuredEvent.date} · {featuredEvent.time}
+                  {devfest.date} · {devfest.time}
                   <span className="hidden sm:inline">
                     {" "}
-                    · {featuredEvent.location}
+                    · {devfest.location}
                   </span>
                 </p>
                 <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted">
-                  {featuredEvent.summary}
+                  {devfest.summary}
                 </p>
                 <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
                   <a
-                    href={featuredEvent.ticketsHref}
+                    href={devfest.ticketsHref}
                     target="_blank"
                     rel="noreferrer"
                     className="font-medium text-brand hover:text-brand-dark"
                   >
-                    {featuredEvent.ticketsLabel}
+                    {devfest.ticketsLabel}
                     <span aria-hidden="true"> ↗</span>
                   </a>
                   <Link
-                    href={featuredEvent.articleHref}
+                    href={devfest.articleHref}
                     className="text-muted hover:text-ink"
                   >
                     Lire l&apos;annonce
@@ -161,7 +161,7 @@ export default function HomePage() {
             <section className="border-b border-line py-6">
               <div className="flex items-baseline justify-between gap-4">
                 <h2 className="text-sm font-semibold text-ink">
-                  Prochain atelier
+                  Atelier LeetCode
                 </h2>
                 <Link
                   href="/events"
@@ -184,20 +184,6 @@ export default function HomePage() {
               </p>
             </section>
           )}
-
-          <section className="border-b border-line py-6">
-            <h2 className="text-sm font-semibold text-ink">Arène · démo</h2>
-            <p className="mt-2 text-sm leading-6 text-muted">
-              Problèmes en français, éditeur intégré et classement ICPC.
-              Concours et verdicts simulés, sans compte.
-            </p>
-            <Link
-              href="/arena"
-              className="mt-3 inline-flex text-sm text-brand hover:text-brand-dark"
-            >
-              Explorer la démo
-            </Link>
-          </section>
 
           <section className="pt-6">
             <h2 className="text-sm font-semibold text-ink">Sujets</h2>

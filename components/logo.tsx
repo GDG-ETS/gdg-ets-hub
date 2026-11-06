@@ -3,22 +3,12 @@ import { cn } from "@/lib/cn";
 
 const dots = ["#4285F4", "#EA4335", "#FBBC04", "#34A853"];
 
-export function Logo({
-  href = "/",
-  dark = false,
-  compact = false,
-  className,
-}: {
-  href?: string;
-  dark?: boolean;
-  compact?: boolean;
-  className?: string;
-}) {
+export function Logo({ className }: { className?: string }) {
   return (
     <Link
-      href={href}
+      href="/"
       className={cn("group flex shrink-0 items-center gap-2.5", className)}
-      aria-label={href === "/arena" ? "GDG ÉTS — arène" : "GDG ÉTS — accueil"}
+      aria-label="GDG ÉTS — accueil"
     >
       <span className="flex gap-[3px]" aria-hidden="true">
         {dots.map((color) => (
@@ -29,13 +19,7 @@ export function Logo({
           />
         ))}
       </span>
-      <span
-        className={cn(
-          "whitespace-nowrap font-display text-lg font-bold tracking-tight",
-          dark ? "text-white" : "text-ink",
-          compact && "text-base"
-        )}
-      >
+      <span className="whitespace-nowrap font-display text-lg font-bold tracking-tight text-ink">
         GDG ÉTS
       </span>
     </Link>

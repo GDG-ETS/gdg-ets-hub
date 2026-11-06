@@ -6,7 +6,6 @@ const links = [
   { href: "/events", label: "Événements" },
   { href: "/panels", label: "Conférences" },
   { href: "/blog", label: "Articles" },
-  { href: "/arena", label: "Arène · démo" },
   { href: "/privacy", label: "Confidentialité" },
 ];
 
@@ -20,7 +19,7 @@ export function HubFooter() {
             <p className="mt-3 text-sm leading-6 text-muted">
               Le chapitre Google Developer Groups on Campus de l&apos;École de
               technologie supérieure. Ateliers, conférences, articles et
-              programmation compétitive.
+              rencontres.
             </p>
           </div>
           <nav

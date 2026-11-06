@@ -22,15 +22,15 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "GDG ÉTS — Hub & Arène",
-    template: "%s · GDG ÉTS",
+    default: "GDG ÉTS Hub",
+    template: "%s · GDG ÉTS Hub",
   },
   description:
-    "Le hub de la communauté GDG ÉTS : ateliers, conférences, articles, événements et arène de programmation compétitive.",
+    "Le hub de la communauté GDG ÉTS : ateliers, conférences, articles et événements.",
   openGraph: {
-    title: "GDG ÉTS — Hub & Arène",
+    title: "GDG ÉTS Hub",
     description:
-      "Ateliers, conférences, articles, événements et arène de programmation compétitive de GDG ÉTS.",
+      "Ateliers, conférences, articles et événements de GDG ÉTS.",
     locale: "fr_CA",
     type: "website",
   },

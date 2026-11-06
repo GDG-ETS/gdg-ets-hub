@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Logo } from "@/components/logo";
-import { buttonStyles } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
 const links = [
@@ -24,39 +23,33 @@ export function HubHeader() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur">
-      <div className="container-hub flex h-16 items-center justify-between gap-6">
+    <header className="sticky top-0 z-40 border-b border-line bg-white">
+      <div className="container-hub flex h-16 items-center gap-6">
         <Logo />
 
-        <nav
-          className="hidden items-center gap-7 lg:flex"
-          aria-label="Navigation principale"
-        >
-          {links.map((link) => {
-            const active = isActive(link.href);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={active ? "page" : undefined}
-                className={cn(
-                  "py-2 text-sm transition-colors hover:text-ink",
-                  active ? "font-medium text-ink" : "text-muted"
-                )}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <Link
-            href="/arena"
-            className={buttonStyles({ variant: "primary", size: "md" })}
+        <div className="ml-auto flex items-center gap-6">
+          <nav
+            className="hidden items-center gap-7 lg:flex"
+            aria-label="Navigation principale"
           >
-            Arène · démo
-          </Link>
+            {links.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    "py-2 text-sm transition-colors hover:text-ink",
+                    active ? "font-medium text-ink" : "text-muted"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+
           <button
             type="button"
             onClick={() => setOpen((value) => !value)}
@@ -93,13 +86,6 @@ export function HubHeader() {
                 </Link>
               );
             })}
-            <Link
-              href="/arena"
-              onClick={() => setOpen(false)}
-              className="py-3 text-sm font-medium text-brand"
-            >
-              Arène de programmation · démo
-            </Link>
           </nav>
         </div>
       )}

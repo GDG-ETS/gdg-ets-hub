@@ -11,7 +11,6 @@ export type ArticleBlock =
   | { type: "p"; text: string }
   | { type: "heading"; id: string; text: string }
   | { type: "list"; items: string[] }
-  | { type: "quote"; text: string; cite: string }
   | { type: "speakers"; items: PanelSpeaker[] }
   | { type: "resources"; items: { label: string; kind: string; href?: string }[] };
 
@@ -27,11 +26,6 @@ export const articleBodies: Record<string, ArticleBody> = {
       "Rendez-vous le lundi 9 novembre 2026, de 12 h à 13 h 30, au Pavillon A de l'ÉTS (salle A-1302). L'activité est gratuite et des tuteurs seront sur place pour accompagner les participant·es.",
     ],
     blocks: [
-      {
-        type: "quote",
-        text: "« Notre tout premier événement GDG ÉTS arrive ! »",
-        cite: "Annonce GDG ÉTS",
-      },
       { type: "heading", id: "au-programme", text: "Au programme" },
       {
         type: "p",
@@ -77,7 +71,7 @@ export const articleBodies: Record<string, ArticleBody> = {
         type: "resources",
         items: [
           { label: "Calendrier des événements du GDG ÉTS", kind: "Calendrier", href: "/events" },
-          { label: "Découvrir l'Arène de programmation", kind: "Lien", href: "/arena" },
+          { label: "À propos du GDG ÉTS", kind: "Page", href: "/about" },
         ],
       },
     ],
@@ -106,11 +100,6 @@ export const articleBodies: Record<string, ArticleBody> = {
           "Michael Persico",
           "Daniel Wei",
         ],
-      },
-      {
-        type: "quote",
-        text: "« Pour notre toute première année, l'ÉTS rejoint les GDG de Polytechnique, Concordia et McGill sur scène le 6 novembre. »",
-        cite: "Annonce GDG ÉTS",
       },
       { type: "heading", id: "pourquoi-venir", text: "Pourquoi venir ?" },
       {
@@ -165,11 +154,6 @@ export const articleBodies: Record<string, ArticleBody> = {
       {
         type: "p",
         text: "La soirée s'est déroulée dans les locaux de Vooban, en plein centre-ville de Montréal. C'était aussi l'occasion de découvrir un espace de travail et de rencontrer des personnes de la communauté tech montréalaise.",
-      },
-      {
-        type: "quote",
-        text: "« Un grand bravo à Ayoub Marouf, Emilien Busson et Patrick Nguyen d'avoir fièrement représenté le GDG ÉTS. »",
-        cite: "Publication GDG ÉTS",
       },
       { type: "heading", id: "merci", text: "Merci" },
       {
@@ -280,17 +264,12 @@ export const articleBodies: Record<string, ArticleBody> = {
         type: "p",
         text: "Un immense merci à Becky L. Phan, qui a guidé l'équipe de A à Z dans le processus de lancement, ainsi qu'aux mentors et à la communauté GDG pour leur soutien.",
       },
-      {
-        type: "quote",
-        text: "« On vous prépare de très beaux événements pour la session. »",
-        cite: "Annonce de lancement, GDG ÉTS",
-      },
       { type: "heading", id: "ressources", text: "Pour aller plus loin" },
       {
         type: "resources",
         items: [
           { label: "Calendrier des événements du GDG ÉTS", kind: "Calendrier", href: "/events" },
-          { label: "Découvrir l'Arène de programmation", kind: "Lien", href: "/arena" },
+          { label: "À propos du GDG ÉTS", kind: "Page", href: "/about" },
         ],
       },
     ],

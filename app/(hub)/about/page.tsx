@@ -186,10 +186,9 @@ export default function AboutPage() {
             Envie de proposer quelque chose ?
           </h2>
           <p className="mt-2 max-w-2xl text-sm leading-7 text-muted">
-            Un sujet de conférence, un atelier, un problème pour l&apos;Arène ou
-            une idée pour améliorer le club : viens en parler à l&apos;équipe
-            lors d&apos;une activité. Les propositions des membres nourrissent
-            directement la programmation.
+            Un sujet de conférence, un atelier ou une idée pour améliorer le
+            club : viens en parler à l&apos;équipe lors d&apos;une activité. Les
+            propositions des membres nourrissent directement la programmation.
           </p>
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
             <Link href="/events" className="text-brand hover:text-brand-dark">

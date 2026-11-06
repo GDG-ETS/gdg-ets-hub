@@ -15,7 +15,6 @@
   --color-danger-soft: #fce8e6;
   --color-warning: #b06000;
   --color-warning-soft: #fef7e0;
-  --color-arena: #0b0f14;
 
   --font-sans: var(--font-inter);
   --font-display: var(--font-space-grotesk);
@@ -30,7 +29,7 @@
 
   body {
     overflow-x: clip;
-    background: var(--color-canvas);
+    background: #ffffff;
     color: var(--color-ink);
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -62,19 +61,6 @@
 }
 
 @layer components {
-  .container-page {
-    margin-inline: auto;
-    width: 100%;
-    max-width: 1200px;
-    padding-inline: 1.25rem;
-  }
-
-  @media (min-width: 768px) {
-    .container-page {
-      padding-inline: 4rem;
-    }
-  }
-
   .container-hub {
     margin-inline: auto;
     width: 100%;
@@ -93,49 +79,4 @@
       padding-inline: 2.5rem;
     }
   }
-
-  .card {
-    border: 1px solid var(--color-line);
-    border-radius: 1rem;
-    background: var(--color-surface);
-  }
-
-  .eyebrow {
-    font-family: var(--font-mono), ui-monospace, monospace;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .tabular {
-    font-variant-numeric: tabular-nums;
-  }
-}
-
-/* CodeMirror: keep the editor light and quiet */
-.cm-editor {
-  height: 100%;
-  font-size: 13px;
-  background: #ffffff;
-}
-
-.cm-editor .cm-scroller {
-  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
-  line-height: 1.6;
-}
-
-.cm-editor.cm-focused {
-  outline: none;
-}
-
-.cm-gutters {
-  background: #fbfcfd !important;
-  border-right: 1px solid var(--color-line) !important;
-  color: #9ca3af !important;
-}
-
-.cm-activeLineGutter,
-.cm-activeLine {
-  background: #f3f7fe !important;
 }

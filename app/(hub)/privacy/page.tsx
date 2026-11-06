@@ -5,55 +5,45 @@ import { Info, ShieldCheck } from "lucide-react";
 export const metadata: Metadata = {
   title: "Confidentialité",
   description:
-    "Politique de confidentialité du hub et de l'arène du GDG ÉTS. La maquette actuelle ne collecte aucune donnée.",
+    "Politique de confidentialité du hub GDG ÉTS. Le site ne collecte aucune donnée personnelle.",
 };
 
 const sections = [
   {
-    id: "maquette",
-    title: "Maquette et collecte de données",
+    id: "collecte",
+    title: "Collecte de données",
     paragraphs: [
-      "Cette version du hub et de l'arène est une maquette publique. Elle ne demande aucun compte, ne contient aucun formulaire et n'enregistre aucune donnée personnelle.",
-      "Les soumissions saisies dans l'arène restent dans ton navigateur et disparaissent au rechargement de la page. Aucun code n'est transmis à un serveur ni exécuté par un juge.",
-    ],
-  },
-  {
-    id: "donnees",
-    title: "Données prévues dans la version finale",
-    paragraphs: [
-      "Lorsque les comptes seront disponibles, nous prévoyons de collecter ton nom, ton adresse courriel, ton programme d'études et, si tu l'indiques, ton nom d'utilisateur public. Ces informations serviront à identifier ton compte, à t'inscrire aux activités et à afficher ton classement.",
-      "Les soumissions de code seront conservées afin de calculer les résultats, de permettre le rejudge et de produire les explications de solution. Elles ne seront jamais utilisées à des fins publicitaires.",
+      "Le hub GDG ÉTS ne demande aucun compte, ne contient aucun formulaire et n'enregistre aucune donnée personnelle.",
+      "Il n'y a ni infolettre, ni espace membre, ni base de données reliée au site.",
     ],
   },
   {
     id: "cookies",
     title: "Cookies et mesures d'audience",
     paragraphs: [
-      "La maquette ne dépose aucun cookie publicitaire ni traceur tiers. Aucune mesure d'audience n'est activée.",
-      "Lorsque l'authentification sera branchée, seuls des cookies strictement nécessaires à la session et à la sécurité seront utilisés.",
+      "Le site ne dépose aucun cookie publicitaire ni traceur tiers. Aucune mesure d'audience n'est activée.",
     ],
   },
   {
-    id: "conservation",
-    title: "Conservation et sécurité",
+    id: "stockage",
+    title: "Stockage local",
     paragraphs: [
-      "Aucune donnée n'est présentement stockée par le hub ou par l'arène. Les données de démonstration sont définies dans le code de l'application.",
-      "La version finale sera hébergée au Canada et protégée par des contrôles d'accès, le chiffrement en transit et des sauvegardes régulières. Les données de compte seront conservées tant que le compte sera actif.",
+      "Le contenu des articles et des événements est défini dans le code de l'application. Aucune information saisie par une personne visitant le site n'est conservée.",
     ],
   },
   {
-    id: "partage",
-    title: "Partage avec des tiers",
+    id: "liens-externes",
+    title: "Liens externes",
     paragraphs: [
-      "Nous ne vendons aucune donnée personnelle. Dans la version finale, certains fournisseurs d'infrastructure (hébergement, envoi de courriels transactionnels) pourraient traiter des données pour notre compte, dans le cadre de contrats qui encadrent leur usage.",
+      "Certaines pages renvoient vers des sites tiers, par exemple la billetterie du DevFest Montréal. Ces sites appliquent leurs propres politiques de confidentialité, sur lesquelles le club n'a aucun contrôle.",
     ],
   },
   {
     id: "droits",
     title: "Tes droits",
     paragraphs: [
-      "Comme la maquette ne collecte aucune donnée, il n'y a actuellement rien à consulter, corriger ou supprimer.",
-      "Lorsque les comptes seront disponibles, tu pourras demander l'accès, la correction ou la suppression de tes données à tout moment, ainsi que retirer ton consentement aux communications.",
+      "Comme le site ne collecte aucune donnée, il n'y a actuellement rien à consulter, corriger ou supprimer.",
+      "Pour toute question, tu peux rencontrer l'équipe lors d'une activité ou consulter la page À propos.",
     ],
   },
   {
@@ -75,12 +65,11 @@ export default function PrivacyPage() {
               Politique de confidentialité
             </h1>
             <p className="mt-3 text-[15px] leading-7 text-muted sm:text-base">
-              Cette page explique quelles données le hub et l&apos;arène du GDG
-              ÉTS pourraient collecter, pourquoi elles le seraient et comment
-              exercer tes droits.
+              Cette page résume la politique de confidentialité du hub GDG ÉTS
+              et la façon d&apos;exercer tes droits.
             </p>
             <p className="mt-3 font-mono text-[11px] uppercase tracking-wider text-muted">
-              Dernière mise à jour : 3 novembre 2026
+              Dernière mise à jour : 5 novembre 2026
             </p>
           </header>
 
@@ -90,9 +79,9 @@ export default function PrivacyPage() {
               aria-hidden="true"
             />
             <p className="text-sm leading-6 text-ink">
-              <strong className="font-semibold">Maquette :</strong> aucune
-              donnée personnelle n&apos;est collectée ni enregistrée. Les
-              soumissions dans l&apos;arène restent dans ton navigateur.
+              <strong className="font-semibold">Aucune collecte :</strong> le
+              site ne demande aucun compte et n&apos;enregistre aucune donnée
+              personnelle.
             </p>
           </div>
 

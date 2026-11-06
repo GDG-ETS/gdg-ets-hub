@@ -1,21 +1,21 @@
-# GDG ÉTS — Hub & Arène
+# GDG ÉTS Hub
 
-Maquette fonctionnelle du hub de la communauté GDG ÉTS et de son arène de
-programmation compétitive. L'application est en français et présente les
-premières activités réelles du chapitre : l'atelier LeetCode du 9 novembre 2026,
-la participation au DevFest Montréal 2026, le meetup GDG Cloud chez Vooban et le
-lancement officiel du club.
+Hub public de la communauté Google Developer Groups on Campus de l'École de
+technologie supérieure, à Montréal. L'application est en français et présente
+les premières activités réelles du chapitre : l'atelier LeetCode du 9 novembre
+2026, la participation au DevFest Montréal 2026, le meetup GDG Cloud chez Vooban
+et le lancement officiel du club.
 
-L'arène est une **démonstration** : le concours, les soumissions, les verdicts et
-le classement sont simulés. Un bandeau l'indique sur toutes ses pages.
+Le projet est un site éditorial statique, sans compte, sans base de données et
+sans concours.
 
 ## Stack
 
 - Next.js 16.4.5, React 19.3, App Router
 - TypeScript, Tailwind CSS v4
-- CodeMirror 6 (`@uiw/react-codemirror`) pour l'éditeur de code
 - `lucide-react` pour l'iconographie
-- Aucune base de données, aucun service d'authentification, aucun juge réel
+- Aucune authentification, aucune base de données, aucun CMS, aucun service
+  externe
 
 ## Démarrer
 
@@ -34,21 +34,17 @@ npm run lint    # ESLint
 npm start       # servir le build
 ```
 
-## Parcours couverts
+## Routes
 
-| Route | Écran |
+| Route | Page |
 | --- | --- |
-| `/` | Accueil : prochain rendez-vous (DevFest), feed de trois articles et colonne communautaire |
-| `/panels` | Conférences & panels : prochain talk, récapitulatifs et jalons de la première session |
-| `/blog` | Archive des quatre articles, en liste |
-| `/blog/[slug]` | Article complet, sommaire, partage, intervenants, ressources |
-| `/events` | Agenda, retours sur les activités et formats de participation |
-| `/about` | Mission, équipe fondatrice, mentors et moyens de participer |
-| `/privacy` | Politique de confidentialité et note sur la maquette |
-| `/arena` | Tableau de bord de démonstration : concours, statistiques, soumissions |
-| `/arena/contest` | Aperçu du concours fictif : règles, problèmes, annonces, jury |
-| `/arena/problems/[label]` | Espace de travail : énoncé + éditeur CodeMirror |
-| `/arena/leaderboard` | Classement ICPC, gel, export CSV |
+| `/` | Accueil : prochain rendez-vous, feed d'articles et liens du club |
+| `/blog` | Archive des quatre articles |
+| `/blog/[slug]` | Article complet avec sommaire, partage et ressources |
+| `/events` | Événements à venir, retours et formats de participation |
+| `/panels` | Conférences et panels du chapitre |
+| `/about` | Mission, équipe fondatrice et mentors |
+| `/privacy` | Politique de confidentialité |
 
 ## Contenu réel
 
@@ -65,82 +61,57 @@ Les articles et les événements proviennent des publications du club :
   21 septembre. Équipe fondatrice de six personnes et trois mentors.
 
 Les couvertures d'articles sont des images d'illustration, pas des photos des
-événements.
+événements. Le seul lien externe d'événement est la billetterie du DevFest
+fournie par le club.
 
-## Fonctionnalités de la maquette
+## Fonctionnalités
 
-- Countdowns en direct (concours et gel du classement).
-- Éditeur CodeMirror avec C++17, Python 3 et Java 17, autosauvegarde simulée.
-- Exécution d'exemple et soumission simulées avec verdicts et détails de tests.
-- Classement ICPC avec cellules résolues / tentées / gelées et ligne du participant.
-- Export CSV réel du classement.
-- Partage d'article (copie du lien, LinkedIn, X).
-- Navigation mobile, menu déroulant et onglets énoncé/code.
-- Bandeau « Démo » sur l'ensemble de l'arène.
+- Feed d'articles avec catégories, dates et temps de lecture.
+- Pages d'article en colonne de lecture, avec sommaire et liens de partage.
+- Partage d'article par copie du lien, LinkedIn et X.
+- Agenda des événements à venir et archive des activités passées.
+- Navigation mobile et menu déroulant accessible.
+- Aucun contrôle factice : pas de bascule FR/EN, pas de connexion, pas de
+  recherche.
 
 ## Design
 
-Le design initial a été exploré avec Google Stitch. Le hub public a ensuite été
-réimplémenté dans une direction minimaliste, proche d'un blog de développeurs :
-fond blanc, filets fins, typographie Inter, feed d'articles compact et lecture
-sur une colonne de 700 px. L'arène conserve son apparence dense et data-first.
+Direction minimaliste, proche d'un blog de développeurs : fond blanc, filets
+fins, typographie Inter, feed compact et lecture sur une colonne de 700 px.
 
-- Projet Stitch : **GDG ETS Hub & Arena** (`projects/6172038841432772576`)
-- Design system : `assets/cedc574b4aeb4fe68cbd4c23b0abf358`
-- Références visuelles initiales : [`design/screens/`](design/screens/)
-
-Direction visuelle :
-
-- **Hub** — fond blanc `#FFFFFF`, encre `#0B0F14`, texte secondaire `#4B5563`,
-  filets `#E5E7EB`, bleu d'action `#1A73E8` et bleu foncé `#174EA6` sur les
-  surfaces teintées. Inter pour les titres et le texte, Space Grotesk réservé au
-  logo. Aucune carte décorative ni ombre dans le flux normal.
-- **Arène** — canvas `#F7F8FA`, bandeau presque noir `#0B0F14`, Space Grotesk
-  pour les titres et JetBrains Mono pour les chiffres et le code. Tables denses,
-  statuts avec icône, texte et couleur.
-- **Mise en page** — accueil et événements en deux colonnes à partir de 1024 px ;
-  article sur 760 px (titre, image) et 700 px (corps), avec un rail de 220 px
-  seulement à partir de 1280 px. En dessous, le sommaire est escamotable.
-- **Contenu** — les catégories sont des libellés, pas des filtres. Aucun contrôle
-  factice : pas de bascule FR/EN, pas de connexion, pas de recherche.
+- Encre `#0B0F14`, texte secondaire `#4B5563`, filets `#E5E7EB`
+- Bleu d'action `#1A73E8` et bleu foncé `#174EA6`
+- Inter pour le texte, Space Grotesk pour le logo, JetBrains Mono pour les
+  libellés techniques
+- Accueil et événements en deux colonnes à partir de 1024 px
+- Article sur 760 px (titre, image) et 700 px (corps), avec un rail de 220 px
+  seulement à partir de 1280 px; sommaire escamotable en dessous
 
 ## Structure
 
 ```text
 app/
-  (hub)/              # accueil, conférences, blog, événements, à propos, confidentialité
-  (arena)/arena/      # tableau de bord, concours, problèmes, classement
+  (hub)/              # accueil, blog, événements, conférences, à propos, confidentialité
   layout.tsx          # polices et métadonnées globales
-  globals.css         # tokens Tailwind, styles de base, CodeMirror
-components/           # header/footer, feed, événements, scoreboard, éditeur, countdown…
+  globals.css         # tokens Tailwind et styles de base
+components/           # header, footer, feed, cartes d'article, événements, partage
 lib/
-  data.ts             # articles, événements, équipe, concours, problèmes, classements
+  data.ts             # articles, événements et données du DevFest
   post-content.ts     # corps éditorial des articles
-design/screens/       # captures de référence générées par Stitch
+public/covers/        # images d'illustration
 ```
 
-## Données et limites
+## Limites
 
-Cette version est volontairement **mock-only** :
+Cette version est volontairement limitée au hub public :
 
-- Les comptes, inscriptions, profils et soumissions ne sont pas persistés.
-- Le juge de code n'existe pas : les verdicts sont simulés côté client.
-- Le concours « Hackathon d'automne 2026 », le participant de démonstration et le
-  classement sont fictifs.
-- L'administration (`/admin`), l'authentification, PostgreSQL, le CMS et le
-  déploiement GCP ne sont pas encore branchés.
-- Aucun lien Discord, GitHub ou courriel officiel n'est publié tant qu'il n'a pas
-  été confirmé. Le seul lien externe d'événement est la billetterie du DevFest
-  fournie par le club.
+- Aucun compte, formulaire, inscription ou donnée personnelle.
+- Aucune administration, aucun CMS et aucune base de données.
+- Aucun concours, classement, soumission ou juge de code.
+- Aucun lien Discord, GitHub ou courriel officiel n'est publié tant qu'il n'a
+  pas été confirmé.
 
-## Prochaines étapes
+## Déploiement
 
-1. Brancher Better Auth (courriel/mot de passe + Google) et PostgreSQL.
-2. Remplacer `lib/data.ts` par des requêtes serveur et un CMS maison.
-3. Implémenter le juge sandboxé (go-judge) sur une VM dédiée.
-4. Construire l'administration : concours, problèmes, tests, annonces, rejudge.
-5. Ajouter la file de soumissions (pg-boss) et le polling du classement.
-6. Déployer sur Cloud Run + Cloud SQL dans `northamerica-northeast1`.
-
-Le pack de spécifications complet se trouve dans
-`~/.opencode/plan/gdg-ets-platform/`.
+Le site produit un build Next.js standard et peut être hébergé sur Google Cloud.
+Le déploiement GCP n'est pas encore configuré dans ce dépôt.

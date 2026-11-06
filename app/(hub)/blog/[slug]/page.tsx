@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight, Building2 } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Building2 } from "lucide-react";
 import { ShareLinks } from "@/components/share-links";
 import { getPost, posts } from "@/lib/data";
 import { articleBodies, type ArticleBlock } from "@/lib/post-content";
@@ -36,7 +36,11 @@ function ResourceRow({ item }: { item: ResourceItem }) {
       </span>
       <span className="shrink-0 text-xs text-muted">{item.kind}</span>
       {item.href ? (
-        <ArrowUpRight className="size-4 shrink-0 text-muted" aria-hidden="true" />
+        external ? (
+          <ArrowUpRight className="size-4 shrink-0 text-muted" aria-hidden="true" />
+        ) : (
+          <ArrowRight className="size-4 shrink-0 text-muted" aria-hidden="true" />
+        )
       ) : (
         <span className="shrink-0 rounded border border-line px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-muted">
           Bientôt
@@ -86,18 +90,6 @@ function ArticleBlockView({ block }: { block: ArticleBlock }) {
             <li key={item}>{item}</li>
           ))}
         </ul>
-      );
-
-    case "quote":
-      return (
-        <blockquote className="border-l-2 border-brand pl-5">
-          <p className="text-lg font-medium leading-8 text-ink sm:text-xl">
-            {block.text}
-          </p>
-          <footer className="mt-3 text-xs uppercase tracking-[0.12em] text-muted">
-            {block.cite}
-          </footer>
-        </blockquote>
       );
 
     case "speakers":
@@ -278,18 +270,16 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
             </div>
 
             <aside className="mt-12 border-t border-line pt-6">
-              <p className="text-sm font-semibold text-ink">
-                Arène de programmation · démo
-              </p>
+              <p className="text-sm font-semibold text-ink">GDG ÉTS</p>
               <p className="mt-2 max-w-lg text-sm leading-6 text-muted">
-                Problèmes en français, éditeur intégré et classement ICPC.
-                Concours, soumissions et verdicts simulés. Aucun compte requis.
+                Le chapitre Google Developer Groups on Campus de l&apos;École de
+                technologie supérieure, à Montréal.
               </p>
               <Link
-                href="/arena"
+                href="/events"
                 className="mt-3 inline-flex text-sm font-medium text-brand hover:text-brand-dark"
               >
-                Explorer la démo
+                Voir les événements
               </Link>
             </aside>
           </article>
