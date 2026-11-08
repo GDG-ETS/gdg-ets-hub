@@ -23,7 +23,7 @@ export const articleBodies: Record<string, ArticleBody> = {
   "retour-devfest-montreal-2026": {
     lead: [
       "Le 6 novembre 2026, le GDG ÉTS a participé au DevFest Montréal 2026, à l'Espace Ax.c. L'équipe a passé plus de 12 heures sur le terrain avec les organisateurs, les conférenciers et les bénévoles.",
-      "De l'installation tôt le matin et l'accueil des participants pour la grande plénière de bienvenue jusqu'au soutien des ateliers, on a pu vivre l'événement sous tous ses angles.",
+      "Entre les conférences, les sessions et les ateliers, l'équipe a pu vivre l'événement sous tous ses angles.",
     ],
     blocks: [
       { type: "heading", id: "sur-le-terrain", text: "Une journée sur le terrain" },
@@ -173,14 +173,14 @@ export const articleBodies: Record<string, ArticleBody> = {
           "Daniel Wei",
         ],
       },
-      { type: "heading", id: "pourquoi-venir", text: "Ce qu'on est allé chercher" },
+      { type: "heading", id: "temps-forts", text: "Les temps forts de l'événement" },
       {
         type: "list",
         items: [
-          "Découvrir des projets et des retours d'expérience de la communauté tech québécoise.",
-          "Rencontrer des développeur·ses, des étudiant·es et des organisateur·ices de GDG.",
-          "Élargir ton réseau et trouver de l'inspiration pour tes propres projets.",
-          "Soutenir la première participation du GDG ÉTS au DevFest.",
+          "La communauté tech québécoise a partagé des projets et des retours d'expérience.",
+          "Les échanges ont réuni des développeur·ses, des étudiant·es et des organisateur·ices de GDG.",
+          "L'événement a permis d'élargir son réseau et de trouver de l'inspiration pour ses projets.",
+          "Le GDG ÉTS a participé au DevFest pour la première fois.",
         ],
       },
       { type: "heading", id: "informations-pratiques", text: "Informations pratiques" },
@@ -198,9 +198,9 @@ export const articleBodies: Record<string, ArticleBody> = {
         type: "resources",
         items: [
           {
-            label: "Retour sur le DevFest Montréal 2026",
-            kind: "Retour",
-            href: "/blog/retour-devfest-montreal-2026",
+            label: "Conférences & panels du GDG ÉTS",
+            kind: "Page",
+            href: "/panels",
           },
           { label: "Calendrier des événements du GDG ÉTS", kind: "Calendrier", href: "/events" },
         ],

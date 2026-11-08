@@ -57,6 +57,9 @@ Les articles et les événements proviennent des publications du club :
   Oumaima El khayiri sur scène.
 - **Atelier LeetCode** — lundi 9 novembre 2026, 12 h à 13 h 30, ÉTS Pavillon A,
   salle A-1302. Premier événement officiel du GDG ÉTS, gratuit, avec tuteurs.
+- **GDG ÉTS au DevFest Montréal 2026** — annonce du 28 octobre 2026 de la prise
+  de parole d'Oumaima El khayiri sur la mission de GDG on Campus, aux côtés de
+  Rebecca Abi Chahine, Michael Persico et Daniel Wei.
 - **Meetup GDG Cloud Montréal chez Vooban** — retour sur la soirée du 2 octobre
   2026 avec Ayoub Marouf, Emilien Busson et Patrick Nguyen.
 - **Lancement du chapitre** — annonce du 30 septembre 2026, après l'atelier du
