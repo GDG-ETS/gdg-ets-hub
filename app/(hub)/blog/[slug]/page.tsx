@@ -137,7 +137,8 @@ function ArticleBlockView({ block }: { block: ArticleBlock }) {
                 key={image.src}
                 href={image.src}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                aria-label={`Agrandir la photo : ${image.alt} (ouvre dans un nouvel onglet)`}
                 className="group relative block aspect-[4/3] overflow-hidden rounded-md bg-canvas"
               >
                 <Image
