@@ -6,7 +6,7 @@ import { devfest, events, pastEvents } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Événements",
   description:
-    "L'agenda du GDG ÉTS : atelier LeetCode, DevFest Montréal 2026 et rencontres de la communauté GDG.",
+    "L'agenda du GDG ÉTS : atelier LeetCode et retours sur les événements de la communauté GDG.",
 };
 
 const formats = [
@@ -16,7 +16,7 @@ const formats = [
   },
   {
     title: "Conférence & panel",
-    text: "Des membres du club et des invité·es partagent leur expérience. Le GDG ÉTS rejoint notamment la scène du DevFest Montréal 2026.",
+    text: "Des membres du club et des invité·es partagent leur expérience. Le GDG ÉTS est notamment monté sur la scène du DevFest Montréal 2026.",
   },
   {
     title: "Meetup communautaire",
@@ -27,15 +27,11 @@ const formats = [
 const steps = [
   {
     title: "Choisis une activité",
-    text: "Deux rendez-vous cette session : le DevFest le 6 novembre et l'atelier LeetCode le 9 novembre.",
+    text: "Prochain rendez-vous : l'atelier LeetCode le 9 novembre.",
   },
   {
     title: "Atelier : viens directement",
     text: "Gratuit, sans inscription. Rendez-vous au Pavillon A, salle A-1302, de 12 h à 13 h 30. Des tuteurs seront sur place.",
-  },
-  {
-    title: "DevFest : prends ton billet",
-    text: "L'événement est organisé par la communauté GDG. La billetterie officielle donne accès au programme complet.",
   },
 ];
 
@@ -74,7 +70,8 @@ export default function EventsPage() {
                 À venir
               </h2>
               <span className="text-xs text-muted">
-                {events.length} événements
+                {events.length}{" "}
+                {events.length > 1 ? "événements" : "événement"}
               </span>
             </div>
             <EventList events={events} />
@@ -143,21 +140,19 @@ export default function EventsPage() {
                     <p className="mt-1 text-xs leading-5 text-muted">
                       {step.text}
                     </p>
-                    {index === 2 && (
-                      <a
-                        href={devfest.ticketsHref}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mt-2 inline-flex text-xs font-medium text-brand hover:text-brand-dark"
-                      >
-                        Billets &amp; programme
-                        <span aria-hidden="true"> ↗</span>
-                      </a>
-                    )}
                   </div>
                 </li>
               ))}
             </ol>
+            <p className="mt-5 border-t border-line pt-4 text-xs leading-5 text-muted">
+              Le DevFest du 6 novembre est terminé.{" "}
+              <Link
+                href={devfest.recapHref}
+                className="font-medium text-brand hover:text-brand-dark"
+              >
+                Lire le retour
+              </Link>
+            </p>
           </section>
 
           <section className="pt-6">

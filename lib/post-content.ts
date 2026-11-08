@@ -20,6 +20,63 @@ export type ArticleBody = {
 };
 
 export const articleBodies: Record<string, ArticleBody> = {
+  "retour-devfest-montreal-2026": {
+    lead: [
+      "Le 6 novembre 2026, le GDG ÉTS a participé au DevFest Montréal 2026, à l'Espace Ax.c. L'équipe a passé plus de 12 heures sur le terrain avec les organisateurs, les conférenciers et les bénévoles.",
+      "De l'installation tôt le matin et l'accueil des participants pour la grande plénière de bienvenue jusqu'au soutien des ateliers, on a pu vivre l'événement sous tous ses angles.",
+    ],
+    blocks: [
+      { type: "heading", id: "sur-le-terrain", text: "Une journée sur le terrain" },
+      {
+        type: "p",
+        text: "La journée a commencé tôt avec l'installation et l'accueil des participants pour la grande plénière de bienvenue.",
+      },
+      {
+        type: "p",
+        text: "L'équipe a ensuite soutenu la session Flight Mode AI aux côtés de Jhin Lee, puis accompagné les participants de l'atelier Cloud Run avec Rishab Kumar.",
+      },
+      {
+        type: "p",
+        text: "Elle a aussi aidé les participants de l'atelier Gemini + Apps Script avec Laudrup Cyprien Tankeu.",
+      },
+      { type: "heading", id: "oumaima-sur-scene", text: "Oumaima sur scène" },
+      {
+        type: "p",
+        text: "Notre présidente, Oumaima El khayiri, est montée sur scène en tant que conférencière pour représenter le GDG ÉTS.",
+      },
+      { type: "heading", id: "ambiance", text: "L'ambiance" },
+      {
+        type: "p",
+        text: "L'ambiance était à la hauteur : thème rétro avec les disques vinyles, buffet, station de création de swag personnalisé et moments mémorables au photobooth. L'énergie était au rendez-vous toute la journée.",
+      },
+      { type: "heading", id: "merci", text: "Merci" },
+      {
+        type: "p",
+        text: "Un immense merci aux organisateurs, aux conférenciers et à toutes les personnes qui se sont déplacées.",
+      },
+      {
+        type: "p",
+        text: "Merci beaucoup à Stacy Véronneau et Raphaelle Giraud pour toute l'organisation.",
+      },
+      { type: "heading", id: "la-suite", text: "La suite" },
+      {
+        type: "p",
+        text: "On attend avec enthousiasme la prochaine édition.",
+      },
+      { type: "heading", id: "ressources", text: "Pour aller plus loin" },
+      {
+        type: "resources",
+        items: [
+          {
+            label: "GDG ÉTS au DevFest Montréal 2026 : l'annonce",
+            kind: "Article",
+            href: "/blog/devfest-montreal-2026",
+          },
+          { label: "Calendrier des événements du GDG ÉTS", kind: "Calendrier", href: "/events" },
+        ],
+      },
+    ],
+  },
   "atelier-leetcode-9-novembre": {
     lead: [
       "Le GDG ÉTS lance sa première activité officielle avec un atelier consacré à LeetCode. Objectif : pratiquer la programmation compétitive dans un cadre accessible et préparer les entrevues techniques.",
@@ -78,10 +135,25 @@ export const articleBodies: Record<string, ArticleBody> = {
   },
   "devfest-montreal-2026": {
     lead: [
-      "Pour sa première année, le GDG ÉTS sera sur la scène du DevFest Montréal 2026. Notre lead, Oumaima El khayiri, participe à la session « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » aux côtés de Rebecca Abi Chahine, Michael Persico et Daniel Wei.",
-      "Le rendez-vous est fixé au vendredi 6 novembre 2026, à l'Espace Ax.c, au 800 rue du Square-Victoria, à Montréal.",
+      "Pour sa première année, le GDG ÉTS est monté sur la scène du DevFest Montréal 2026. Notre lead, Oumaima El khayiri, a participé à la session « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » aux côtés de Rebecca Abi Chahine, Michael Persico et Daniel Wei.",
+      "Le rendez-vous a eu lieu le vendredi 6 novembre 2026, à l'Espace Ax.c, au 800 rue du Square-Victoria, à Montréal.",
     ],
     blocks: [
+      { type: "heading", id: "retour", text: "Retour sur l'événement" },
+      {
+        type: "p",
+        text: "L'événement a eu lieu le 6 novembre 2026. Le récit complet de la journée est disponible dans notre article de retour.",
+      },
+      {
+        type: "resources",
+        items: [
+          {
+            label: "Retour sur le DevFest Montréal 2026",
+            kind: "Retour",
+            href: "/blog/retour-devfest-montreal-2026",
+          },
+        ],
+      },
       { type: "heading", id: "le-devfest", text: "Le DevFest, c'est quoi ?" },
       {
         type: "p",
@@ -90,7 +162,7 @@ export const articleBodies: Record<string, ArticleBody> = {
       { type: "heading", id: "notre-intervention", text: "Notre intervention" },
       {
         type: "p",
-        text: "La session réunit des voix étudiantes et des organisateur·ices de GDG on Campus pour parler de la mission du programme, de son impact et de la perspective étudiante. L'ÉTS y rejoint les GDG de Polytechnique, Concordia et McGill sur scène.",
+        text: "La session a réuni des voix étudiantes et des organisateur·ices de GDG on Campus pour parler de la mission du programme, de son impact et de la perspective étudiante. L'ÉTS y a rejoint les GDG de Polytechnique, Concordia et McGill sur scène.",
       },
       {
         type: "list",
@@ -101,7 +173,7 @@ export const articleBodies: Record<string, ArticleBody> = {
           "Daniel Wei",
         ],
       },
-      { type: "heading", id: "pourquoi-venir", text: "Pourquoi venir ?" },
+      { type: "heading", id: "pourquoi-venir", text: "Ce qu'on est allé chercher" },
       {
         type: "list",
         items: [
@@ -117,18 +189,18 @@ export const articleBodies: Record<string, ArticleBody> = {
         items: [
           "Date : vendredi 6 novembre 2026",
           "Lieu : Espace Ax.c, 800 rue du Square-Victoria, Montréal",
-          "Billets : sur la billetterie officielle du DevFest",
-          "L'ÉTS sera représentée par Oumaima El khayiri.",
+          "Statut : événement terminé",
+          "L'ÉTS était représentée par Oumaima El khayiri.",
         ],
       },
-      { type: "heading", id: "ressources", text: "Billets et ressources" },
+      { type: "heading", id: "ressources", text: "Ressources" },
       {
         type: "resources",
         items: [
           {
-            label: "Billets et programme du DevFest MTL 2026",
-            kind: "Billets",
-            href: "https://lnkd.in/gSnGEvnC",
+            label: "Retour sur le DevFest Montréal 2026",
+            kind: "Retour",
+            href: "/blog/retour-devfest-montreal-2026",
           },
           { label: "Calendrier des événements du GDG ÉTS", kind: "Calendrier", href: "/events" },
         ],
@@ -163,7 +235,7 @@ export const articleBodies: Record<string, ArticleBody> = {
       { type: "heading", id: "la-suite", text: "La suite" },
       {
         type: "p",
-        text: "Le club continue sa première session avec le DevFest Montréal 2026, puis son premier atelier officiel le 9 novembre. Les détails sont dans le calendrier.",
+        text: "Le club a participé au DevFest Montréal 2026 et prépare son premier atelier officiel le 9 novembre. Les détails sont dans le calendrier.",
       },
       { type: "heading", id: "ressources", text: "Pour aller plus loin" },
       {

@@ -31,6 +31,22 @@ export type Event = {
 
 export const posts: Post[] = [
   {
+    slug: "retour-devfest-montreal-2026",
+    title: "Retour sur le DevFest Montréal 2026",
+    excerpt:
+      "Plus de 12 heures sur le terrain, la plénière, la session Flight Mode AI, les ateliers Cloud Run et Gemini + Apps Script, et Oumaima El khayiri sur scène : retour sur le DevFest Montréal 2026.",
+    category: "RETOUR",
+    categoryLabel: "Retour",
+    date: "7 nov. 2026",
+    dateISO: "2026-11-07",
+    readingMinutes: 4,
+    cover: "/covers/panel-ia.jpg",
+    coverAlt:
+      "Audience dans un amphithéâtre pendant une conférence technique",
+    author: "Oumaima El khayiri",
+    location: "Espace Ax.c, Montréal",
+  },
+  {
     slug: "atelier-leetcode-9-novembre",
     title: "Atelier LeetCode : pratique pour tes entrevues",
     excerpt:
@@ -51,7 +67,7 @@ export const posts: Post[] = [
     slug: "devfest-montreal-2026",
     title: "GDG ÉTS au DevFest Montréal 2026",
     excerpt:
-      "Oumaima El khayiri monte sur la scène du DevFest avec les GDG de Polytechnique, Concordia et McGill pour parler de la mission de GDG on Campus.",
+      "Oumaima El khayiri est montée sur la scène du DevFest avec les GDG de Polytechnique, Concordia et McGill pour parler de la mission de GDG on Campus.",
     category: "CONFÉRENCE",
     categoryLabel: "Conférence",
     date: "28 oct. 2026",
@@ -98,17 +114,6 @@ export const posts: Post[] = [
 // Upcoming events, manually ordered by date. Move an event to pastEvents after it happens.
 export const events: Event[] = [
   {
-    slug: "devfest-montreal-2026",
-    day: "06",
-    month: "NOV",
-    dateISO: "2026-11-06",
-    type: "Conférence",
-    title: "GDG ÉTS au DevFest Montréal 2026",
-    time: "Horaire sur la billetterie",
-    location: "Espace Ax.c, 800 rue du Square-Victoria",
-    href: "/blog/devfest-montreal-2026",
-  },
-  {
     slug: "atelier-leetcode",
     day: "09",
     month: "NOV",
@@ -122,6 +127,17 @@ export const events: Event[] = [
 ];
 
 export const pastEvents: Event[] = [
+  {
+    slug: "devfest-montreal-2026",
+    day: "06",
+    month: "NOV",
+    dateISO: "2026-11-06",
+    type: "Conférence",
+    title: "GDG ÉTS au DevFest Montréal 2026",
+    time: "8 h 30 – 18 h",
+    location: "Espace Ax.c, 800 rue du Square-Victoria",
+    href: "/blog/retour-devfest-montreal-2026",
+  },
   {
     slug: "meetup-vooban",
     day: "02",
@@ -161,15 +177,14 @@ export const pastEvents: Event[] = [
 export const devfest = {
   title: "GDG ÉTS au DevFest Montréal 2026",
   date: "Vendredi 6 novembre 2026",
-  time: "Horaire sur la billetterie",
+  time: "8 h 30 – 18 h",
   location: "Espace Ax.c, 800 rue du Square-Victoria",
   cover: "/covers/panel-ia.jpg",
   coverAlt: "Audience dans un amphithéâtre pendant une conférence technique",
   summary:
-    "Oumaima El khayiri présente « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » avec Rebecca Abi Chahine, Michael Persico et Daniel Wei.",
+    "Oumaima El khayiri a présenté « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » avec Rebecca Abi Chahine, Michael Persico et Daniel Wei.",
   articleHref: "/blog/devfest-montreal-2026",
-  ticketsHref: "https://lnkd.in/gSnGEvnC",
-  ticketsLabel: "Billets & programme",
+  recapHref: "/blog/retour-devfest-montreal-2026",
 };
 
 export function getPost(slug: string) {

@@ -32,12 +32,12 @@ export default function HomePage() {
           </header>
 
           <section
-            aria-labelledby="next-event"
+            aria-labelledby="featured"
             className="border-b border-line py-6"
           >
             <div className="flex items-baseline justify-between gap-4">
-              <h2 id="next-event" className="text-sm font-semibold text-ink">
-                À l&apos;affiche
+              <h2 id="featured" className="text-sm font-semibold text-ink">
+                À la une
               </h2>
               <Link
                 href="/events"
@@ -72,15 +72,12 @@ export default function HomePage() {
                   {devfest.summary}
                 </p>
                 <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-                  <a
-                    href={devfest.ticketsHref}
-                    target="_blank"
-                    rel="noreferrer"
+                  <Link
+                    href={devfest.recapHref}
                     className="font-medium text-brand hover:text-brand-dark"
                   >
-                    {devfest.ticketsLabel}
-                    <span aria-hidden="true"> ↗</span>
-                  </a>
+                    Lire le retour
+                  </Link>
                   <Link
                     href={devfest.articleHref}
                     className="text-muted hover:text-ink"
@@ -146,7 +143,7 @@ export default function HomePage() {
                 <dt className="text-[11px] uppercase tracking-wide text-muted">
                   Articles
                 </dt>
-                <dd className="mt-1 text-xl font-semibold text-ink">04</dd>
+                <dd className="mt-1 text-xl font-semibold text-ink">05</dd>
               </div>
             </dl>
             <Link

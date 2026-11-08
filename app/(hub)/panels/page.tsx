@@ -8,17 +8,17 @@ import { devfest, posts } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Conférences & panels",
   description:
-    "Les conférences et panels du GDG ÉTS : DevFest Montréal 2026, retours d'expérience et rencontres avec la communauté GDG.",
+    "Les conférences et panels du GDG ÉTS : retour sur le DevFest Montréal 2026, retours d'expérience et rencontres avec la communauté GDG.",
 };
 
 const milestones = [
   {
     date: "6 novembre 2026",
-    tag: "À venir",
+    tag: "Retour",
     title: "DevFest Montréal 2026",
     detail:
-      "Oumaima El khayiri présente la mission de GDG on Campus avec Rebecca Abi Chahine, Michael Persico et Daniel Wei.",
-    href: "/blog/devfest-montreal-2026",
+      "Oumaima El khayiri est montée sur scène pour présenter la mission de GDG on Campus avec Rebecca Abi Chahine, Michael Persico et Daniel Wei.",
+    href: "/blog/retour-devfest-montreal-2026",
   },
   {
     date: "2 octobre 2026",
@@ -60,21 +60,21 @@ export default function PanelsPage() {
         <p className="mt-3 text-[15px] leading-7 text-muted sm:text-base">
           Le GDG ÉTS organise et rejoint des conférences pour connecter les
           étudiant·es de l&apos;ÉTS à l&apos;écosystème tech. Retrouve ici les
-          prochaines prises de parole et les retours d&apos;expérience.
+          prises de parole du chapitre et les retours d&apos;expérience.
         </p>
       </header>
 
       <section
-        aria-labelledby="next-talk"
+        aria-labelledby="latest-talk"
         className="border-b border-line py-8"
       >
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-center">
           <div>
             <p className="text-sm font-medium text-brand">
-              Prochaine prise de parole
+              Dernière prise de parole
             </p>
             <h2
-              id="next-talk"
+              id="latest-talk"
               className="mt-2 text-2xl font-bold leading-tight tracking-tight text-ink sm:text-3xl"
             >
               {devfest.title}
@@ -99,15 +99,12 @@ export default function PanelsPage() {
             </div>
 
             <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
-              <a
-                href={devfest.ticketsHref}
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                href={devfest.recapHref}
                 className={buttonStyles({ variant: "primary", size: "md" })}
               >
-                {devfest.ticketsLabel}
-                <span aria-hidden="true">↗</span>
-              </a>
+                Lire le retour
+              </Link>
               <Link
                 href={devfest.articleHref}
                 className="text-sm font-medium text-brand hover:text-brand-dark"

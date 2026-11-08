@@ -2,9 +2,9 @@
 
 Hub public de la communauté Google Developer Groups on Campus de l'École de
 technologie supérieure, à Montréal. L'application est en français et présente
-les premières activités réelles du chapitre : l'atelier LeetCode du 9 novembre
-2026, la participation au DevFest Montréal 2026, le meetup GDG Cloud chez Vooban
-et le lancement officiel du club.
+les activités réelles du chapitre : le retour sur le DevFest Montréal 2026,
+l'atelier LeetCode du 9 novembre 2026, le meetup GDG Cloud chez Vooban et le
+lancement officiel du club.
 
 Le projet est un site éditorial statique, sans compte, sans base de données et
 sans concours.
@@ -39,7 +39,7 @@ npm start       # servir le build
 | Route | Page |
 | --- | --- |
 | `/` | Accueil : prochain rendez-vous, feed d'articles et liens du club |
-| `/blog` | Archive des quatre articles |
+| `/blog` | Archive des cinq articles |
 | `/blog/[slug]` | Article complet avec sommaire, partage et ressources |
 | `/events` | Événements à venir, retours et formats de participation |
 | `/panels` | Conférences et panels du chapitre |
@@ -50,19 +50,20 @@ npm start       # servir le build
 
 Les articles et les événements proviennent des publications du club :
 
+- **Retour sur le DevFest Montréal 2026** — participation du 6 novembre 2026 à
+  l'Espace Ax.c, 800 rue du Square-Victoria. Plus de 12 heures sur le terrain,
+  la plénière, la session Flight Mode AI avec Jhin Lee, les ateliers Cloud Run
+  avec Rishab Kumar et Gemini + Apps Script avec Laudrup Cyprien Tankeu, et
+  Oumaima El khayiri sur scène.
 - **Atelier LeetCode** — lundi 9 novembre 2026, 12 h à 13 h 30, ÉTS Pavillon A,
   salle A-1302. Premier événement officiel du GDG ÉTS, gratuit, avec tuteurs.
-- **DevFest Montréal 2026** — vendredi 6 novembre 2026, Espace Ax.c, 800 rue du
-  Square-Victoria. Oumaima El khayiri présente la table ronde sur GDG on Campus
-  avec Rebecca Abi Chahine, Michael Persico et Daniel Wei.
 - **Meetup GDG Cloud Montréal chez Vooban** — retour sur la soirée du 2 octobre
   2026 avec Ayoub Marouf, Emilien Busson et Patrick Nguyen.
 - **Lancement du chapitre** — annonce du 30 septembre 2026, après l'atelier du
   21 septembre. Équipe fondatrice de six personnes et trois mentors.
 
 Les couvertures d'articles sont des images d'illustration, pas des photos des
-événements. Le seul lien externe d'événement est la billetterie du DevFest
-fournie par le club.
+événements.
 
 ## Fonctionnalités
 
