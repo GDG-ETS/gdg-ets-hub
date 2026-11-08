@@ -121,7 +121,9 @@ export default function PanelsPage() {
               fill
               preload
               sizes="(max-width: 1024px) 100vw, 380px"
-              className="object-cover"
+              className={
+                devfest.coverFit === "contain" ? "object-contain" : "object-cover"
+              }
             />
           </div>
         </div>

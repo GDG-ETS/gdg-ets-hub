@@ -11,6 +11,7 @@ export type Post = {
   readingMinutes: number;
   cover: string;
   coverAlt: string;
+  coverFit?: "cover" | "contain";
   author: string;
   location: string;
   featured?: boolean;
@@ -40,9 +41,9 @@ export const posts: Post[] = [
     date: "7 nov. 2026",
     dateISO: "2026-11-07",
     readingMinutes: 4,
-    cover: "/covers/panel-ia.jpg",
+    cover: "/photos/devfest-2026/06.jpg",
     coverAlt:
-      "Audience dans un amphithéâtre pendant une conférence technique",
+      "Quatre panélistes assis sur scène pendant la table ronde GDG on Campus au DevFest Montréal 2026",
     author: "Oumaima El khayiri",
     location: "Espace Ax.c, Montréal",
   },
@@ -56,9 +57,10 @@ export const posts: Post[] = [
     date: "3 nov. 2026",
     dateISO: "2026-11-03",
     readingMinutes: 4,
-    cover: "/covers/atelier.jpg",
+    cover: "/photos/leetcode/affiche.jpg",
     coverAlt:
-      "Étudiants réunis autour d'ordinateurs portables pendant un atelier",
+      "Affiche de l'atelier LeetCode du GDG ÉTS, lundi 9 novembre 2026, Pavillon A, salle A-1302",
+    coverFit: "contain",
     author: "Équipe GDG ÉTS",
     location: "ÉTS, Pavillon A · salle A-1302",
     featured: true,
@@ -73,9 +75,10 @@ export const posts: Post[] = [
     date: "28 oct. 2026",
     dateISO: "2026-10-28",
     readingMinutes: 5,
-    cover: "/covers/panel-ia.jpg",
+    cover: "/photos/devfest-annonce/02.jpg",
     coverAlt:
-      "Audience dans un amphithéâtre pendant une conférence technique",
+      "Affiche de la session « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » avec ses quatre intervenant·e·s",
+    coverFit: "contain",
     author: "Équipe GDG ÉTS",
     location: "Espace Ax.c, Montréal",
   },
@@ -89,8 +92,8 @@ export const posts: Post[] = [
     date: "2 oct. 2026",
     dateISO: "2026-10-02",
     readingMinutes: 4,
-    cover: "/covers/cloud-run.jpg",
-    coverAlt: "Espace de travail avec du code sur plusieurs écrans",
+    cover: "/photos/vooban/02.jpg",
+    coverAlt: "Membres du GDG ÉTS dans les locaux de Vooban lors du meetup GDG Cloud Montréal",
     author: "Équipe GDG ÉTS",
     location: "Vooban, Montréal",
   },
@@ -104,8 +107,9 @@ export const posts: Post[] = [
     date: "30 sept. 2026",
     dateISO: "2026-09-30",
     readingMinutes: 5,
-    cover: "/covers/equipe.jpg",
-    coverAlt: "Étudiants travaillant ensemble sur des ordinateurs",
+    cover: "/photos/lancement/equipe.jpg",
+    coverAlt: "Équipe fondatrice du GDG ÉTS : six portraits avec noms et rôles",
+    coverFit: "contain",
     author: "Équipe GDG ÉTS",
     location: "ÉTS, Montréal",
   },
@@ -179,8 +183,9 @@ export const devfest = {
   date: "Vendredi 6 novembre 2026",
   time: "8 h 30 – 18 h",
   location: "Espace Ax.c, 800 rue du Square-Victoria",
-  cover: "/covers/panel-ia.jpg",
-  coverAlt: "Audience dans un amphithéâtre pendant une conférence technique",
+  cover: "/photos/devfest-annonce/02.jpg",
+  coverAlt: "Affiche de la session « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » avec ses quatre intervenant·e·s",
+  coverFit: "contain",
   summary:
     "Oumaima El khayiri a présenté « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » avec Rebecca Abi Chahine, Michael Persico et Daniel Wei.",
   articleHref: "/blog/devfest-montreal-2026",

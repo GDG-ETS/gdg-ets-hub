@@ -7,11 +7,19 @@ export type PanelSpeaker = {
   tag: string;
 };
 
+export type GalleryImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
 export type ArticleBlock =
   | { type: "p"; text: string }
   | { type: "heading"; id: string; text: string }
   | { type: "list"; items: string[] }
   | { type: "speakers"; items: PanelSpeaker[] }
+  | { type: "gallery"; images: GalleryImage[]; caption?: string }
   | { type: "resources"; items: { label: string; kind: string; href?: string }[] };
 
 export type ArticleBody = {
@@ -62,6 +70,121 @@ export const articleBodies: Record<string, ArticleBody> = {
       {
         type: "p",
         text: "On attend avec enthousiasme la prochaine édition.",
+      },
+      { type: "heading", id: "en-images", text: "En images" },
+      {
+        type: "gallery",
+        caption: "Photos : GDG ÉTS (LinkedIn)",
+        images: [
+          {
+            src: "/photos/devfest-2026/01.jpg",
+            alt: "L'équipe du GDG ÉTS au photobooth rétro avec lunettes et accessoires",
+            width: 800,
+            height: 800,
+          },
+          {
+            src: "/photos/devfest-2026/02.jpg",
+            alt: "Salle comble pour la plénière de bienvenue",
+            width: 480,
+            height: 640,
+          },
+          {
+            src: "/photos/devfest-2026/03.jpg",
+            alt: "Station de création de swag personnalisé",
+            width: 480,
+            height: 640,
+          },
+          {
+            src: "/photos/devfest-2026/04.jpg",
+            alt: "Deux membres du GDG ÉTS avec leurs badges DevFest",
+            width: 800,
+            height: 600,
+          },
+          {
+            src: "/photos/devfest-2026/05.jpg",
+            alt: "Membres du GDG ÉTS à la station de swag",
+            width: 480,
+            height: 640,
+          },
+          {
+            src: "/photos/devfest-2026/06.jpg",
+            alt: "Quatre panélistes sur scène pendant la table ronde GDG on Campus",
+            width: 800,
+            height: 600,
+          },
+          {
+            src: "/photos/devfest-2026/07.jpg",
+            alt: "Le buffet du DevFest",
+            width: 480,
+            height: 640,
+          },
+          {
+            src: "/photos/devfest-2026/08.jpg",
+            alt: "Le buffet, vu sous un autre angle",
+            width: 480,
+            height: 640,
+          },
+          {
+            src: "/photos/devfest-2026/09.jpg",
+            alt: "Un conférencier présente une session devant un écran",
+            width: 480,
+            height: 640,
+          },
+          {
+            src: "/photos/devfest-2026/10.jpg",
+            alt: "Bénévoles et membres devant la table de swag",
+            width: 480,
+            height: 640,
+          },
+          {
+            src: "/photos/devfest-2026/11.jpg",
+            alt: "Deux bénévoles à une table d'accueil",
+            width: 480,
+            height: 640,
+          },
+          {
+            src: "/photos/devfest-2026/12.jpg",
+            alt: "Trois participants devant le mur Google Developer Groups",
+            width: 800,
+            height: 800,
+          },
+          {
+            src: "/photos/devfest-2026/13.jpg",
+            alt: "Selfie de groupe dans l'espace de l'événement",
+            width: 800,
+            height: 600,
+          },
+          {
+            src: "/photos/devfest-2026/14.jpg",
+            alt: "L'atrium rempli de participants, vu d'en haut",
+            width: 800,
+            height: 600,
+          },
+          {
+            src: "/photos/devfest-2026/15.jpg",
+            alt: "Participants autour de la table de swag",
+            width: 800,
+            height: 600,
+          },
+          {
+            src: "/photos/devfest-2026/16.jpg",
+            alt: "Le public pendant une session en salle",
+            width: 800,
+            height: 600,
+          },
+          {
+            src: "/photos/devfest-2026/17.jpg",
+            alt: "Participants pendant un atelier",
+            width: 800,
+            height: 600,
+          },
+          {
+            src: "/photos/devfest-2026/18.jpg",
+            alt: "Diapositive de remerciement de la table ronde GDG on Campus avec les quatre intervenant·e·s",
+            width: 800,
+            height: 600,
+          },
+        ],
       },
       { type: "heading", id: "ressources", text: "Pour aller plus loin" },
       {
@@ -193,6 +316,24 @@ export const articleBodies: Record<string, ArticleBody> = {
           "L'ÉTS était représentée par Oumaima El khayiri.",
         ],
       },
+      { type: "heading", id: "en-images", text: "En images" },
+      {
+        type: "gallery",
+        images: [
+          {
+            src: "/photos/devfest-annonce/01.jpg",
+            alt: "Affiche de la session avec Oumaima El khayiri, lead du GDG on Campus ÉTS",
+            width: 800,
+            height: 1066,
+          },
+          {
+            src: "/photos/devfest-annonce/02.jpg",
+            alt: "Affiche de la session « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » avec ses quatre intervenant·e·s",
+            width: 800,
+            height: 1066,
+          },
+        ],
+      },
       { type: "heading", id: "ressources", text: "Ressources" },
       {
         type: "resources",
@@ -236,6 +377,30 @@ export const articleBodies: Record<string, ArticleBody> = {
       {
         type: "p",
         text: "Le club a participé au DevFest Montréal 2026 et prépare son premier atelier officiel le 9 novembre. Les détails sont dans le calendrier.",
+      },
+      { type: "heading", id: "en-images", text: "En images" },
+      {
+        type: "gallery",
+        images: [
+          {
+            src: "/photos/vooban/01.jpg",
+            alt: "Le public pendant la présentation du meetup GDG Cloud Montréal chez Vooban",
+            width: 800,
+            height: 1063,
+          },
+          {
+            src: "/photos/vooban/02.jpg",
+            alt: "Membres du GDG ÉTS dans les locaux de Vooban",
+            width: 800,
+            height: 799,
+          },
+          {
+            src: "/photos/vooban/03.jpg",
+            alt: "Selfie des membres du GDG ÉTS avec un animateur du meetup",
+            width: 800,
+            height: 1067,
+          },
+        ],
       },
       { type: "heading", id: "ressources", text: "Pour aller plus loin" },
       {

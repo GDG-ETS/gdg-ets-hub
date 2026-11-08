@@ -65,8 +65,8 @@ Les articles et les événements proviennent des publications du club :
 - **Lancement du chapitre** — annonce du 30 septembre 2026, après l'atelier du
   21 septembre. Équipe fondatrice de six personnes et trois mentors.
 
-Les couvertures d'articles sont des images d'illustration, pas des photos des
-événements.
+Les photos proviennent des publications LinkedIn du club et sont disponibles
+dans `public/photos/`.
 
 ## Fonctionnalités
 
@@ -102,7 +102,7 @@ components/           # header, footer, feed, cartes d'article, événements, pa
 lib/
   data.ts             # articles, événements et données du DevFest
   post-content.ts     # corps éditorial des articles
-public/covers/        # images d'illustration
+public/photos/        # photos des publications LinkedIn du club
 ```
 
 ## Limites

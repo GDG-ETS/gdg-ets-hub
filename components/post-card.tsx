@@ -39,7 +39,9 @@ export function PostCard({
             alt=""
             fill
             sizes="112px"
-            className="object-cover"
+            className={cn(
+              post.coverFit === "contain" ? "object-contain" : "object-cover"
+            )}
           />
         </div>
       </Link>

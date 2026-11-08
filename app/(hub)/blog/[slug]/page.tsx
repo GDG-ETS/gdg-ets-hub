@@ -128,6 +128,38 @@ function ArticleBlockView({ block }: { block: ArticleBlock }) {
         </div>
       );
 
+    case "gallery":
+      return (
+        <figure>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {block.images.map((image) => (
+              <a
+                key={image.src}
+                href={image.src}
+                target="_blank"
+                rel="noreferrer"
+                className="group relative block aspect-[4/3] overflow-hidden rounded-md bg-canvas"
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  loading="lazy"
+                  sizes="(max-width: 640px) 50vw, 225px"
+                  className="h-full w-full object-cover transition-opacity group-hover:opacity-90"
+                />
+              </a>
+            ))}
+          </div>
+          {block.caption && (
+            <figcaption className="mt-2 text-xs text-muted">
+              {block.caption}
+            </figcaption>
+          )}
+        </figure>
+      );
+
     case "resources":
       return (
         <div className="divide-y divide-line border-y border-line">
@@ -209,11 +241,13 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
               fill
               preload
               sizes="(max-width: 768px) 100vw, 760px"
-              className="object-cover"
+              className={
+                post.coverFit === "contain" ? "object-contain" : "object-cover"
+              }
             />
           </div>
           <figcaption className="mt-2 text-xs text-muted">
-            Image d&apos;illustration.
+            Visuel : GDG ÉTS (LinkedIn).
           </figcaption>
         </figure>
 
