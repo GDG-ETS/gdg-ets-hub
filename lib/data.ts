@@ -52,8 +52,8 @@ export const posts: Post[] = [
     title: "Atelier LeetCode : pratique pour tes entrevues",
     excerpt:
       "Le tout premier événement officiel du GDG ÉTS : un atelier pratique pour découvrir la programmation compétitive et préparer tes entrevues techniques.",
-    category: "ATELIER",
-    categoryLabel: "Atelier",
+    category: "ANNONCE",
+    categoryLabel: "Annonce",
     date: "3 nov. 2026",
     dateISO: "2026-11-03",
     readingMinutes: 4,

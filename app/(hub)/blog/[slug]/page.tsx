@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, ArrowUpRight, Building2 } from "lucide-react";
 import { ShareLinks } from "@/components/share-links";
+import { getCategoryColors } from "@/lib/category-colors";
+import { cn } from "@/lib/cn";
 import { getPost, posts } from "@/lib/data";
 import { articleBodies, type ArticleBlock } from "@/lib/post-content";
 
@@ -179,6 +181,7 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
 
   if (!post || !body) notFound();
 
+  const category = getCategoryColors(post.category);
   const toc = body.blocks.filter(
     (block): block is Extract<ArticleBlock, { type: "heading" }> =>
       block.type === "heading"
@@ -204,12 +207,29 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
               </Link>
             </li>
             <li aria-hidden="true">/</li>
-            <li>{post.categoryLabel}</li>
+            <li className="inline-flex items-center gap-1.5">
+              <span
+                className={cn("size-1.5 rounded-full", category.solid)}
+                aria-hidden="true"
+              />
+              {post.categoryLabel}
+            </li>
           </ol>
         </nav>
 
         <header className="mt-6 max-w-[760px]">
-          <p className="text-sm font-medium text-brand">{post.categoryLabel}</p>
+          <p>
+            <span
+              className={cn(
+                "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium",
+                category.text,
+                category.softBg,
+                category.border,
+              )}
+            >
+              {post.categoryLabel}
+            </span>
+          </p>
           <h1 className="mt-2 text-3xl font-bold leading-[1.15] tracking-[-0.02em] text-ink sm:text-4xl lg:text-[42px]">
             {post.title}
           </h1>

@@ -89,6 +89,12 @@ export function HubHeader() {
           </nav>
         </div>
       )}
+      <div className="flex h-0.5" aria-hidden="true">
+        <div className="flex-1 bg-google-blue" />
+        <div className="flex-1 bg-google-red" />
+        <div className="flex-1 bg-google-yellow" />
+        <div className="flex-1 bg-google-green" />
+      </div>
     </header>
   );
 }

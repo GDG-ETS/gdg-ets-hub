@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { PostCard } from "@/components/post-card";
 import { buttonStyles } from "@/components/ui/button";
+import { getEventTypeColors } from "@/lib/category-colors";
+import { cn } from "@/lib/cn";
 import { devfest, posts } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -164,7 +166,14 @@ export default function PanelsPage() {
             >
               <p className="font-mono text-[10px] uppercase leading-5 tracking-[0.12em] text-muted">
                 {milestone.date}
-                <span className="ml-2 text-brand">{milestone.tag}</span>
+                <span
+                  className={cn(
+                    "ml-2 font-medium",
+                    getEventTypeColors(milestone.tag).text,
+                  )}
+                >
+                  {milestone.tag}
+                </span>
               </p>
               <div>
                 <h3 className="text-base font-semibold leading-snug tracking-tight text-ink transition-colors group-hover:text-brand">

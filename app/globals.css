@@ -16,6 +16,19 @@
   --color-warning: #b06000;
   --color-warning-soft: #fef7e0;
 
+  --color-google-blue: #4285f4;
+  --color-google-red: #ea4335;
+  --color-google-yellow: #fbbc04;
+  --color-google-green: #34a853;
+  --color-google-blue-soft: #e8f0fe;
+  --color-google-red-soft: #fce8e6;
+  --color-google-yellow-soft: #fef7e0;
+  --color-google-green-soft: #e6f4ea;
+  --color-google-blue-fg: #1967d2;
+  --color-google-red-fg: #c5221f;
+  --color-google-yellow-fg: #8a6200;
+  --color-google-green-fg: #137333;
+
   --font-sans: var(--font-inter);
   --font-display: var(--font-space-grotesk);
   --font-mono: var(--font-jetbrains-mono);

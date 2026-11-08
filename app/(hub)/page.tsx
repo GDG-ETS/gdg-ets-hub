@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { PostCard } from "@/components/post-card";
+import { getEventTypeColors } from "@/lib/category-colors";
 import { devfest, events, posts } from "@/lib/data";
+import { cn } from "@/lib/cn";
 
 function formatLongDate(dateISO: string) {
   const label = new Intl.DateTimeFormat("fr-CA", {
@@ -52,8 +54,14 @@ export default function HomePage() {
                 <span className="block text-3xl font-bold leading-none tracking-tight text-ink sm:text-4xl">
                   06
                 </span>
-                <span className="mt-1 block font-mono text-[10px] uppercase tracking-widest text-muted">
+                <span className="mt-1 block font-mono text-[10px] uppercase tracking-widest text-google-blue-fg">
                   NOV
+                </span>
+                <span className="mt-2 flex gap-0.5" aria-hidden="true">
+                  <span className="h-0.5 w-2 rounded-full bg-google-blue" />
+                  <span className="h-0.5 w-2 rounded-full bg-google-red" />
+                  <span className="h-0.5 w-2 rounded-full bg-google-yellow" />
+                  <span className="h-0.5 w-2 rounded-full bg-google-green" />
                 </span>
               </div>
 
@@ -184,10 +192,22 @@ export default function HomePage() {
 
           <section className="pt-6">
             <h2 className="text-sm font-semibold text-ink">Sujets</h2>
-            <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted">
-              {["Atelier", "Conférence", "Retour", "Annonce"].map((topic) => (
-                <span key={topic}>{topic}</span>
-              ))}
+            <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+              {["Atelier", "Conférence", "Annonce", "Retour"].map((topic) => {
+                const color = getEventTypeColors(topic);
+                return (
+                  <span
+                    key={topic}
+                    className="inline-flex items-center gap-1.5 text-muted"
+                  >
+                    <span
+                      className={cn("size-1.5 rounded-full", color.solid)}
+                      aria-hidden="true"
+                    />
+                    {topic}
+                  </span>
+                );
+              })}
             </div>
           </section>
         </aside>
