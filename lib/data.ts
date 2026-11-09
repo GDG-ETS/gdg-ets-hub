@@ -30,6 +30,18 @@ export type Event = {
   online?: boolean;
 };
 
+export type TeamMember = {
+  name: string;
+  role: string;
+  photo: string;
+  profileUrl: string;
+};
+
+export type Mentor = {
+  name: string;
+  initials: string;
+};
+
 export const posts: Post[] = [
   {
     slug: "retour-devfest-montreal-2026",
@@ -195,3 +207,60 @@ export const devfest = {
 export function getPost(slug: string) {
   return posts.find((post) => post.slug === slug);
 }
+
+export const team: TeamMember[] = [
+  {
+    name: "Oumaima El khayiri",
+    role: "Présidente",
+    photo: "/photos/equipe/oumaima-el-khayiri.jpg",
+    profileUrl: "https://gdg.community.dev/u/m5hvkb/",
+  },
+  {
+    name: "Wilson Ly",
+    role: "Vice-président",
+    photo: "/photos/equipe/wilson-ly.jpg",
+    profileUrl: "https://gdg.community.dev/u/wilson66/",
+  },
+  {
+    name: "Emilien Busson",
+    role: "Responsable DevOps",
+    photo: "/photos/equipe/emilien-busson.jpg",
+    profileUrl: "https://gdg.community.dev/u/mmvyqw/",
+  },
+  {
+    name: "Souad Goubaa",
+    role: "Responsable des événements",
+    photo: "/photos/equipe/souad-goubaa.jpg",
+    profileUrl: "https://gdg.community.dev/u/mn7fgd/",
+  },
+  {
+    name: "Ly Andy Phok",
+    role: "VP Communauté",
+    photo: "/photos/equipe/ly-andy-phok.jpg",
+    profileUrl: "https://gdg.community.dev/u/ly_andy/",
+  },
+  {
+    name: "Daniel To",
+    role: "VP Finances",
+    photo: "/photos/equipe/daniel-to.jpg",
+    profileUrl: "https://gdg.community.dev/u/mnmfs6/",
+  },
+  {
+    name: "Patrick Nguyen",
+    role: "Membre aux événements",
+    photo: "/photos/equipe/patrick-nguyen.jpg",
+    profileUrl: "https://gdg.community.dev/u/mmcy9s/",
+  },
+  {
+    name: "Ayoub Marouf",
+    role: "Membre aux événements",
+    photo: "/photos/equipe/ayoub-marouf.jpg",
+    profileUrl: "https://gdg.community.dev/u/m4pk6t/",
+  },
+];
+
+export const mentors: Mentor[] = [
+  { name: "Stacy Véronneau", initials: "SV" },
+  { name: "Erica Silva", initials: "ES" },
+  { name: "Ali El-Sharif", initials: "AE" },
+];

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EventList } from "@/components/event-list";
-import { devfest, events, pastEvents } from "@/lib/data";
+import { events, pastEvents } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Événements",
@@ -12,26 +12,26 @@ export const metadata: Metadata = {
 const formats = [
   {
     title: "Atelier pratique",
-    text: "Une session hands-on pour pratiquer une technologie ou un thème précis. Le premier atelier officiel du club porte sur LeetCode et la préparation aux entrevues.",
+    text: "Une session hands-on pour pratiquer une technologie ou un thème précis, accompagné·e par des tuteurs.",
   },
   {
     title: "Conférence & panel",
-    text: "Des membres du club et des invité·es partagent leur expérience. Le GDG ÉTS est notamment monté sur la scène du DevFest Montréal 2026.",
+    text: "Des prises de parole et retours d'expérience avec des membres du club et des invité·es de l'écosystème tech.",
   },
   {
     title: "Meetup communautaire",
-    text: "On retrouve les autres chapitres GDG de la région, comme lors du meetup GDG Cloud Montréal accueilli chez Vooban.",
+    text: "Des rencontres informelles avec les autres chapitres GDG de la région pour échanger et réseauter.",
   },
 ];
 
 const steps = [
   {
     title: "Choisis une activité",
-    text: "Prochain rendez-vous : l'atelier LeetCode le 9 novembre.",
+    text: "Consulte les prochains rendez-vous ci-contre et choisis la session qui t'intéresse.",
   },
   {
-    title: "Atelier : viens directement",
-    text: "Gratuit, sans inscription. Rendez-vous au Pavillon A, salle A-1302, de 12 h à 13 h 30. Des tuteurs seront sur place.",
+    title: "Viens directement",
+    text: "Nos ateliers sont gratuits, ouverts à toute la communauté de l'ÉTS et sans inscription préalable.",
   },
 ];
 
@@ -46,16 +46,6 @@ export default function EventsPage() {
           Ateliers, conférences et rencontres : voici les prochains rendez-vous
           du GDG ÉTS. Les ateliers du club sont gratuits et ouverts à la
           communauté de l&apos;ÉTS.
-        </p>
-        <p className="mt-3 text-sm text-muted">
-          Voir aussi les{" "}
-          <Link
-            href="/panels"
-            className="font-medium text-brand hover:text-brand-dark"
-          >
-            conférences et panels
-          </Link>
-          .
         </p>
       </header>
 
@@ -144,15 +134,6 @@ export default function EventsPage() {
                 </li>
               ))}
             </ol>
-            <p className="mt-5 border-t border-line pt-4 text-xs leading-5 text-muted">
-              Le DevFest du 6 novembre est terminé.{" "}
-              <Link
-                href={devfest.recapHref}
-                className="font-medium text-brand hover:text-brand-dark"
-              >
-                Lire le retour
-              </Link>
-            </p>
           </section>
 
           <section className="pt-6">

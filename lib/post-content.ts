@@ -338,11 +338,6 @@ export const articleBodies: Record<string, ArticleBody> = {
       {
         type: "resources",
         items: [
-          {
-            label: "Conférences & panels du GDG ÉTS",
-            kind: "Page",
-            href: "/panels",
-          },
           { label: "Calendrier des événements du GDG ÉTS", kind: "Calendrier", href: "/events" },
         ],
       },

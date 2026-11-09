@@ -42,7 +42,6 @@ npm start       # servir le build
 | `/blog` | Archive des cinq articles |
 | `/blog/[slug]` | Article complet avec sommaire, partage et ressources |
 | `/events` | Événements à venir, retours et formats de participation |
-| `/panels` | Conférences et panels du chapitre |
 | `/about` | Mission, équipe fondatrice et mentors |
 | `/privacy` | Politique de confidentialité |
 
