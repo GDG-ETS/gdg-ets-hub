@@ -419,7 +419,7 @@ export const articleBodies: Record<string, ArticleBody> = {
   "lancement-gdg-ets": {
     lead: [
       "Le GDG ÉTS est officiellement lancé. Après le succès de l'atelier du 21 septembre, le chapitre rejoint le réseau Google Developer Groups on Campus et démarre sa première année.",
-      "Une équipe de six personnes, épaulée par trois mentors, prépare une programmation d'ateliers, de conférences et de rencontres pour la communauté étudiante de l'ÉTS.",
+      "Une équipe de six personnes, épaulée par un mentor, prépare une programmation d'ateliers, de conférences et de rencontres pour la communauté étudiante de l'ÉTS.",
     ],
     blocks: [
       { type: "heading", id: "une-premiere-etape", text: "Une première étape" },
@@ -486,15 +486,15 @@ export const articleBodies: Record<string, ArticleBody> = {
           },
         ],
       },
-      { type: "heading", id: "nos-mentors", text: "Nos mentors" },
+      { type: "heading", id: "nos-mentors", text: "Notre mentor" },
       {
         type: "p",
-        text: "L'équipe est accompagnée par trois mentors : Stacy Véronneau, Erica Silva et Ali El-Sharif. Leur expérience de la communauté GDG et de l'industrie aide le club à structurer ses activités et à prendre de l'ampleur.",
+        text: "L'équipe est accompagnée par Stacy Véronneau. Son expérience de la communauté GDG et de l'industrie aide le club à structurer ses activités et à prendre de l'ampleur.",
       },
       { type: "heading", id: "merci", text: "Merci" },
       {
         type: "p",
-        text: "Un immense merci à Becky L. Phan, qui a guidé l'équipe de A à Z dans le processus de lancement, ainsi qu'aux mentors et à la communauté GDG pour leur soutien.",
+        text: "Un immense merci à Becky L. Phan, qui a guidé l'équipe de A à Z dans le processus de lancement, ainsi qu'à notre mentor et à la communauté GDG pour leur soutien.",
       },
       { type: "heading", id: "ressources", text: "Pour aller plus loin" },
       {

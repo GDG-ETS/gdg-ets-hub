@@ -62,7 +62,7 @@ Les articles et les événements proviennent des publications du club :
 - **Meetup GDG Cloud Montréal chez Vooban** — retour sur la soirée du 2 octobre
   2026 avec Ayoub Marouf, Emilien Busson et Patrick Nguyen.
 - **Lancement du chapitre** — annonce du 30 septembre 2026, après l'atelier du
-  21 septembre. Équipe fondatrice de six personnes et trois mentors.
+  21 septembre. Équipe fondatrice de six personnes et un mentor.
 
 Les photos proviennent des publications LinkedIn du club et sont disponibles
 dans `public/photos/`.

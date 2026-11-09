@@ -261,6 +261,4 @@ export const team: TeamMember[] = [
 
 export const mentors: Mentor[] = [
   { name: "Stacy Véronneau", initials: "SV" },
-  { name: "Erica Silva", initials: "ES" },
-  { name: "Ali El-Sharif", initials: "AE" },
 ];

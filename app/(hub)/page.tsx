@@ -140,7 +140,7 @@ export default function HomePage() {
             <h2 className="text-sm font-semibold text-ink">La communauté</h2>
             <p className="mt-2 text-sm leading-6 text-muted">
               Un chapitre étudiant du réseau Google Developer Groups, animé par
-              une équipe bénévole et épaulé par trois mentors.
+              une équipe bénévole et épaulé par un mentor du réseau GDG.
             </p>
             <dl className="mt-4 grid grid-cols-3 gap-3">
               <div>
@@ -153,7 +153,7 @@ export default function HomePage() {
               </div>
               <div>
                 <dt className="text-[11px] uppercase tracking-wide text-muted">
-                  Mentors
+                  {mentors.length > 1 ? "Mentors" : "Mentor"}
                 </dt>
                 <dd className="mt-1 text-xl font-semibold text-ink">
                   {mentors.length.toString().padStart(2, "0")}

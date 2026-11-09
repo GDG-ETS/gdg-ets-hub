@@ -16,7 +16,7 @@ const CHAPTER_URL =
 const stats = [
   { value: "2026", label: "lancement du chapitre" },
   { value: team.length.toString().padStart(2, "0"), label: "membres de l'équipe" },
-  { value: mentors.length.toString().padStart(2, "0"), label: "mentors" },
+  { value: mentors.length.toString().padStart(2, "0"), label: mentors.length > 1 ? "mentors" : "mentor" },
   { value: "01", label: "chapitre GDG on Campus à l'ÉTS" },
 ];
 
@@ -55,7 +55,7 @@ export default function AboutPage() {
           <p className="text-sm font-semibold text-ink">En bref</p>
           <p className="mt-2 text-sm leading-6 text-muted">
             Un chapitre étudiant du réseau Google Developer Groups, animé par
-            une équipe bénévole et épaulé par trois mentors.
+            une équipe bénévole et épaulé par un mentor du réseau GDG.
           </p>
           <div className="mt-3 flex flex-col items-start gap-2 text-sm">
             <a
@@ -123,7 +123,7 @@ export default function AboutPage() {
           Les personnes derrière le club
         </h2>
         <p className="mt-2 max-w-xl text-sm leading-6 text-muted">
-          Une équipe de {team.length} membres, épaulée par des mentors du réseau
+          Une équipe de {team.length} membres, épaulée par un mentor du réseau
           GDG et par la communauté de l&apos;ÉTS.
         </p>
 
@@ -169,9 +169,11 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-10">
-          <h3 className="text-lg font-bold tracking-tight text-ink">Mentors</h3>
+          <h3 className="text-lg font-bold tracking-tight text-ink">
+            {mentors.length > 1 ? "Mentors" : "Mentor"}
+          </h3>
           <p className="mt-1 max-w-xl text-sm leading-6 text-muted">
-            Leur expérience de la communauté et de l&apos;industrie aide le
+            Son expérience de la communauté et de l&apos;industrie aide le
             club à structurer ses activités et à prendre de l&apos;ampleur.
           </p>
           <div className="mt-4 grid gap-4 sm:grid-cols-3">
