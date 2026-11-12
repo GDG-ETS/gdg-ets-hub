@@ -124,8 +124,9 @@ async function FilteredBlogList({
       ? resolvedSearchParams.categorie
       : undefined;
 
+  // Search every category so an empty one shows the empty state instead of all posts.
   const activeCategory = paramVal
-    ? availableCategories.find(
+    ? ALL_CATEGORIES.find(
         (cat) =>
           normalizeCat(cat.slug) === normalizeCat(paramVal) ||
           normalizeCat(cat.label) === normalizeCat(paramVal) ||

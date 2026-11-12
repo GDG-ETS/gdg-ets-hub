@@ -128,7 +128,9 @@ export const posts: Post[] = [
 ];
 
 // Upcoming events, manually ordered by date. Move an event to pastEvents after it happens.
-export const events: Event[] = [
+export const events: Event[] = [];
+
+export const pastEvents: Event[] = [
   {
     slug: "atelier-leetcode",
     day: "09",
@@ -140,9 +142,6 @@ export const events: Event[] = [
     location: "ÉTS, Pavillon A · salle A-1302",
     href: "/blog/atelier-leetcode-9-novembre",
   },
-];
-
-export const pastEvents: Event[] = [
   {
     slug: "devfest-montreal-2026",
     day: "06",
@@ -189,20 +188,6 @@ export const pastEvents: Event[] = [
     href: "/blog/lancement-gdg-ets",
   },
 ];
-
-export const devfest = {
-  title: "GDG ÉTS au DevFest Montréal 2026",
-  date: "Vendredi 6 novembre 2026",
-  time: "8 h 30 – 18 h",
-  location: "Espace Ax.c, 800 rue du Square-Victoria",
-  cover: "/photos/devfest-annonce/02.jpg",
-  coverAlt: "Affiche de la session « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » avec ses quatre intervenant·e·s",
-  coverFit: "contain",
-  summary:
-    "Oumaima El khayiri a présenté « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » avec Rebecca Abi Chahine, Michael Persico et Daniel Wei.",
-  articleHref: "/blog/devfest-montreal-2026",
-  recapHref: "/blog/retour-devfest-montreal-2026",
-};
 
 export function getPost(slug: string) {
   return posts.find((post) => post.slug === slug);

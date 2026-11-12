@@ -64,7 +64,14 @@ export default function EventsPage() {
                 {events.length > 1 ? "événements" : "événement"}
               </span>
             </div>
-            <EventList events={events} />
+            {events.length > 0 ? (
+              <EventList events={events} />
+            ) : (
+              <p className="py-6 text-sm text-muted">
+                Aucun événement prévu pour le moment. Suis nos articles pour
+                la prochaine annonce.
+              </p>
+            )}
             <p className="mt-3 text-xs leading-5 text-muted">
               Les détails et les changements de dernière minute sont publiés
               dans nos articles. Consulte l&apos;annonce de chaque activité
