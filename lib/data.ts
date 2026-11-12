@@ -11,6 +11,7 @@ export type Post = {
   readingMinutes: number;
   cover: string;
   coverAlt: string;
+  coverFit?: "cover" | "contain";
   author: string;
   location: string;
   featured?: boolean;
@@ -29,20 +30,49 @@ export type Event = {
   online?: boolean;
 };
 
+export type TeamMember = {
+  name: string;
+  role: string;
+  photo: string;
+  profileUrl: string;
+};
+
+export type Mentor = {
+  name: string;
+  initials: string;
+};
+
 export const posts: Post[] = [
+  {
+    slug: "retour-devfest-montreal-2026",
+    title: "Retour sur le DevFest Montréal 2026",
+    excerpt:
+      "Plus de 12 heures sur le terrain, la plénière, la session Flight Mode AI, les ateliers Cloud Run et Gemini + Apps Script, et Oumaima El khayiri sur scène : retour sur le DevFest Montréal 2026.",
+    category: "RETOUR",
+    categoryLabel: "Retour",
+    date: "7 nov. 2026",
+    dateISO: "2026-11-07",
+    readingMinutes: 4,
+    cover: "/photos/devfest-2026/06.jpg",
+    coverAlt:
+      "Quatre panélistes assis sur scène pendant la table ronde GDG on Campus au DevFest Montréal 2026",
+    author: "Oumaima El khayiri",
+    location: "Espace Ax.c, Montréal",
+  },
   {
     slug: "atelier-leetcode-9-novembre",
     title: "Atelier LeetCode : pratique pour tes entrevues",
     excerpt:
       "Le tout premier événement officiel du GDG ÉTS : un atelier pratique pour découvrir la programmation compétitive et préparer tes entrevues techniques.",
-    category: "ATELIER",
-    categoryLabel: "Atelier",
+    category: "ANNONCE",
+    categoryLabel: "Annonce",
     date: "3 nov. 2026",
     dateISO: "2026-11-03",
     readingMinutes: 4,
-    cover: "/covers/atelier.jpg",
+    cover: "/photos/leetcode/affiche.jpg",
     coverAlt:
-      "Étudiants réunis autour d'ordinateurs portables pendant un atelier",
+      "Affiche de l'atelier LeetCode du GDG ÉTS, lundi 9 novembre 2026, Pavillon A, salle A-1302",
+    coverFit: "contain",
     author: "Équipe GDG ÉTS",
     location: "ÉTS, Pavillon A · salle A-1302",
     featured: true,
@@ -51,15 +81,16 @@ export const posts: Post[] = [
     slug: "devfest-montreal-2026",
     title: "GDG ÉTS au DevFest Montréal 2026",
     excerpt:
-      "Oumaima El khayiri monte sur la scène du DevFest avec les GDG de Polytechnique, Concordia et McGill pour parler de la mission de GDG on Campus.",
+      "Oumaima El khayiri est montée sur la scène du DevFest avec les GDG de Polytechnique, Concordia et McGill pour parler de la mission de GDG on Campus.",
     category: "CONFÉRENCE",
     categoryLabel: "Conférence",
     date: "28 oct. 2026",
     dateISO: "2026-10-28",
     readingMinutes: 5,
-    cover: "/covers/panel-ia.jpg",
+    cover: "/photos/devfest-annonce/02.jpg",
     coverAlt:
-      "Audience dans un amphithéâtre pendant une conférence technique",
+      "Affiche de la session « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » avec ses quatre intervenant·e·s",
+    coverFit: "contain",
     author: "Équipe GDG ÉTS",
     location: "Espace Ax.c, Montréal",
   },
@@ -73,8 +104,8 @@ export const posts: Post[] = [
     date: "2 oct. 2026",
     dateISO: "2026-10-02",
     readingMinutes: 4,
-    cover: "/covers/cloud-run.jpg",
-    coverAlt: "Espace de travail avec du code sur plusieurs écrans",
+    cover: "/photos/vooban/02.jpg",
+    coverAlt: "Membres du GDG ÉTS dans les locaux de Vooban lors du meetup GDG Cloud Montréal",
     author: "Équipe GDG ÉTS",
     location: "Vooban, Montréal",
   },
@@ -88,26 +119,18 @@ export const posts: Post[] = [
     date: "30 sept. 2026",
     dateISO: "2026-09-30",
     readingMinutes: 5,
-    cover: "/covers/equipe.jpg",
-    coverAlt: "Étudiants travaillant ensemble sur des ordinateurs",
+    cover: "/photos/lancement/equipe.jpg",
+    coverAlt: "Équipe fondatrice du GDG ÉTS : six portraits avec noms et rôles",
+    coverFit: "contain",
     author: "Équipe GDG ÉTS",
     location: "ÉTS, Montréal",
   },
 ];
 
 // Upcoming events, manually ordered by date. Move an event to pastEvents after it happens.
-export const events: Event[] = [
-  {
-    slug: "devfest-montreal-2026",
-    day: "06",
-    month: "NOV",
-    dateISO: "2026-11-06",
-    type: "Conférence",
-    title: "GDG ÉTS au DevFest Montréal 2026",
-    time: "Horaire sur la billetterie",
-    location: "Espace Ax.c, 800 rue du Square-Victoria",
-    href: "/blog/devfest-montreal-2026",
-  },
+export const events: Event[] = [];
+
+export const pastEvents: Event[] = [
   {
     slug: "atelier-leetcode",
     day: "09",
@@ -119,9 +142,17 @@ export const events: Event[] = [
     location: "ÉTS, Pavillon A · salle A-1302",
     href: "/blog/atelier-leetcode-9-novembre",
   },
-];
-
-export const pastEvents: Event[] = [
+  {
+    slug: "devfest-montreal-2026",
+    day: "06",
+    month: "NOV",
+    dateISO: "2026-11-06",
+    type: "Conférence",
+    title: "GDG ÉTS au DevFest Montréal 2026",
+    time: "8 h 30 – 18 h",
+    location: "Espace Ax.c, 800 rue du Square-Victoria",
+    href: "/blog/retour-devfest-montreal-2026",
+  },
   {
     slug: "meetup-vooban",
     day: "02",
@@ -158,20 +189,61 @@ export const pastEvents: Event[] = [
   },
 ];
 
-export const devfest = {
-  title: "GDG ÉTS au DevFest Montréal 2026",
-  date: "Vendredi 6 novembre 2026",
-  time: "Horaire sur la billetterie",
-  location: "Espace Ax.c, 800 rue du Square-Victoria",
-  cover: "/covers/panel-ia.jpg",
-  coverAlt: "Audience dans un amphithéâtre pendant une conférence technique",
-  summary:
-    "Oumaima El khayiri présente « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » avec Rebecca Abi Chahine, Michael Persico et Daniel Wei.",
-  articleHref: "/blog/devfest-montreal-2026",
-  ticketsHref: "https://lnkd.in/gSnGEvnC",
-  ticketsLabel: "Billets & programme",
-};
-
 export function getPost(slug: string) {
   return posts.find((post) => post.slug === slug);
 }
+
+export const team: TeamMember[] = [
+  {
+    name: "Oumaima El khayiri",
+    role: "Présidente",
+    photo: "/photos/equipe/oumaima-el-khayiri.jpg",
+    profileUrl: "https://gdg.community.dev/u/m5hvkb/",
+  },
+  {
+    name: "Wilson Ly",
+    role: "Vice-président",
+    photo: "/photos/equipe/wilson-ly.jpg",
+    profileUrl: "https://gdg.community.dev/u/wilson66/",
+  },
+  {
+    name: "Emilien Busson",
+    role: "Responsable DevOps",
+    photo: "/photos/equipe/emilien-busson.jpg",
+    profileUrl: "https://gdg.community.dev/u/mmvyqw/",
+  },
+  {
+    name: "Souad Goubaa",
+    role: "Responsable des événements",
+    photo: "/photos/equipe/souad-goubaa.jpg",
+    profileUrl: "https://gdg.community.dev/u/mn7fgd/",
+  },
+  {
+    name: "Ly Andy Phok",
+    role: "VP Communauté",
+    photo: "/photos/equipe/ly-andy-phok.jpg",
+    profileUrl: "https://gdg.community.dev/u/ly_andy/",
+  },
+  {
+    name: "Daniel To",
+    role: "VP Finances",
+    photo: "/photos/equipe/daniel-to.jpg",
+    profileUrl: "https://gdg.community.dev/u/mnmfs6/",
+  },
+  {
+    name: "Patrick Nguyen",
+    role: "Membre aux événements",
+    photo: "/photos/equipe/patrick-nguyen.jpg",
+    profileUrl: "https://gdg.community.dev/u/mmcy9s/",
+  },
+  {
+    name: "Ayoub Marouf",
+    role: "Membre aux événements",
+    photo: "/photos/equipe/ayoub-marouf.jpg",
+    profileUrl: "https://gdg.community.dev/u/m4pk6t/",
+  },
+];
+
+export const mentors: Mentor[] = [
+  { name: "Stacy Véronneau", initials: "SV" },
+];

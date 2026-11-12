@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
-const dots = ["#4285F4", "#EA4335", "#FBBC04", "#34A853"];
+const dots = [
+  "bg-google-blue",
+  "bg-google-red",
+  "bg-google-yellow",
+  "bg-google-green",
+];
 
 export function Logo({ className }: { className?: string }) {
   return (
@@ -14,8 +19,10 @@ export function Logo({ className }: { className?: string }) {
         {dots.map((color) => (
           <span
             key={color}
-            className="size-[7px] rounded-full transition-transform group-hover:-translate-y-0.5"
-            style={{ backgroundColor: color }}
+            className={cn(
+              "size-[7px] rounded-full transition-transform group-hover:-translate-y-0.5",
+              color,
+            )}
           />
         ))}
       </span>

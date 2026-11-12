@@ -1,41 +1,37 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EventList } from "@/components/event-list";
-import { devfest, events, pastEvents } from "@/lib/data";
+import { events, pastEvents } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Événements",
   description:
-    "L'agenda du GDG ÉTS : atelier LeetCode, DevFest Montréal 2026 et rencontres de la communauté GDG.",
+    "L'agenda du GDG ÉTS : atelier LeetCode et retours sur les événements de la communauté GDG.",
 };
 
 const formats = [
   {
     title: "Atelier pratique",
-    text: "Une session hands-on pour pratiquer une technologie ou un thème précis. Le premier atelier officiel du club porte sur LeetCode et la préparation aux entrevues.",
+    text: "Une session hands-on pour pratiquer une technologie ou un thème précis, accompagné·e par des tuteurs.",
   },
   {
     title: "Conférence & panel",
-    text: "Des membres du club et des invité·es partagent leur expérience. Le GDG ÉTS rejoint notamment la scène du DevFest Montréal 2026.",
+    text: "Des prises de parole et retours d'expérience avec des membres du club et des invité·es de l'écosystème tech.",
   },
   {
     title: "Meetup communautaire",
-    text: "On retrouve les autres chapitres GDG de la région, comme lors du meetup GDG Cloud Montréal accueilli chez Vooban.",
+    text: "Des rencontres informelles avec les autres chapitres GDG de la région pour échanger et réseauter.",
   },
 ];
 
 const steps = [
   {
     title: "Choisis une activité",
-    text: "Deux rendez-vous cette session : le DevFest le 6 novembre et l'atelier LeetCode le 9 novembre.",
+    text: "Consulte les prochains rendez-vous ci-contre et choisis la session qui t'intéresse.",
   },
   {
-    title: "Atelier : viens directement",
-    text: "Gratuit, sans inscription. Rendez-vous au Pavillon A, salle A-1302, de 12 h à 13 h 30. Des tuteurs seront sur place.",
-  },
-  {
-    title: "DevFest : prends ton billet",
-    text: "L'événement est organisé par la communauté GDG. La billetterie officielle donne accès au programme complet.",
+    title: "Viens directement",
+    text: "Nos ateliers sont gratuits, ouverts à toute la communauté de l'ÉTS et sans inscription préalable.",
   },
 ];
 
@@ -51,16 +47,6 @@ export default function EventsPage() {
           du GDG ÉTS. Les ateliers du club sont gratuits et ouverts à la
           communauté de l&apos;ÉTS.
         </p>
-        <p className="mt-3 text-sm text-muted">
-          Voir aussi les{" "}
-          <Link
-            href="/panels"
-            className="font-medium text-brand hover:text-brand-dark"
-          >
-            conférences et panels
-          </Link>
-          .
-        </p>
       </header>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_280px] xl:gap-12">
@@ -74,10 +60,18 @@ export default function EventsPage() {
                 À venir
               </h2>
               <span className="text-xs text-muted">
-                {events.length} événements
+                {events.length}{" "}
+                {events.length > 1 ? "événements" : "événement"}
               </span>
             </div>
-            <EventList events={events} />
+            {events.length > 0 ? (
+              <EventList events={events} />
+            ) : (
+              <p className="py-6 text-sm text-muted">
+                Aucun événement prévu pour le moment. Suis nos articles pour
+                la prochaine annonce.
+              </p>
+            )}
             <p className="mt-3 text-xs leading-5 text-muted">
               Les détails et les changements de dernière minute sont publiés
               dans nos articles. Consulte l&apos;annonce de chaque activité
@@ -143,17 +137,6 @@ export default function EventsPage() {
                     <p className="mt-1 text-xs leading-5 text-muted">
                       {step.text}
                     </p>
-                    {index === 2 && (
-                      <a
-                        href={devfest.ticketsHref}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mt-2 inline-flex text-xs font-medium text-brand hover:text-brand-dark"
-                      >
-                        Billets &amp; programme
-                        <span aria-hidden="true"> ↗</span>
-                      </a>
-                    )}
                   </div>
                 </li>
               ))}

@@ -9,9 +9,8 @@ import { cn } from "@/lib/cn";
 
 const links = [
   { href: "/", label: "Accueil" },
-  { href: "/blog", label: "Articles" },
-  { href: "/panels", label: "Conférences" },
   { href: "/events", label: "Événements" },
+  { href: "/blog", label: "Articles" },
   { href: "/about", label: "À propos" },
 ];
 
@@ -89,6 +88,12 @@ export function HubHeader() {
           </nav>
         </div>
       )}
+      <div className="flex h-0.5" aria-hidden="true">
+        <div className="flex-1 bg-google-blue" />
+        <div className="flex-1 bg-google-red" />
+        <div className="flex-1 bg-google-yellow" />
+        <div className="flex-1 bg-google-green" />
+      </div>
     </header>
   );
 }

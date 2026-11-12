@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, ArrowUpRight, Building2 } from "lucide-react";
 import { ShareLinks } from "@/components/share-links";
+import { getCategoryColors } from "@/lib/category-colors";
+import { cn } from "@/lib/cn";
 import { getPost, posts } from "@/lib/data";
 import { articleBodies, type ArticleBlock } from "@/lib/post-content";
 
@@ -128,6 +130,39 @@ function ArticleBlockView({ block }: { block: ArticleBlock }) {
         </div>
       );
 
+    case "gallery":
+      return (
+        <figure>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {block.images.map((image) => (
+              <a
+                key={image.src}
+                href={image.src}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Agrandir la photo : ${image.alt} (ouvre dans un nouvel onglet)`}
+                className="group relative block aspect-[4/3] overflow-hidden rounded-md bg-canvas"
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  loading="lazy"
+                  sizes="(max-width: 640px) 50vw, 225px"
+                  className="h-full w-full object-cover transition-opacity group-hover:opacity-90"
+                />
+              </a>
+            ))}
+          </div>
+          {block.caption && (
+            <figcaption className="mt-2 text-xs text-muted">
+              {block.caption}
+            </figcaption>
+          )}
+        </figure>
+      );
+
     case "resources":
       return (
         <div className="divide-y divide-line border-y border-line">
@@ -146,6 +181,7 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
 
   if (!post || !body) notFound();
 
+  const category = getCategoryColors(post.category);
   const toc = body.blocks.filter(
     (block): block is Extract<ArticleBlock, { type: "heading" }> =>
       block.type === "heading"
@@ -171,12 +207,29 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
               </Link>
             </li>
             <li aria-hidden="true">/</li>
-            <li>{post.categoryLabel}</li>
+            <li className="inline-flex items-center gap-1.5">
+              <span
+                className={cn("size-1.5 rounded-full", category.solid)}
+                aria-hidden="true"
+              />
+              {post.categoryLabel}
+            </li>
           </ol>
         </nav>
 
         <header className="mt-6 max-w-[760px]">
-          <p className="text-sm font-medium text-brand">{post.categoryLabel}</p>
+          <p>
+            <span
+              className={cn(
+                "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium",
+                category.text,
+                category.softBg,
+                category.border,
+              )}
+            >
+              {post.categoryLabel}
+            </span>
+          </p>
           <h1 className="mt-2 text-3xl font-bold leading-[1.15] tracking-[-0.02em] text-ink sm:text-4xl lg:text-[42px]">
             {post.title}
           </h1>
@@ -209,11 +262,13 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
               fill
               preload
               sizes="(max-width: 768px) 100vw, 760px"
-              className="object-cover"
+              className={
+                post.coverFit === "contain" ? "object-contain" : "object-cover"
+              }
             />
           </div>
           <figcaption className="mt-2 text-xs text-muted">
-            Image d&apos;illustration.
+            Visuel : GDG ÉTS (LinkedIn).
           </figcaption>
         </figure>
 

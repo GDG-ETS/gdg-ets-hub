@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Post } from "@/lib/data";
+import { getCategoryColors } from "@/lib/category-colors";
 import { cn } from "@/lib/cn";
 
 export function PostCard({
@@ -10,6 +11,8 @@ export function PostCard({
   post: Post;
   className?: string;
 }) {
+  const category = getCategoryColors(post.category);
+
   return (
     <article className={cn("group py-6 sm:py-7", className)}>
       <Link
@@ -17,7 +20,18 @@ export function PostCard({
         className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_112px] sm:items-start sm:gap-6"
       >
         <div className="min-w-0">
-          <p className="text-xs font-medium text-ink">{post.categoryLabel}</p>
+          <p>
+            <span
+              className={cn(
+                "inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-medium",
+                category.text,
+                category.softBg,
+                category.border,
+              )}
+            >
+              {post.categoryLabel}
+            </span>
+          </p>
           <h3 className="mt-1.5 text-xl font-bold leading-snug tracking-tight text-ink transition-colors group-hover:text-brand sm:text-[22px]">
             {post.title}
           </h3>
@@ -39,7 +53,9 @@ export function PostCard({
             alt=""
             fill
             sizes="112px"
-            className="object-cover"
+            className={cn(
+              post.coverFit === "contain" ? "object-contain" : "object-cover"
+            )}
           />
         </div>
       </Link>

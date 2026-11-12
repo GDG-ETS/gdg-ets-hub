@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { mentors, team } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "À propos",
@@ -7,10 +10,13 @@ export const metadata: Metadata = {
     "GDG ÉTS est le chapitre Google Developer Groups on Campus de l'École de technologie supérieure, à Montréal.",
 };
 
+const CHAPTER_URL =
+  "https://gdg.community.dev/gdg-on-campus-ecole-de-technologie-superieure-montreal-canada/";
+
 const stats = [
   { value: "2026", label: "lancement du chapitre" },
-  { value: "06", label: "membres fondateurs" },
-  { value: "03", label: "mentors" },
+  { value: team.length.toString().padStart(2, "0"), label: "membres de l'équipe" },
+  { value: mentors.length.toString().padStart(2, "0"), label: mentors.length > 1 ? "mentors" : "mentor" },
   { value: "01", label: "chapitre GDG on Campus à l'ÉTS" },
 ];
 
@@ -27,21 +33,6 @@ const values = [
     title: "Se connecter à l'écosystème",
     text: "Le club fait partie du réseau GDG et participe à des événements comme le DevFest Montréal ou les meetups du GDG Cloud Montréal.",
   },
-];
-
-const team = [
-  { name: "Oumaima El khayiri", role: "Présidente", initials: "OK" },
-  { name: "Wilson Ly", role: "Vice-président", initials: "WL" },
-  { name: "Souad Goubaa", role: "Responsable des événements", initials: "SG" },
-  { name: "Ly Andy Phok", role: "VP Communauté", initials: "LP" },
-  { name: "Emilien Busson", role: "VP Projets Cédille", initials: "EB" },
-  { name: "Patrick Nguyen", role: "Membre aux événements", initials: "PN" },
-];
-
-const mentors = [
-  { name: "Stacy Véronneau", initials: "SV" },
-  { name: "Erica Silva", initials: "ES" },
-  { name: "Ali El-Sharif", initials: "AE" },
 ];
 
 export default function AboutPage() {
@@ -64,9 +55,18 @@ export default function AboutPage() {
           <p className="text-sm font-semibold text-ink">En bref</p>
           <p className="mt-2 text-sm leading-6 text-muted">
             Un chapitre étudiant du réseau Google Developer Groups, animé par
-            une équipe bénévole et épaulé par trois mentors.
+            une équipe bénévole et épaulé par un mentor du réseau GDG.
           </p>
           <div className="mt-3 flex flex-col items-start gap-2 text-sm">
+            <a
+              href={CHAPTER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-medium text-brand hover:text-brand-dark"
+            >
+              Rejoindre le chapitre sur GDG Community
+              <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
+            </a>
             <Link
               href="/events"
               className="text-brand hover:text-brand-dark"
@@ -123,23 +123,45 @@ export default function AboutPage() {
           Les personnes derrière le club
         </h2>
         <p className="mt-2 max-w-xl text-sm leading-6 text-muted">
-          Six membres fondateurs, épaulés par des mentors du réseau GDG et par
-          la communauté de l&apos;ÉTS.
+          Une équipe de {team.length} membres, épaulée par un mentor du réseau
+          GDG et par la communauté de l&apos;ÉTS.
         </p>
 
         <div className="mt-6 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((person) => (
-            <div key={person.name} className="flex items-center gap-3 border-t border-line pt-4">
-              <span
-                className="flex size-10 shrink-0 items-center justify-center rounded-full bg-canvas text-xs font-semibold text-ink"
+            <div
+              key={person.name}
+              className="flex items-center gap-3.5 border-t border-line pt-4"
+            >
+              <a
+                href={person.profileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative size-12 shrink-0 overflow-hidden rounded-full bg-canvas transition-opacity hover:opacity-90"
                 aria-hidden="true"
+                tabIndex={-1}
               >
-                {person.initials}
-              </span>
-              <div>
-                <p className="text-sm font-semibold tracking-tight text-ink">
-                  {person.name}
-                </p>
+                <Image
+                  src={person.photo}
+                  alt={person.name}
+                  width={48}
+                  height={48}
+                  className="size-full object-cover"
+                />
+              </a>
+              <div className="min-w-0 flex-1">
+                <a
+                  href={person.profileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-1 text-sm font-semibold tracking-tight text-ink hover:text-brand"
+                >
+                  <span className="truncate">{person.name}</span>
+                  <ArrowUpRight
+                    className="size-3.5 shrink-0 text-muted transition-colors group-hover:text-brand"
+                    aria-hidden="true"
+                  />
+                </a>
                 <p className="text-xs text-muted">{person.role}</p>
               </div>
             </div>
@@ -147,9 +169,11 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-10">
-          <h3 className="text-lg font-bold tracking-tight text-ink">Mentors</h3>
+          <h3 className="text-lg font-bold tracking-tight text-ink">
+            {mentors.length > 1 ? "Mentors" : "Mentor"}
+          </h3>
           <p className="mt-1 max-w-xl text-sm leading-6 text-muted">
-            Leur expérience de la communauté et de l&apos;industrie aide le
+            Son expérience de la communauté et de l&apos;industrie aide le
             club à structurer ses activités et à prendre de l&apos;ampleur.
           </p>
           <div className="mt-4 grid gap-4 sm:grid-cols-3">
@@ -208,12 +232,23 @@ export default function AboutPage() {
             Les ateliers du club sont gratuits et ouverts à la communauté de
             l&apos;ÉTS. Viens à une activité pour rencontrer l&apos;équipe.
           </p>
-          <Link
-            href="/events"
-            className="mt-3 inline-flex text-sm font-medium text-brand hover:text-brand-dark"
-          >
-            Voir le calendrier
-          </Link>
+          <div className="mt-3 flex flex-col items-start gap-2">
+            <a
+              href={CHAPTER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm font-medium text-brand hover:text-brand-dark"
+            >
+              Rejoindre le chapitre sur GDG Community
+              <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
+            </a>
+            <Link
+              href="/events"
+              className="inline-flex text-sm font-medium text-brand hover:text-brand-dark"
+            >
+              Voir le calendrier
+            </Link>
+          </div>
         </div>
       </section>
     </div>

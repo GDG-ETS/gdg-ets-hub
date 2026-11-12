@@ -35,7 +35,7 @@ const sections = [
     id: "liens-externes",
     title: "Liens externes",
     paragraphs: [
-      "Certaines pages renvoient vers des sites tiers, par exemple la billetterie du DevFest Montréal. Ces sites appliquent leurs propres politiques de confidentialité, sur lesquelles le club n'a aucun contrôle.",
+      "Certaines pages renvoient vers des sites tiers, par exemple les liens de partage LinkedIn et X. Ces sites appliquent leurs propres politiques de confidentialité, sur lesquelles le club n'a aucun contrôle.",
     ],
   },
   {
@@ -69,7 +69,7 @@ export default function PrivacyPage() {
               et la façon d&apos;exercer tes droits.
             </p>
             <p className="mt-3 font-mono text-[11px] uppercase tracking-wider text-muted">
-              Dernière mise à jour : 5 novembre 2026
+              Dernière mise à jour : 7 novembre 2026
             </p>
           </header>
 
