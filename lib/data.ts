@@ -31,6 +31,23 @@ export type Event = {
 
 export const posts: Post[] = [
   {
+    slug: "coding-with-gdg-ets-2-programmation-dynamique",
+    title: "Coding with GDG-ÉTS #2 : programmation dynamique",
+    excerpt:
+      "Deuxième atelier de programmation compétitive : récursion, mémoïsation et bottom-up en Java sur HackerRank, pour se préparer à l'examen final de LOG200.",
+    category: "ATELIER",
+    categoryLabel: "Atelier",
+    date: "25 nov. 2026",
+    dateISO: "2026-11-25",
+    readingMinutes: 3,
+    cover: "/covers/atelier.jpg",
+    coverAlt:
+      "Étudiants réunis autour d'ordinateurs portables pendant un atelier",
+    author: "Équipe GDG ÉTS",
+    location: "ÉTS, Pavillon D · local D-4007",
+    featured: true,
+  },
+  {
     slug: "atelier-leetcode-9-novembre",
     title: "Atelier LeetCode : pratique pour tes entrevues",
     excerpt:
@@ -45,13 +62,12 @@ export const posts: Post[] = [
       "Étudiants réunis autour d'ordinateurs portables pendant un atelier",
     author: "Équipe GDG ÉTS",
     location: "ÉTS, Pavillon A · salle A-1302",
-    featured: true,
   },
   {
     slug: "devfest-montreal-2026",
     title: "GDG ÉTS au DevFest Montréal 2026",
     excerpt:
-      "Oumaima El khayiri monte sur la scène du DevFest avec les GDG de Polytechnique, Concordia et McGill pour parler de la mission de GDG on Campus.",
+      "Oumaima El khayiri est montée sur la scène du DevFest avec les GDG de Polytechnique, Concordia et McGill pour parler de la mission de GDG on Campus.",
     category: "CONFÉRENCE",
     categoryLabel: "Conférence",
     date: "28 oct. 2026",
@@ -82,7 +98,7 @@ export const posts: Post[] = [
     slug: "lancement-gdg-ets",
     title: "Le GDG ÉTS est officiellement lancé",
     excerpt:
-      "Après le succès de l'atelier du 21 septembre, le chapitre GDG on Campus de l'ÉTS démarre sa première année avec une équipe de six personnes.",
+      "Après le succès de l'atelier du 21 septembre, le chapitre GDG on Campus de l'ÉTS a démarré sa première année avec une équipe de six personnes.",
     category: "ANNONCE",
     categoryLabel: "Annonce",
     date: "30 sept. 2026",
@@ -95,18 +111,19 @@ export const posts: Post[] = [
   },
 ];
 
-// Upcoming events, manually ordered by date. Move an event to pastEvents after it happens.
-export const events: Event[] = [
+// Every club event, in any order. Upcoming vs. past is computed from the date,
+// so an event moves to "Retour sur nos activités" on its own once it is over.
+export const allEvents: Event[] = [
   {
-    slug: "devfest-montreal-2026",
-    day: "06",
-    month: "NOV",
-    dateISO: "2026-11-06",
-    type: "Conférence",
-    title: "GDG ÉTS au DevFest Montréal 2026",
-    time: "Horaire sur la billetterie",
-    location: "Espace Ax.c, 800 rue du Square-Victoria",
-    href: "/blog/devfest-montreal-2026",
+    slug: "coding-with-gdg-ets-2",
+    day: "03",
+    month: "DÉC",
+    dateISO: "2026-12-03",
+    type: "Atelier",
+    title: "Coding with GDG-ÉTS #2 : programmation dynamique",
+    time: "12h00 – 13h30",
+    location: "ÉTS, Pavillon D · local D-4007",
+    href: "/blog/coding-with-gdg-ets-2-programmation-dynamique",
   },
   {
     slug: "atelier-leetcode",
@@ -119,9 +136,17 @@ export const events: Event[] = [
     location: "ÉTS, Pavillon A · salle A-1302",
     href: "/blog/atelier-leetcode-9-novembre",
   },
-];
-
-export const pastEvents: Event[] = [
+  {
+    slug: "devfest-montreal-2026",
+    day: "06",
+    month: "NOV",
+    dateISO: "2026-11-06",
+    type: "Conférence",
+    title: "GDG ÉTS au DevFest Montréal 2026",
+    time: "Journée complète",
+    location: "Espace Ax.c, 800 rue du Square-Victoria",
+    href: "/blog/devfest-montreal-2026",
+  },
   {
     slug: "meetup-vooban",
     day: "02",
@@ -158,18 +183,40 @@ export const pastEvents: Event[] = [
   },
 ];
 
+/** Today's date in Montréal as YYYY-MM-DD. */
+function todayInMontreal(now: Date) {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Toronto",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(now);
+}
+
+/**
+ * Splits events into upcoming (soonest first) and past (most recent first).
+ * An event stays "upcoming" for its whole day.
+ */
+export function splitEvents(events: Event[], now: Date) {
+  const today = todayInMontreal(now);
+  const upcoming = events
+    .filter((event) => event.dateISO >= today)
+    .sort((a, b) => a.dateISO.localeCompare(b.dateISO));
+  const past = events
+    .filter((event) => event.dateISO < today)
+    .sort((a, b) => b.dateISO.localeCompare(a.dateISO));
+  return { upcoming, past };
+}
+
 export const devfest = {
   title: "GDG ÉTS au DevFest Montréal 2026",
   date: "Vendredi 6 novembre 2026",
-  time: "Horaire sur la billetterie",
   location: "Espace Ax.c, 800 rue du Square-Victoria",
   cover: "/covers/panel-ia.jpg",
   coverAlt: "Audience dans un amphithéâtre pendant une conférence technique",
   summary:
-    "Oumaima El khayiri présente « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » avec Rebecca Abi Chahine, Michael Persico et Daniel Wei.",
+    "Oumaima El khayiri a présenté « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » avec Rebecca Abi Chahine, Michael Persico et Daniel Wei.",
   articleHref: "/blog/devfest-montreal-2026",
-  ticketsHref: "https://lnkd.in/gSnGEvnC",
-  ticketsLabel: "Billets & programme",
 };
 
 export function getPost(slug: string) {

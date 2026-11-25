@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PostCard } from "@/components/post-card";
-import { devfest, events, posts } from "@/lib/data";
+import { posts } from "@/lib/data";
+import { getEventSchedule } from "@/lib/schedule";
 
 function formatLongDate(dateISO: string) {
   const label = new Intl.DateTimeFormat("fr-CA", {
@@ -13,8 +14,13 @@ function formatLongDate(dateISO: string) {
   return label.charAt(0).toUpperCase() + label.slice(1);
 }
 
-export default function HomePage() {
-  const nextWorkshop = events.find((event) => event.type === "Atelier");
+export default async function HomePage() {
+  const { upcoming, past } = await getEventSchedule();
+  const nextEvent = upcoming[0];
+  const latestEvent = past[0];
+  const nextWorkshop = upcoming.find(
+    (event) => event.type === "Atelier" && event !== nextEvent,
+  );
 
   return (
     <div className="container-hub py-8 sm:py-10">
@@ -47,49 +53,60 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <div className="mt-4 flex gap-4 sm:gap-6">
-              <div className="w-12 shrink-0 sm:w-16">
-                <span className="block text-3xl font-bold leading-none tracking-tight text-ink sm:text-4xl">
-                  06
-                </span>
-                <span className="mt-1 block font-mono text-[10px] uppercase tracking-widest text-muted">
-                  NOV
-                </span>
-              </div>
-
-              <div className="min-w-0 flex-1">
-                <h3 className="text-lg font-semibold leading-snug tracking-tight text-ink sm:text-xl">
-                  {devfest.title}
-                </h3>
-                <p className="mt-1 text-sm leading-6 text-muted">
-                  {devfest.date} · {devfest.time}
-                  <span className="hidden sm:inline">
-                    {" "}
-                    · {devfest.location}
+            {nextEvent ? (
+              <div className="mt-4 flex gap-4 sm:gap-6">
+                <div className="w-12 shrink-0 sm:w-16">
+                  <span className="block text-3xl font-bold leading-none tracking-tight text-ink sm:text-4xl">
+                    {nextEvent.day}
                   </span>
-                </p>
-                <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted">
-                  {devfest.summary}
-                </p>
-                <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-                  <a
-                    href={devfest.ticketsHref}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-medium text-brand hover:text-brand-dark"
-                  >
-                    {devfest.ticketsLabel}
-                    <span aria-hidden="true"> ↗</span>
-                  </a>
-                  <Link
-                    href={devfest.articleHref}
-                    className="text-muted hover:text-ink"
-                  >
-                    Lire l&apos;annonce
-                  </Link>
+                  <span className="mt-1 block font-mono text-[10px] uppercase tracking-widest text-muted">
+                    {nextEvent.month}
+                  </span>
+                </div>
+
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-lg font-semibold leading-snug tracking-tight text-ink sm:text-xl">
+                    {nextEvent.title}
+                  </h3>
+                  <p className="mt-1 text-sm leading-6 text-muted">
+                    {formatLongDate(nextEvent.dateISO)} · {nextEvent.time}
+                    <span className="hidden sm:inline">
+                      {" "}
+                      · {nextEvent.location}
+                    </span>
+                  </p>
+                  {nextEvent.href && (
+                    <Link
+                      href={nextEvent.href}
+                      className="mt-3 inline-flex text-sm font-medium text-brand hover:text-brand-dark"
+                    >
+                      Lire l&apos;annonce
+                    </Link>
+                  )}
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className="mt-4">
+                <p className="text-lg font-semibold leading-snug tracking-tight text-ink">
+                  Les prochaines activités arrivent bientôt
+                </p>
+                <p className="mt-1 max-w-xl text-sm leading-6 text-muted">
+                  L&apos;équipe prépare la suite de la session. Les annonces
+                  seront publiées ici et sur nos réseaux.
+                </p>
+                {latestEvent?.href && (
+                  <p className="mt-3 text-sm text-muted">
+                    Dernière activité :{" "}
+                    <Link
+                      href={latestEvent.href}
+                      className="font-medium text-brand hover:text-brand-dark"
+                    >
+                      {latestEvent.title}
+                    </Link>
+                  </p>
+                )}
+              </div>
+            )}
           </section>
 
           <section aria-labelledby="latest-posts" className="pt-6">
@@ -146,7 +163,9 @@ export default function HomePage() {
                 <dt className="text-[11px] uppercase tracking-wide text-muted">
                   Articles
                 </dt>
-                <dd className="mt-1 text-xl font-semibold text-ink">04</dd>
+                <dd className="mt-1 text-xl font-semibold text-ink">
+                  {String(posts.length).padStart(2, "0")}
+                </dd>
               </div>
             </dl>
             <Link
@@ -161,7 +180,7 @@ export default function HomePage() {
             <section className="border-b border-line py-6">
               <div className="flex items-baseline justify-between gap-4">
                 <h2 className="text-sm font-semibold text-ink">
-                  Atelier LeetCode
+                  Prochain atelier
                 </h2>
                 <Link
                   href="/events"

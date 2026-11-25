@@ -20,10 +20,69 @@ export type ArticleBody = {
 };
 
 export const articleBodies: Record<string, ArticleBody> = {
+  "coding-with-gdg-ets-2-programmation-dynamique": {
+    lead: [
+      "Bienvenue au deuxième atelier de programmation compétitive du GDG ÉTS ! Cette édition est entièrement consacrée à la programmation dynamique, un bon moyen de se préparer à l'examen final de LOG200.",
+      "Rendez-vous le jeudi 3 décembre 2026, de 12 h à 13 h 30, au local D-4007 de l'ÉTS. N'oublie pas ton ordinateur portable !",
+    ],
+    blocks: [
+      { type: "heading", id: "au-programme", text: "Au programme" },
+      {
+        type: "p",
+        text: "Pour chaque problème, on progresse en trois étapes. Cette démarche aide à comprendre d'où vient une solution de programmation dynamique, plutôt que de l'apprendre par cœur.",
+      },
+      {
+        type: "list",
+        items: [
+          "Une récursion simple pour poser le problème.",
+          "Une version avec mémoïsation pour éviter de recalculer les mêmes sous-problèmes.",
+          "Une version itérative bottom-up.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Deux problèmes sont à résoudre en Java (Java 8 ou Java 15). Le concours se déroule sur HackerRank.",
+      },
+      { type: "heading", id: "pourquoi-log200", text: "Une préparation pour LOG200" },
+      {
+        type: "p",
+        text: "La programmation dynamique fait partie des notions à maîtriser pour le final de LOG200. L'atelier est l'occasion de pratiquer sur des problèmes concrets et de poser tes questions avant l'examen.",
+      },
+      { type: "heading", id: "informations-pratiques", text: "Informations pratiques" },
+      {
+        type: "list",
+        items: [
+          "Date : jeudi 3 décembre 2026",
+          "Heure : 12 h à 13 h 30",
+          "Lieu : ÉTS, local D-4007, 1100 rue Notre-Dame Ouest, Montréal",
+          "Langage : Java (Java 8 ou Java 15)",
+          "Plateforme : HackerRank",
+          "Apporte ton ordinateur portable.",
+        ],
+      },
+      { type: "heading", id: "ressources", text: "Ressources" },
+      {
+        type: "resources",
+        items: [
+          {
+            label: "Concours Coding with GDG-ÉTS #2 sur HackerRank",
+            kind: "Concours",
+            href: "https://www.hackerrank.com/coding-with-gdg-ets-2",
+          },
+          {
+            label: "Premier atelier : LeetCode et préparation aux entrevues",
+            kind: "Article",
+            href: "/blog/atelier-leetcode-9-novembre",
+          },
+          { label: "Calendrier des événements du GDG ÉTS", kind: "Calendrier", href: "/events" },
+        ],
+      },
+    ],
+  },
   "atelier-leetcode-9-novembre": {
     lead: [
-      "Le GDG ÉTS lance sa première activité officielle avec un atelier consacré à LeetCode. Objectif : pratiquer la programmation compétitive dans un cadre accessible et préparer les entrevues techniques.",
-      "Rendez-vous le lundi 9 novembre 2026, de 12 h à 13 h 30, au Pavillon A de l'ÉTS (salle A-1302). L'activité est gratuite et des tuteurs seront sur place pour accompagner les participant·es.",
+      "Le GDG ÉTS a lancé sa première activité officielle avec un atelier consacré à LeetCode. Objectif : pratiquer la programmation compétitive dans un cadre accessible et préparer les entrevues techniques.",
+      "L'atelier a eu lieu le lundi 9 novembre 2026, de 12 h à 13 h 30, au Pavillon A de l'ÉTS (salle A-1302). L'activité était gratuite et des tuteurs étaient sur place pour accompagner les participant·es.",
     ],
     blocks: [
       { type: "heading", id: "au-programme", text: "Au programme" },
@@ -78,8 +137,8 @@ export const articleBodies: Record<string, ArticleBody> = {
   },
   "devfest-montreal-2026": {
     lead: [
-      "Pour sa première année, le GDG ÉTS sera sur la scène du DevFest Montréal 2026. Notre lead, Oumaima El khayiri, participe à la session « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » aux côtés de Rebecca Abi Chahine, Michael Persico et Daniel Wei.",
-      "Le rendez-vous est fixé au vendredi 6 novembre 2026, à l'Espace Ax.c, au 800 rue du Square-Victoria, à Montréal.",
+      "Pour sa première année, le GDG ÉTS était sur la scène du DevFest Montréal 2026. Notre lead, Oumaima El khayiri, a participé à la session « Google Developer Groups on Campus: Mission, Impact, and Student Perspectives » aux côtés de Rebecca Abi Chahine, Michael Persico et Daniel Wei.",
+      "L'événement a eu lieu le vendredi 6 novembre 2026, à l'Espace Ax.c, au 800 rue du Square-Victoria, à Montréal.",
     ],
     blocks: [
       { type: "heading", id: "le-devfest", text: "Le DevFest, c'est quoi ?" },
@@ -101,7 +160,7 @@ export const articleBodies: Record<string, ArticleBody> = {
           "Daniel Wei",
         ],
       },
-      { type: "heading", id: "pourquoi-venir", text: "Pourquoi venir ?" },
+      { type: "heading", id: "pourquoi-venir", text: "Pourquoi c'était important" },
       {
         type: "list",
         items: [
@@ -117,17 +176,16 @@ export const articleBodies: Record<string, ArticleBody> = {
         items: [
           "Date : vendredi 6 novembre 2026",
           "Lieu : Espace Ax.c, 800 rue du Square-Victoria, Montréal",
-          "Billets : sur la billetterie officielle du DevFest",
-          "L'ÉTS sera représentée par Oumaima El khayiri.",
+          "L'ÉTS était représentée par Oumaima El khayiri.",
         ],
       },
-      { type: "heading", id: "ressources", text: "Billets et ressources" },
+      { type: "heading", id: "ressources", text: "Ressources" },
       {
         type: "resources",
         items: [
           {
-            label: "Billets et programme du DevFest MTL 2026",
-            kind: "Billets",
+            label: "Programme du DevFest MTL 2026",
+            kind: "Programme",
             href: "https://lnkd.in/gSnGEvnC",
           },
           { label: "Calendrier des événements du GDG ÉTS", kind: "Calendrier", href: "/events" },
