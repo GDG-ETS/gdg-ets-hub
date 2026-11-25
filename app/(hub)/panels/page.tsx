@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { PostCard } from "@/components/post-card";
-import { buttonStyles } from "@/components/ui/button";
 import { devfest, posts } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -59,8 +58,8 @@ export default function PanelsPage() {
         </h1>
         <p className="mt-3 text-[15px] leading-7 text-muted sm:text-base">
           Le GDG ÉTS organise et rejoint des conférences pour connecter les
-          étudiant·es de l&apos;ÉTS à l&apos;écosystème tech. Retrouve ici les
-          prochaines prises de parole et les retours d&apos;expérience.
+          étudiant·es de l&apos;ÉTS à l&apos;écosystème tech. Retrouve ici nos
+          prises de parole et les retours d&apos;expérience.
         </p>
       </header>
 
@@ -71,7 +70,7 @@ export default function PanelsPage() {
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-center">
           <div>
             <p className="text-sm font-medium text-brand">
-              Prochaine prise de parole
+              Dernière prise de parole
             </p>
             <h2
               id="next-talk"
@@ -99,15 +98,6 @@ export default function PanelsPage() {
             </div>
 
             <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
-              <a
-                href={devfest.ticketsHref}
-                target="_blank"
-                rel="noreferrer"
-                className={buttonStyles({ variant: "primary", size: "md" })}
-              >
-                {devfest.ticketsLabel}
-                <span aria-hidden="true">↗</span>
-              </a>
               <Link
                 href={devfest.articleHref}
                 className="text-sm font-medium text-brand hover:text-brand-dark"

@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EventList } from "@/components/event-list";
-import { devfest, events, pastEvents } from "@/lib/data";
+import { getEventSchedule } from "@/lib/schedule";
 
 export const metadata: Metadata = {
   title: "Événements",
   description:
-    "L'agenda du GDG ÉTS : atelier LeetCode, DevFest Montréal 2026 et rencontres de la communauté GDG.",
+    "L'agenda du GDG ÉTS : ateliers, conférences et rencontres de la communauté GDG.",
 };
 
 const formats = [
   {
     title: "Atelier pratique",
-    text: "Une session hands-on pour pratiquer une technologie ou un thème précis. Le premier atelier officiel du club porte sur LeetCode et la préparation aux entrevues.",
+    text: "Une session hands-on pour pratiquer une technologie ou un thème précis. Le premier atelier officiel du club portait sur LeetCode et la préparation aux entrevues.",
   },
   {
     title: "Conférence & panel",
-    text: "Des membres du club et des invité·es partagent leur expérience. Le GDG ÉTS rejoint notamment la scène du DevFest Montréal 2026.",
+    text: "Des membres du club et des invité·es partagent leur expérience. Le GDG ÉTS a notamment rejoint la scène du DevFest Montréal 2026.",
   },
   {
     title: "Meetup communautaire",
@@ -26,20 +26,22 @@ const formats = [
 
 const steps = [
   {
-    title: "Choisis une activité",
-    text: "Deux rendez-vous cette session : le DevFest le 6 novembre et l'atelier LeetCode le 9 novembre.",
+    title: "Surveille le calendrier",
+    text: "Les nouvelles activités sont ajoutées ici dès qu'elles sont confirmées, avec un article d'annonce.",
   },
   {
-    title: "Atelier : viens directement",
-    text: "Gratuit, sans inscription. Rendez-vous au Pavillon A, salle A-1302, de 12 h à 13 h 30. Des tuteurs seront sur place.",
+    title: "Ateliers : viens directement",
+    text: "Les ateliers du club sont gratuits et sans inscription, sauf indication contraire dans l'annonce.",
   },
   {
-    title: "DevFest : prends ton billet",
-    text: "L'événement est organisé par la communauté GDG. La billetterie officielle donne accès au programme complet.",
+    title: "Conférences externes",
+    text: "Pour les événements organisés par d'autres communautés, l'annonce indique comment obtenir un billet.",
   },
 ];
 
-export default function EventsPage() {
+export default async function EventsPage() {
+  const { upcoming, past } = await getEventSchedule();
+
   return (
     <div className="container-hub py-8 sm:py-10">
       <header className="max-w-3xl border-b border-line pb-8">
@@ -47,8 +49,8 @@ export default function EventsPage() {
           Événements
         </h1>
         <p className="mt-3 text-[15px] leading-7 text-muted sm:text-base">
-          Ateliers, conférences et rencontres : voici les prochains rendez-vous
-          du GDG ÉTS. Les ateliers du club sont gratuits et ouverts à la
+          Ateliers, conférences et rencontres : voici les rendez-vous du
+          GDG ÉTS. Les ateliers du club sont gratuits et ouverts à la
           communauté de l&apos;ÉTS.
         </p>
         <p className="mt-3 text-sm text-muted">
@@ -74,10 +76,18 @@ export default function EventsPage() {
                 À venir
               </h2>
               <span className="text-xs text-muted">
-                {events.length} événements
+                {upcoming.length}{" "}
+                {upcoming.length > 1 ? "événements" : "événement"}
               </span>
             </div>
-            <EventList events={events} />
+            {upcoming.length > 0 ? (
+              <EventList events={upcoming} />
+            ) : (
+              <p className="border-b border-line py-6 text-sm leading-6 text-muted">
+                Aucune activité annoncée pour le moment. L&apos;équipe prépare
+                la suite : reviens bientôt ou consulte nos derniers articles.
+              </p>
+            )}
             <p className="mt-3 text-xs leading-5 text-muted">
               Les détails et les changements de dernière minute sont publiés
               dans nos articles. Consulte l&apos;annonce de chaque activité
@@ -97,7 +107,7 @@ export default function EventsPage() {
                 Les articles
               </Link>
             </div>
-            <EventList events={pastEvents} />
+            <EventList events={past} />
           </section>
 
           <section aria-labelledby="event-formats" className="mt-12">
@@ -143,17 +153,6 @@ export default function EventsPage() {
                     <p className="mt-1 text-xs leading-5 text-muted">
                       {step.text}
                     </p>
-                    {index === 2 && (
-                      <a
-                        href={devfest.ticketsHref}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mt-2 inline-flex text-xs font-medium text-brand hover:text-brand-dark"
-                      >
-                        Billets &amp; programme
-                        <span aria-hidden="true"> ↗</span>
-                      </a>
-                    )}
                   </div>
                 </li>
               ))}
