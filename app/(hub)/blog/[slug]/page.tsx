@@ -7,8 +7,6 @@ import { ShareLinks } from "@/components/share-links";
 import { getPost, posts } from "@/lib/data";
 import { articleBodies, type ArticleBlock } from "@/lib/post-content";
 
-export const instant = false;
-
 export function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
 }
